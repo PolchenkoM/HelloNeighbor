@@ -1,11 +1,13 @@
+import UserMenuSider from "./components/UserMenuSider/UserMenuSider";
+
 
 import ChatList from "./components/ChatList/ChatList";
 
 function App() {
   return (
     <div className="App">
+        <UserMenuSider />
      <ChatList/>
-     3232323232
     </div>
   );
 }
