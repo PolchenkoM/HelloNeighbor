@@ -12,10 +12,10 @@ export default function Navbar() {
 	return (
   <>
     <nav className="navbar header__navbar">
-      <ul className="list">
-        <li className="list__item"><a href="">Продукты</a></li>
-        <li className="list__item"><a href="">О нас</a></li>
-        <li className="list__item"><a href="">Поддержка</a></li>
+      <ul className="list navbar__list">
+        <li className="list__item"><a href="" className="list__item-link">Продукты</a></li>
+        <li className="list__item"><a href="" className="list__item-link">О&nbsp;нас</a></li>
+        <li className="list__item"><a href="" className="list__item-link">Поддержка</a></li>
       </ul>
     </nav>
   </>

@@ -3,9 +3,9 @@ import { Button } from 'antd'
 export default function LogBar() {
 	return (
 		<>
-			<button>
+			<a className="log-link">
 				Войдите
-			</button>
+			</a>
 		</>
 	)
 }
