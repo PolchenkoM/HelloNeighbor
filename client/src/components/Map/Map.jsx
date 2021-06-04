@@ -26,7 +26,16 @@ function MyComponent() {
 
   const [markers, setMarkers] = useState([]);
 
-  const onMapClick = useCallback(() => {}, [])
+  const onMapClick = useCallback((event) => {
+    setMarkers((current) => [
+      ...current,
+      {
+        lat: event.latLng.lat(),
+        lng: event.latLng.lng(),
+        time: new Date(),
+      },
+    ]);
+  }, [])
 
   return isLoaded ? (
     <div>
@@ -35,16 +44,7 @@ function MyComponent() {
         center={center}
         zoom={16}
         options={options}
-        onClick={(event) => {
-          setMarkers((current) => [
-            ...current,
-            {
-              lat: event.latLng.lat(),
-              lng: event.latLng.lng(),
-              time: new Date(),
-            },
-          ]);
-        }}
+        onClick={onMapClick}
       >
        
         {/* {dfsfsfsdfsdfsd} */}

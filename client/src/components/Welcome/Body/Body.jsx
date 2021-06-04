@@ -1,4 +1,4 @@
-import style from "./Body.sass";
+// import style from "./Body.sass";
 import React from "react";
 import { Modal, Input } from "antd";
 import Registration from "../../Registration/Registration";
