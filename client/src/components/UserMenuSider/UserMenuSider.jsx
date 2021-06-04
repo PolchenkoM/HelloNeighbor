@@ -2,8 +2,8 @@ import { UserOutlined } from '@ant-design/icons';
 import { FacebookOutlined,InstagramOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 import { Typography,Button } from 'antd';
-import style from './userMenuSider.sass'
 
+import style from './userMenuSider.sass'
 
 import Sider from 'antd/lib/layout/Sider';
 import Avatar from 'antd/lib/avatar/avatar';
