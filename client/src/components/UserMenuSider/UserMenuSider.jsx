@@ -5,8 +5,6 @@ import { Typography,Button } from 'antd';
 
 import style from './userMenuSider.sass'
 
-
-
 import Sider from 'antd/lib/layout/Sider';
 import Avatar from 'antd/lib/avatar/avatar';
 import Rater from '../Rater/Rater';

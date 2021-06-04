@@ -1,6 +1,7 @@
+
 import UserMenuSider from "./components/UserMenuSider/UserMenuSider";
 import ChatList from "./components/ChatList/ChatList";
-
+import style from './styles/style.sass'
 
 import Map from "./components/Map/Map";
 
@@ -20,4 +21,4 @@ function App() {
   );
 }
 
-export default App;
+export default App

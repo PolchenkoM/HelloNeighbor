@@ -1,6 +1,7 @@
 .body
-  background-image: url('./background.jpeg')
+  background-image: url('./imgInStyle/background.jpeg')
   height: 100vh
+  background-color: red
   &__welcome
     position: relative
     left: 50%
@@ -14,10 +15,9 @@
   &__title
     font: bold 90px/44px Roboto
     color: #ffffff
-    transition: color text-shadow 0.3s ease-in
+    transition: text-shadow 0.3s ease-in
     &:hover
       cursor: pointer
-      // color: #f3ff44
   &__button
     color: #5d86f7
     cursor: pointer
@@ -36,4 +36,3 @@
       &+.welcome__title
         transition: text-shadow 0.5s ease
         text-shadow: 0 0 10px #f3ff44
-
