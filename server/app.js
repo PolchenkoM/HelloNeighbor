@@ -3,8 +3,13 @@ const cors = require("cors");
 const { connect } = require("mongoose");
 const mongoUrl = "mongodb://localhost:27017/hello";
 const WebSocket = require('ws');
+const User = require("./models/user");
+
+const morgan = require("morgan");
+
 
 const wss = new WebSocket.Server({ port: 8080 });
+
 
 const app = express();
 // const map = new Map();
@@ -12,10 +17,13 @@ const app = express();
 // const server = http.createServer(app);
 // const wss = new WebSocket.Server({ clientTracking: false, noServer: true });
 
+const registerRoute = require("./routes/registrationRoute");
+
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(morgan('dev'))
 
 
 
@@ -24,8 +32,10 @@ wss.on('connection', function connection(ws) {
     console.log('received: %s', message);
     ws.send('Shama hi');
   });
-
 });
+
+app.use("/registration", registerRoute);
+
 
 app.listen(3001, () => {
   console.log("Go retard");

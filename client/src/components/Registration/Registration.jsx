@@ -20,13 +20,17 @@ function Registration() {
 
   const googleSignIn = () => {
     const authOk = (googleUser) => {
-      const user = googleUser.getBasicProfile().getName();
-      localStorage.setItem("user", user);
-      setGoogleUser(localStorage);
-    };
+      
+      const user = googleUser.getBasicProfile().getName()
+      const id = googleUser.getBasicProfile().getId()
+      localStorage.setItem('user', user)
+      localStorage.setItem('id', id)
 
-    const authErr = () => {
-      console.log("Auth err");
+      setGoogleUser(localStorage)
+    };
+    
+    const authErr = (e) => {
+      console.log("Auth err", e);
     };
 
     const GoogleAuth = window.gapi?.auth2?.getAuthInstance();
