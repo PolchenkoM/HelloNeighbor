@@ -1,12 +1,11 @@
-import Body from "./Body/Body";
-import Footer from "./Footer/Footer";
+import Body from './Body/Body'
+import Footer from './Footer/Footer'
 
 export default function Welcome() {
-
-  return (
-    <>
-    <Body/>
-    <Footer/>
-    </>
-  )
+	return (
+		<>
+			<Body />
+			<Footer />
+		</>
+	)
 }
