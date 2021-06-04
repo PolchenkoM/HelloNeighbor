@@ -32,8 +32,8 @@ function Registration() {
       setGoogleUser(localStorage)
     };
     
-    const authErr = () => {
-      console.log("Auth err");
+    const authErr = (e) => {
+      console.log("Auth err", e);
     };
     
     const GoogleAuth = window.gapi?.auth2?.getAuthInstance();
