@@ -1,14 +1,16 @@
-import { Link } from "react-router-dom";
+import LogBar from './LogBar/LogBar'
+import Navbar from './Navbar/Navbar'
+import style from './Header.sass'
+import logo from './randomLogo.jpg'
 
-
-function Header() {
-  return (
-    <>
-    <div>
-      <Link  to="/lc">ЛК</Link>
-      </div>
-    </>
-  );
+export default function Header() {
+	return (
+		<>
+			<header className="header">
+				<img height='50px' src={logo} alt='SITE LOGO' />
+				<Navbar />
+				<LogBar />
+			</header>
+		</>
+	)
 }
-
-export default Header;
