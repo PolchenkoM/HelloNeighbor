@@ -1,1 +1,38 @@
+.body
+  height: 100vh
+  &__welcome
+    position: relative
+    left: 50%
+    top: 50%
+    transform: translate(-50%,-50%)
+    display: flex
+    flex-direction: column-reverse
+    justify-content: space-between
+    align-items: center
+.welcome
+  &__title
+    font: bold 90px/44px Roboto
+    color: #ffffff
+    transition: color text-shadow 0.3s ease-in
+    &:hover
+      cursor: pointer
+      // color: #f3ff44
+  &__button
+    color: #5d86f7
+    cursor: pointer
+    border: none
+    outline: none
+    padding: 30px 60px
+    background: linear-gradient(to top left, powderblue, pink)
+    border-radius: 30px
+    font-size: 24px
+    font-weight: bold
+    font-family: Roboto
+    transition: box-shadow 0.5s ease
+    position: relative
+    &:hover
+      box-shadow: 0 0 10px 2px #ffffff
+      &+.welcome__title
+        transition: text-shadow 0.5s ease
+        text-shadow: 0 0 10px #f3ff44
 
