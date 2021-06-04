@@ -23,8 +23,12 @@ function Registration() {
   const signIn = () => {
 
     const authOk = (googleUser) => {
+      
       const user = googleUser.getBasicProfile().getName()
+      const id = googleUser.getBasicProfile().getId()
       localStorage.setItem('user', user)
+      localStorage.setItem('id', id)
+
       setGoogleUser(localStorage)
     };
     
@@ -53,7 +57,7 @@ function Registration() {
     <>
       {googleUser.user && <p>Здарова {googleUser.user}</p>}
       <Button onClick={signIn} type="primary">
-        log in
+        googleAuth
       </Button>
       <Button onClick={signOut} type="primary">
         sign out
