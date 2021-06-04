@@ -1,8 +1,12 @@
 import Registration from "./components/Registration/Registration";
 import UserMenuSider from "./components/UserMenuSider/UserMenuSider";
 import ChatList from "./components/ChatList/ChatList";
+
+import Map from './components/Map/Map'
+
 const { default: Header } = require("./components/Header/Header");
 const { default: Welcome } = require("./components/Welcome/Welcome");
+
 
 
 
@@ -14,6 +18,7 @@ function App() {
      <Registration/>
     <UserMenuSider />
      <ChatList/>
+      <Map/>
 
     </div>
   );
