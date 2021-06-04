@@ -1,4 +1,3 @@
-import Registration from "./components/Refistration/Registration";
 import UserMenuSider from "./components/UserMenuSider/UserMenuSider";
 import ChatList from "./components/ChatList/ChatList";
 const { default: Header } = require("./components/Header/Header");
@@ -10,7 +9,6 @@ function App() {
     <div className="App">
      <Header/>
      <Welcome/>
-     <Registration/>
     <UserMenuSider />
      <ChatList/>
 
