@@ -1,13 +1,11 @@
-import UserMenuSider from "./components/UserMenuSider/UserMenuSider";
+import MainPage from "./components/MainPage/MainPage";
 
 
-import ChatList from "./components/ChatList/ChatList";
 
 function App() {
   return (
     <div className="App">
-        <UserMenuSider />
-     <ChatList/>
+        <MainPage />
     </div>
   );
 }
