@@ -1,6 +1,8 @@
+
 import MainPage from "./components/MainPage/MainPage";
 import UserMenuSider from "./components/UserMenuSider/UserMenuSider";
 import ChatList from "./components/ChatList/ChatList";
+import style from './styles/style.sass'
 import Map from "./components/Map/Map";
 
 const { default: Header } = require("./components/Header/Header");
@@ -20,4 +22,4 @@ function App() {
   );
 }
 
-export default App;
+export default App
