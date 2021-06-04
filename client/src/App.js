@@ -1,13 +1,10 @@
+import Registration from "./components/Registration/Registration";
+import UserMenuSider from "./components/UserMenuSider/UserMenuSider";
+import ChatList from "./components/ChatList/ChatList";
 const { default: Header } = require("./components/Header/Header");
 const { default: Welcome } = require("./components/Welcome/Welcome");
 
 
-import Registration from "./components/Refistration/Registration";
-
-import UserMenuSider from "./components/UserMenuSider/UserMenuSider";
-
-
-import ChatList from "./components/ChatList/ChatList";
 
 function App() {
   return (
