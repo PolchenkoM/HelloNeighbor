@@ -1,24 +1,19 @@
 import UserMenuSider from "./components/UserMenuSider/UserMenuSider";
 import ChatList from "./components/ChatList/ChatList";
 
-import Map from './components/Map/Map'
+import Map from "./components/Map/Map";
 
 const { default: Header } = require("./components/Header/Header");
 const { default: Welcome } = require("./components/Welcome/Welcome");
 
-
-
-
-
 function App() {
   return (
     <div className="App">
-     <Header/>
-     <Welcome/>
-     <Registration/>
-    <UserMenuSider />
-     <ChatList/>
-      <Map/>
+      <Header />
+      <Welcome />
+      <UserMenuSider />
+      <ChatList />
+      <Map />
     </div>
   );
 }

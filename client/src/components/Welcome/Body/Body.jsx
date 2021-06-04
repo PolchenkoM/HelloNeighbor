@@ -34,7 +34,6 @@ export default function Body() {
       .then((result) => {
         localStorage.setItem('user',  result.username)
         localStorage.setItem('id', result._id)
-        // localStorage.setItem('user',  result.username, result.id)
 
       }
        )
