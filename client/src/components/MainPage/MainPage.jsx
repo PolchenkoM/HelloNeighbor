@@ -9,10 +9,10 @@ const MainPage = () =>  {
 
   return (
     <Layout  >
-      <Header />
-      <Layout >
+      <Header style={{opacity: 0.1}}/>
+
         <UserMenuSider /> 
-      </Layout>
+
     </Layout>
   )
 }
