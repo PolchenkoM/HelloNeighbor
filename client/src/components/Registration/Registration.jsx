@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Button } from "antd";
 
 function Registration() {
-
   const [googleUser, setGoogleUser] = useState(localStorage);
 
   useEffect(() => {
@@ -19,9 +18,7 @@ function Registration() {
     });
   }, []);
 
-
-  const signIn = () => {
-
+  const googleSignIn = () => {
     const authOk = (googleUser) => {
       const user = googleUser.getBasicProfile().getName()
       const id = googleUser.getBasicProfile().getId()
@@ -30,10 +27,10 @@ function Registration() {
       setGoogleUser(localStorage)
     };
     
-    const authErr = () => {
-      console.log("Auth err");
+    const authErr = (e) => {
+      console.log("Auth err", e);
     };
-    
+
     const GoogleAuth = window.gapi?.auth2?.getAuthInstance();
     GoogleAuth.signIn({
       scope: "profile email",
@@ -44,21 +41,26 @@ function Registration() {
     const GoogleAuth = window.gapi?.auth2?.getAuthInstance();
     GoogleAuth.signOut().then(
       () => {
-      localStorage.clear()
-      setGoogleUser("")
-    }, () => console.log('signout Error')) 
-  }
+        localStorage.clear();
+        setGoogleUser("");
+      },
+      () => console.log("signout Error")
+    );
+  };
 
-
+  const signUp = () => {};
 
   return (
     <>
       {googleUser.user && <p>Здарова {googleUser.user}</p>}
-      <Button onClick={signIn} type="primary">
+      <Button onClick={googleSignIn} type="primary">
         googleAuth
       </Button>
       <Button onClick={signOut} type="primary">
         sign out
+      </Button>
+      <Button onClick={signUp} type="primary">
+        sign up
       </Button>
     </>
   );

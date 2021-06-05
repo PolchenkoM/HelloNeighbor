@@ -5,11 +5,9 @@ import { Typography,Button } from 'antd';
 
 import style from './userMenuSider.sass'
 
-
-
 import Sider from 'antd/lib/layout/Sider';
 import Avatar from 'antd/lib/avatar/avatar';
-import Rater from '../Rater/Rater';
+// import Rater from '../Rater/Rater';
 
 const UserMenuSider = () => {
 
@@ -27,7 +25,7 @@ const UserMenuSider = () => {
     <Sider collapsible collapsed={collapsed} onCollapse={onCollapse} className='class'>
 
         <Avatar size={120} icon={<UserOutlined />} src='https://gameguru.ru/clf/43/ef/08/2e/news.1610973171890.jpg' draggable={true}/>
-        <Rater />
+        {/* <Rater /> */}
         <Title level={3}>h3. Ant Design</Title>
         <div >
           <Button type="primary"  icon={<FacebookOutlined />} size={size} />
