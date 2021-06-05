@@ -32,12 +32,9 @@ export default function Body() {
     })
       .then((res) => res.json())
       .then((result) => {
-        localStorage.setItem('user',  result.username)
-        localStorage.setItem('id', result._id)
-
-      }
-       )
-      
+        localStorage.setItem("user", result.username);
+        localStorage.setItem("id", result._id);
+      });
 
     setTimeout(() => {
       setVisible(false);
