@@ -20,10 +20,23 @@ function Registration() {
 
   const googleSignIn = () => {
     const authOk = (googleUser) => {
-      const user = googleUser.getBasicProfile().getName()
       const id = googleUser.getBasicProfile().getId()
-      localStorage.setItem('user', user)
-      localStorage.setItem('id', id)
+      const username = googleUser.getBasicProfile().getGivenName()
+      const email = googleUser.getBasicProfile().getEmail()
+      fetch('http://localhost:3001/registration/google', {
+        method: 'POST',
+        headers: {
+          'Content-Type' : 'application/json'
+        },
+        body: JSON.stringify({
+          id, email
+        })
+      })
+      .then((res) => res.json())
+      .then((result) => {
+        localStorage.setItem("id", result._id);
+      });
+      // localStorage.setItem('id', id)
       setGoogleUser(localStorage)
     };
     

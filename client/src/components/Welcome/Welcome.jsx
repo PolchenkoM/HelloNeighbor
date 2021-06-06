@@ -7,7 +7,7 @@ export default function Welcome() {
 	return (
 		<>
 			<Body />
-			<Footer />
+			{/* <Footer /> */}
       <CreateEventModal/>
       <ShowEventModal/>
 		</>

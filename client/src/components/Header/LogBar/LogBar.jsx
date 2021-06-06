@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import useLoginForm from "../../hooks/useLoginForm";
 import { Modal, Input } from "antd";
+import useRegForm from "../../hooks/useForm";
+
 
 export default function LogBar() {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [loginValues, changeLoginChandler] = useLoginForm();
+  const [values, changeHandler] = useRegForm();
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -18,18 +19,18 @@ export default function LogBar() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        loginValues,
+        values,
       }),
     })
       .then((res) => res.json())
       .then((result) => {
-        localStorage.setItem("user", result.username);
         localStorage.setItem("id", result._id);
       });
   };
 
   const handleCancel = () => {
     setIsModalVisible(false);
+    changeHandler('')
   };
 
   return (
@@ -43,15 +44,15 @@ export default function LogBar() {
         <Input
           name="email"
           type="email"
-          value={loginValues.email || ""}
-          onChange={changeLoginChandler}
+          value={values.email || ""}
+          onChange={changeHandler}
           placeholder="Почта"
         />
         <Input
           name="password"
           type="password"
-          value={loginValues.password || ""}
-          onChange={changeLoginChandler}
+          value={values.password || ""}
+          onChange={changeHandler}
           placeholder="Пароль"
         />
       </Modal>
