@@ -1,8 +1,6 @@
-
-import MainPage from "./components/MainPage/MainPage";
-import UserMenuSider from "./components/UserMenuSider/UserMenuSider";
-import ChatList from "./components/ChatList/ChatList";
 import style from './styles/style.sass'
+import MainPage from "./components/MainPage/MainPage";
+import ChatList from "./components/ChatList/ChatList";
 import Map from "./components/Map/Map";
 
 const { default: Header } = require("./components/Header/Header");
@@ -15,7 +13,6 @@ function App() {
       <Header />
       <MainPage />
       <Welcome />
-      {/* <UserMenuSider /> */}
       <ChatList />
       <Map />
     </div>
