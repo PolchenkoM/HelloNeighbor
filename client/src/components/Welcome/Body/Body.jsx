@@ -2,7 +2,6 @@ import React from "react";
 import { Modal, Input } from "antd";
 import Registration from "../../Registration/googleOauth";
 import useRegForm from "../../hooks/useForm";
-import style from "./Body.sass";
 
 export default function Body() {
   function openModalSignUp() {

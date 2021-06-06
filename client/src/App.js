@@ -16,7 +16,7 @@ function App() {
       <div className="App">
         <Header />
         <Routes />
-        <Welcome />
+        {/* <Welcome /> */}
         <MainPage />
         <ChatList />
         <Map />
