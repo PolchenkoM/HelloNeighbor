@@ -1,8 +1,8 @@
-// import style from "./Body.sass";
 import React from "react";
 import { Modal, Input } from "antd";
-import Registration from "../../Registration/Registration";
-import useRegForm from "../../hooks/useRegForm";
+import Registration from "../../Registration/googleOauth";
+import useRegForm from "../../hooks/useForm";
+import style from "./Body.sass";
 
 export default function Body() {
   function openModalSignUp() {
@@ -32,12 +32,8 @@ export default function Body() {
     })
       .then((res) => res.json())
       .then((result) => {
-        localStorage.setItem('user',  result.username)
-        localStorage.setItem('id', result._id)
-
-      }
-       )
-      
+        localStorage.setItem("id", result._id);
+      });
 
     setTimeout(() => {
       setVisible(false);
@@ -64,13 +60,6 @@ export default function Body() {
             confirmLoading={confirmLoading}
             onCancel={handleCancel}
           >
-            <Input
-              name="username"
-              type="text"
-              value={values.username || ""}
-              onChange={changeHandler}
-              placeholder="Имя"
-            />
             <Input
               name="email"
               type="email"

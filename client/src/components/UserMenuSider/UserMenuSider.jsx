@@ -31,8 +31,6 @@ const UserMenuSider = () => {
           <Button type="primary"  icon={<FacebookOutlined />} size={size} />
           <Button type="primary"  icon={<InstagramOutlined />} size={size} />
         </div>
-
-
     </Sider>
   )
 }

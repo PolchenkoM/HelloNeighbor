@@ -1,11 +1,11 @@
-import { Button } from 'antd'
+import React, { useState } from "react";
+import { Modal, Input, Button } from "antd";
+import useRegForm from "../../hooks/useForm";
 
-import React, { useState } from 'react'
-import { Modal, Buttonm, Input } from 'antd'
 
 export default function LogBar() {
-
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [values, changeHandler] = useRegForm();
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -13,19 +13,56 @@ export default function LogBar() {
 
   const handleOk = () => {
     setIsModalVisible(false);
+    fetch("http://localhost:3001/login/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        values,
+      }),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        localStorage.setItem("id", result._id);
+      });
   };
 
   const handleCancel = () => {
     setIsModalVisible(false);
+    changeHandler('')
   };
 
-	return (
+  return (
+
 		<>
-      <Modal title="Basic Modal" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-      <Input placeholder="Почта" />
-      <Input placeholder="Пароль" />
-      </Modal>
-			<a className='log-link' onClick={showModal}>Войдите</a>
+			<Button type='primary' onClick={showModal}>
+				Open Modal
+			</Button>
+			<Modal
+				title='Войдите в аккаунт'
+				visible={isModalVisible}
+				onOk={handleOk}
+				onCancel={handleCancel}
+				footer={null}
+			>
+				<form action="">
+          <label htmlFor="">
+          Почта<Input name="email"
+          type="email"
+          value={values.email || ""}
+          onChange={changeHandler}
+          placeholder="Введите текст"/>
+          </label>
+          <label htmlFor="">
+          Пароль<Input name="password"
+          type="password"
+          value={values.password || ""}
+          onChange={changeHandler} placeholder="Введите текст"/>
+          </label>
+          <button className="button">Войти</button>
+        </form>
+			</Modal>
 		</>
-	)
+  );
 }
