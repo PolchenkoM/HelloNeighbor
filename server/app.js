@@ -21,6 +21,9 @@ const app = express();
 
 const registerRoute = require("./routes/registrationRoute");
 const userRouter = require("./routes/userRouter");
+const loginRoute = require("./routes/loginRoute");
+
+
 
 app.use(express.static("public"));
 app.use(morgan('dev'))
@@ -37,6 +40,8 @@ wss.on('connection', function connection(ws) {
 
 app.use("/registration", registerRoute);
 app.use('/user', userRouter);
+app.use("/login", loginRoute);
+
 
 
 app.listen(3001, () => {
