@@ -25,7 +25,7 @@ export default function LogBar() {
       .then((res) => res.json())
       .then((result) => {
         localStorage.setItem("id", result._id);
-      });
+      })
   };
 
   const handleCancel = () => {
