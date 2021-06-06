@@ -14,12 +14,12 @@ function App() {
   return (
     <Router >
       <div className="App">
-        {/* <Header /> */}
-        {/* <Routes /> */}
-        {/* <Welcome /> */}
-        {/* <MainPage /> */}
-        {/* <ChatList /> */}
-        {/* <Map /> */}
+        <Header />
+        <Routes />
+        <Welcome />
+        <MainPage />
+        <ChatList />
+        <Map />
         <AddAvatarZone />
       </div>
     </Router>
