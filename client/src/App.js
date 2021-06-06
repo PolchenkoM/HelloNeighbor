@@ -1,26 +1,29 @@
+import style from './styles/style.sass'
 import MainPage from "./components/MainPage/MainPage";
-import UserMenuSider from "./components/UserMenuSider/UserMenuSider";
 import ChatList from "./components/ChatList/ChatList";
 import Map from "./components/Map/Map";
+import  {BrowserRouter as Router} from 'react-router-dom'
+import Routes from './components/Routes/Routes';
+import AddAvatarZone from './components/MainPage/AddAvatarZone/AddAvatarZone';
+
 
 const { default: Header } = require("./components/Header/Header");
 const { default: Welcome } = require("./components/Welcome/Welcome");
 
-
 function App() {
   return (
-    <div className="App">
-
+    <Router >
+      <div className="App">
+        <Header />
+        <Routes />
+        <Welcome />
         <MainPage />
-
-      <Header />
-      <Welcome />
-      <UserMenuSider />
-      <ChatList />
-      <Map />
-
-    </div>
+        <ChatList />
+        <Map />
+        <AddAvatarZone />
+      </div>
+    </Router>
   );
 }
 
-export default App;
+export default App
