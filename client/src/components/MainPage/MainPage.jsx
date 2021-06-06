@@ -10,9 +10,7 @@ const MainPage = () =>  {
   return (
     <Layout  >
       <Header style={{opacity: 0.1}}/>
-
         <UserMenuSider /> 
-
     </Layout>
   )
 }

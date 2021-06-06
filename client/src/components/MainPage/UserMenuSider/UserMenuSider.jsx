@@ -17,9 +17,10 @@ const UserMenuSider = () => {
   const size = 'large'
 
   const onCollapse = () => {
-    console.log(collapsed);
     setCollapsed(prev => !prev)
   }
+
+  const [drag, setDrag] = useState(false)
 
   return (
   

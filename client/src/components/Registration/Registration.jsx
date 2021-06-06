@@ -24,11 +24,10 @@ function Registration() {
 
     const authOk = (googleUser) => {
       
-      const user = googleUser.getBasicProfile().getName()
+      const user = googleUser.getBasicProfile().getGivenName()
       const id = googleUser.getBasicProfile().getId()
       localStorage.setItem('user', user)
       localStorage.setItem('id', id)
-
       setGoogleUser(localStorage)
     };
     
