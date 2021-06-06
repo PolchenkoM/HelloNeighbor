@@ -18,6 +18,8 @@ const app = express();
 // const wss = new WebSocket.Server({ clientTracking: false, noServer: true });
 
 const registerRoute = require("./routes/registrationRoute");
+const loginRoute = require("./routes/loginRoute");
+
 
 
 app.use(cors());
@@ -35,6 +37,7 @@ wss.on('connection', function connection(ws) {
 });
 
 app.use("/registration", registerRoute);
+app.use("/login", loginRoute);
 
 
 app.listen(3001, () => {
