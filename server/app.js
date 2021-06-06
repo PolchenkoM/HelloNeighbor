@@ -20,6 +20,7 @@ const app = express();
 // const wss = new WebSocket.Server({ clientTracking: false, noServer: true });
 
 const registerRoute = require("./routes/registrationRoute");
+const eventRoute = require("./routes/eventRoute")
 const userRouter = require("./routes/userRouter");
 const loginRoute = require("./routes/loginRoute");
 
@@ -39,6 +40,8 @@ wss.on('connection', function connection(ws) {
 });
 
 app.use("/registration", registerRoute);
+app.use("/event",eventRoute)
+app.use('/allEvent',eventRoute)
 app.use('/user', userRouter);
 app.use("/login", loginRoute);
 
