@@ -5,7 +5,7 @@ const formData = require('express-form-data');
 const path = require("path");
 
 const mongoUrl = "mongodb://localhost:27017/hello";
-const atlasUrl = 'mongodb+srv://userDaniil:111@cluster0.cwgwa.mongodb.net/HelloNeighbor?retryWrites=true&w=majority'
+const atlasUrl = 'mongodb+srv://userShamil:shamil123@cluster0.cwgwa.mongodb.net/HelloNeighbor?retryWrites=true&w=majority'
 const WebSocket = require('ws');
 const Users = require("./models/user");
 
