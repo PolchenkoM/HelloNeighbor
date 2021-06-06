@@ -1,6 +1,5 @@
 import LogBar from './LogBar/LogBar'
 import Navbar from './Navbar/Navbar'
-import style from './Header.sass'
 
 export default function Header() {
 	return (
