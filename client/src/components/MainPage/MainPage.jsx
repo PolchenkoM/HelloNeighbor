@@ -1,17 +1,19 @@
-import { Layout } from 'antd';
-
 import UserMenuSider from './UserMenuSider/UserMenuSider';
-
-
-const { Header } = Layout;
+import Map from './Map/Map'
 
 const MainPage = () =>  {
 
   return (
-    <Layout  >
-      <Header style={{opacity: 0.1}}/>
+    <div className='containerMain'>
+      <UserMenuSider /> 
+      <div className='containerMap'>
+        <div ></div>
+        <Map />
+      </div>
+      <div >
         <UserMenuSider /> 
-    </Layout>
+      </div>
+    </div>
   )
 }
 

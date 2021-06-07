@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "antd";
+import { useDispatch } from "react-redux";
+import {getCurrentUserGoogleThunk} from  '../../redux/Actions/usersAC'
 
 function Registration() {
   const [googleUser, setGoogleUser] = useState(localStorage);
+  const dispatch = useDispatch()
 
   useEffect(() => {
     window.gapi?.load("auth2", function () {
@@ -20,10 +23,11 @@ function Registration() {
 
   const googleSignIn = () => {
     const authOk = (googleUser) => {
-      const user = googleUser.getBasicProfile().getName()
       const id = googleUser.getBasicProfile().getId()
-      localStorage.setItem('user', user)
-      localStorage.setItem('id', id)
+      const username = googleUser.getBasicProfile().getGivenName()
+      const email = googleUser.getBasicProfile().getEmail()
+      dispatch(getCurrentUserGoogleThunk(email))
+      localStorage.setItem("email", email)
       setGoogleUser(localStorage)
     };
     

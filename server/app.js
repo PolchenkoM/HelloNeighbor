@@ -4,6 +4,7 @@ const { connect } = require("mongoose");
 const formData = require('express-form-data');
 const path = require("path");
 
+const PORT = 3001
 const mongoUrl = "mongodb://localhost:27017/hello";
 const atlasUrl = 'mongodb+srv://userDaniil:111@cluster0.cwgwa.mongodb.net/HelloNeighbor?retryWrites=true&w=majority'
 const WebSocket = require('ws');
@@ -20,15 +21,14 @@ const app = express();
 // const wss = new WebSocket.Server({ clientTracking: false, noServer: true });
 
 const registerRoute = require("./routes/registrationRoute");
+const eventRoute = require("./routes/eventRoute")
 const userRouter = require("./routes/userRouter");
 const loginRoute = require("./routes/loginRoute");
 
-
-
 app.use(express.static("public"));
 app.use(morgan('dev'))
-app.use(express.json());
 app.use(cors());
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 
 wss.on('connection', function connection(ws) {
@@ -39,13 +39,15 @@ wss.on('connection', function connection(ws) {
 });
 
 app.use("/registration", registerRoute);
+app.use("/event",eventRoute)
+app.use('/allEvent',eventRoute)
 app.use('/user', userRouter);
 app.use("/login", loginRoute);
 
 
 
-app.listen(3001, () => {
-  console.log("Go retard");
+app.listen(PORT, () => {
+  console.log(`Go retard on ${PORT} port`);
   connect(
     atlasUrl,
     {
