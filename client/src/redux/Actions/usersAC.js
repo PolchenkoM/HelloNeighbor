@@ -1,4 +1,4 @@
-import { GET_CURRENT_USER } from "../Types/userTypes";
+import { GET_CURRENT_USER, LOGOUT_USER } from "../Types/userTypes";
 
 const getCurrentUser = (user) => {
   return {
@@ -16,6 +16,13 @@ const getCurrentUserGoogleThunk = (email) => (dispatch) => {
   .then(response => dispatch(getCurrentUser(response)))
 }
 
+const logoutUser = () => {
+  return {
+    type: LOGOUT_USER, 
+  }
+}
+
 export {
   getCurrentUserGoogleThunk,
+  logoutUser
 }
