@@ -1,23 +1,21 @@
 import { GET_CURRENT_USER } from "../Types/userTypes";
 
-const getCurrentUser = (id) => {
+const getCurrentUser = (user) => {
   return {
     type: GET_CURRENT_USER,
-    payload: id,
+    payload: user,
   };
 };
-
-const getCurrentUserThunk = (id) => (dispatch) => {
-  fetch('http://localhost:3001/user/getCurrentUser', {
+const getCurrentUserGoogleThunk = (email) => (dispatch) => {
+  fetch('http://localhost:3001/registration/google', {
     method: "POST",
     headers: {"Content-Type" : "application/json"},
-    body: JSON.stringify({id})
+    body: JSON.stringify({email})
   })
   .then(res => res.json())
-  .then(response => console.log(response))
+  .then(response => dispatch(getCurrentUser(response)))
 }
 
 export {
-  getCurrentUserThunk,
+  getCurrentUserGoogleThunk,
 }
-

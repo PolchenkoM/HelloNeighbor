@@ -16,9 +16,9 @@ const UserMenuSider = () => {
   const size = 'large'
   const dispatch = useDispatch()
   
-  useEffect(()=>{
-    dispatch(getCurrentUserThunk(id))
-  },[])
+  // useEffect(()=>{
+  //   dispatch(getCurrentUserThunk(id))
+  // },[])
 
   const hideSidebar = (e) => {
     const elem = e.target.parentElement.parentElement
