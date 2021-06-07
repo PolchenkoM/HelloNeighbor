@@ -1,25 +1,50 @@
-
-import MainPage from "./components/MainPage/MainPage";
-import UserMenuSider from "./components/UserMenuSider/UserMenuSider";
-import ChatList from "./components/ChatList/ChatList";
 import style from './styles/style.sass'
-import Map from "./components/Map/Map";
+import { useEffect } from 'react'
 
-const { default: Header } = require("./components/Header/Header");
-const { default: Welcome } = require("./components/Welcome/Welcome");
-
+import { BrowserRouter as Router } from 'react-router-dom'
+import Routes from './components/Routes/Routes'
+import { useDispatch, useSelector } from 'react-redux'
+import { getCurrentUserGoogleThunk } from './redux/Actions/usersAC'
+import HeaderUnlogged from './components/Header/HeaderUnlogged'
+import HeaderLogged from './components/Header/HeaderLogged'
 
 function App() {
-  return (
-    <div className="App">
-      <Header />
-      <MainPage />
-      <Welcome />
-      {/* <UserMenuSider /> */}
-      <ChatList />
-      <Map />
-    </div>
-  );
+
+	const currentUser  = useSelector(state => state.users.currentUser)
+	const dispatch = useDispatch()
+
+	useEffect(() => {
+		window.gapi?.load('auth2', function () {
+			window.gapi?.auth2
+				.init({
+					client_id:
+						'213632962035-g4knv9je1q010p9lclqpuq2u73au46l3.apps.googleusercontent.com',
+				})
+				.then(
+					() => console.log('init OK'),
+					() => console.log('init error')
+				)
+		})
+	}, [])
+  console.log('currentUser----',currentUser)
+  console.log('local-----', localStorage)
+
+	useEffect(() => {
+		if (localStorage.email) {
+			dispatch(getCurrentUserGoogleThunk(localStorage.email))
+		} else {
+			console.log(111)
+		}
+	}, [])
+
+	return (
+		<Router>
+			<div className='App'>
+				{currentUser.email ? <HeaderLogged/> : <HeaderUnlogged/>}
+				<Routes />
+			</div>
+		</Router>
+	)
 }
 
 export default App

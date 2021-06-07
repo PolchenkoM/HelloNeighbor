@@ -1,5 +1,4 @@
-import CreateEventModal from '../MainPage/EventModals/CreateEventModal'
-import ShowEventModal from '../MainPage/EventModals/ShowEventModal'
+
 import Body from './Body/Body'
 import Footer from './Footer/Footer'
 
@@ -8,8 +7,7 @@ export default function Welcome() {
 		<>
 			<Body />
 			<Footer />
-      <CreateEventModal/>
-      <ShowEventModal/>
 		</>
 	)
 }
+

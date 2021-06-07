@@ -1,33 +1,47 @@
-import { Button } from 'antd'
-
 import React, { useState } from 'react'
-import { Modal, Buttonm, Input } from 'antd'
-
+import { Modal, Button, Input, Form, Radio } from 'antd'
+import { useDispatch, useSelector } from "react-redux";
+import { changeVisibility } from '../../../redux/Actions/eventAC';
 export default function CreateEventModal() {
-  const [isModalVisible, setIsModalVisible] = useState(false);
+	// const [isModalVisible, setIsModalVisible] = useState(false)
+  const dispatch = useDispatch()
 
-  const showModal = () => {
-    setIsModalVisible(true);
-  };
+  const modalVisibility = useSelector(state => state.events.modalVisibility)
 
-  const handleOk = () => {
-    setIsModalVisible(false);
-  };
+	const showModal = () => {
+    console.log(123);
+		dispatch(changeVisibility())
+	}
 
-  const handleCancel = () => {
-    setIsModalVisible(false);
-  };
+	const handleOk = () => {
+		dispatch(changeVisibility())
+	}
 
-  return (
-    <>
-      <Button type="primary" onClick={showModal}>
-        Open Modal
-      </Button>
-      <Modal title="Basic Modal" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-      </Modal>
-    </>
-  )
+	const handleCancel = () => {
+		dispatch(changeVisibility())
+	}
+
+	const [form] = Form.useForm()
+
+	return (
+		<>
+			<Modal
+				title='Создание ивента'
+				visible={modalVisibility}
+				onOk={handleOk}
+				onCancel={handleCancel}
+				footer={null}
+			>
+				<form action="">
+          <label htmlFor="">
+          Что будем делать?<Input placeholder="Введите текст"/>
+          </label>
+          <label htmlFor="">
+          Описание<Input placeholder="Введите текст"/>
+          </label>
+          <button className="button">Создать ивент</button>
+        </form>
+			</Modal>
+		</>
+	)
 }

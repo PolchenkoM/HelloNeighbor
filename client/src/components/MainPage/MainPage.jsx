@@ -1,20 +1,22 @@
-import { Layout } from 'antd';
+import UserMenuSider from './UserMenuSider/UserMenuSider'
+import Map from './Map/Map'
+import EventList from './EventList/EventList'
+import CreateEventModal from './EventModals/CreateEventModal'
 
-import UserMenuSider from './UserMenuSider/UserMenuSider';
-
-
-const { Header } = Layout;
-
-const MainPage = () =>  {
-
-  return (
-    <Layout  >
-      <Header style={{opacity: 0.1}}/>
-
-        <UserMenuSider /> 
-
-    </Layout>
-  )
+const MainPage = () => {
+	return (
+		<div className='container-mt'>
+			<div className='containerMain'>
+				<UserMenuSider />
+				<div className='containerMap'>
+					<div></div>
+					<Map />
+				</div>
+				<CreateEventModal />
+				<EventList />
+			</div>
+		</div>
+	)
 }
 
 export default MainPage

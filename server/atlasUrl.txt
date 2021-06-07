@@ -1,0 +1,5 @@
+const atlasUrl = 'mongodb+srv://<USERMAN>:<PASSWORD>@cluster0.cwgwa.mongodb.net/HelloNeighbor?retryWrites=true&w=majority'
+mongodb+srv://userMaxim:maxim123@cluster0.cwgwa.mongodb.net/HelloNeighbor?retryWrites=true&w=majority
+log: userMaxim, pass: maxim123
+log: userShamil, pass: shamil123
+log: userAndrew, pass: andrew123
