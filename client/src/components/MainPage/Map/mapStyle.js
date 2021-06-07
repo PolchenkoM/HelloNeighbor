@@ -25,7 +25,7 @@ export default [
         visibility: "on",
       },
       {
-        color: "#a5a5a5",
+        color: "#808080",
       },
     ],
   },
@@ -33,8 +33,9 @@ export default [
     featureType: "landscape.man_made",
     elementType: "geometry.stroke",
     stylers: [
+      
       {
-        color: "#000000",
+        color: "#8B0000",
       },
     ],
   },
@@ -50,33 +51,30 @@ export default [
       },
     ],
   },
-  // {
-    // featureType: "poi.medical",
-  //   elementType: "geometry",
-  //   stylers: [
-  //     {
-  //       color: "#fcfcfc",
-  //     },
-  //   ],
-  // },
   {
-    featureType: "poi.place_of_worship",
-    elementType: "geometry",
+    featureType: "poi.medical",
+    elementType: "labels.icon",
     stylers: [
       {
-        invert_lightness: true,
+        visibility: "off",
+      },
+      {
+        color: "#fcfcfc",
       },
     ],
   },
-  // {
-  //   featureType: "poi.school",
-  //   elementType: "geometry.fill",
-  //   stylers: [
-  //     {
-  //       color: "#ffffff",
-  //     },
-  //   ],
-  // },
+  {
+    featureType: "poi.school",
+    elementType: "labels.icon",
+    stylers: [
+      {
+        visibility: "off",
+      },
+      {
+        color: "#ffffff",
+      },
+    ],
+  },
   {
     featureType: "poi.sports_complex",
     elementType: "geometry",
@@ -140,4 +138,6 @@ export default [
       },
     ],
   },
+
 ];
+
