@@ -15,10 +15,14 @@ const morgan = require("morgan");
 const wss = new WebSocket.Server({ port: 8080 });
 
 const app = express();
+
+
 // const map = new Map();
 
 // const server = http.createServer(app);
 // const wss = new WebSocket.Server({ clientTracking: false, noServer: true });
+
+
 
 const registerRoute = require("./routes/registrationRoute");
 const eventRoute = require("./routes/eventRoute")
@@ -45,6 +49,7 @@ app.use('/user', userRouter);
 app.use("/login", loginRoute);
 
 
+console.log(app.locals.user);
 
 app.listen(PORT, () => {
   console.log(`Go retard on ${PORT} port`);

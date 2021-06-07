@@ -30,16 +30,10 @@ function MyComponent() {
     googleMapsApiKey: "AIzaSyBwGnNMdsXI-Zrpp6kJLj1B_164V1_PFaM",
   });
 
-  const [eventt, setEventt] = useState(false);
-
-  const createEvent = () => {
-    setEventt(true);
-  };
 
   const [markers, setMarkers] = useState([]);
 
   const onMapClick = useCallback((event) => {
-    if (!eventt) {
       const x = event.latLng.lat();
       const y = event.latLng.lng();
 
@@ -52,10 +46,6 @@ function MyComponent() {
           time: Math.random(),
         },
       ]);
-    }
-  }, []);
-
-  console.log(eventt);
 
   return isLoaded ? (
     <>
@@ -77,8 +67,8 @@ function MyComponent() {
           />
         ))}
       </GoogleMap>
+    </>
       <button onClick={createEvent}>Создать встречу</button>
-</>
     
   ) : (
     null
