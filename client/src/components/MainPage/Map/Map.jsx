@@ -23,35 +23,42 @@ const center = {
 
 function MyComponent() {
   const dispatch = useDispatch();
-  
+
   const events = useSelector((state) => state.events);
-console.log("events",events);
 
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyBwGnNMdsXI-Zrpp6kJLj1B_164V1_PFaM",
   });
 
+  const [eventt, setEventt] = useState(false);
+
+  const createEvent = () => {
+    setEventt(true);
+  };
+
   const [markers, setMarkers] = useState([]);
 
-  const  onMapClick = useCallback ((event) => {
-    
-    const x = event.latLng.lat()
-    const y = event.latLng.lng()
+  const onMapClick = useCallback((event) => {
+    if (!eventt) {
+      const x = event.latLng.lat();
+      const y = event.latLng.lng();
 
-
-    dispatch(addEventSaga(x,y))
-
-    setMarkers((current) => [
-      ...current,
-      {
-        lat: event.latLng.lat(),
-        lng: event.latLng.lng(),
-        time: Math.random()
-      },
-    ]);
+      dispatch(addEventSaga(x, y));
+      setMarkers((current) => [
+        ...current,
+        {
+          lat: event.latLng.lat(),
+          lng: event.latLng.lng(),
+          time: Math.random(),
+        },
+      ]);
+    }
   }, []);
 
+  console.log(eventt);
+
   return isLoaded ? (
+    <>
       <GoogleMap 
       className='karta'
         mapContainerStyle={containerStyle}
@@ -60,8 +67,6 @@ console.log("events",events);
         options={options}
         onClick={onMapClick}
       >
-        {/* {dfsfsfsdfsdfsd} */}
-        <></>
         {markers.map((marker) => (
           <Marker
             key={marker.time}
@@ -72,6 +77,9 @@ console.log("events",events);
           />
         ))}
       </GoogleMap>
+      <button onClick={createEvent}>Создать встречу</button>
+</>
+    
   ) : (
     null
   );
