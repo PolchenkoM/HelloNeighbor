@@ -38,12 +38,13 @@ function App() {
     }
   }, []);
 
-  return (
-    <Router>
+  return (    
+    <Router >
       <div className="App">
         <Header />
         <Routes />
       </div>
+
     </Router>
   );
 }

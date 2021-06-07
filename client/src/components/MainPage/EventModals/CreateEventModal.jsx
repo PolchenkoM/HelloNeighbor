@@ -1,31 +1,33 @@
 import React, { useState } from 'react'
 import { Modal, Button, Input, Form, Radio } from 'antd'
-type LayoutType = Parameters<typeof Form>[0]['layout'];
+import { useDispatch, useSelector } from "react-redux";
+import { changeVisibility } from '../../../redux/Actions/eventAC';
 export default function CreateEventModal() {
-	const [isModalVisible, setIsModalVisible] = useState(false)
+	// const [isModalVisible, setIsModalVisible] = useState(false)
+  const dispatch = useDispatch()
+
+  const modalVisibility = useSelector(state => state.events.modalVisibility)
 
 	const showModal = () => {
-		setIsModalVisible(true)
+    console.log(123);
+		dispatch(changeVisibility())
 	}
 
 	const handleOk = () => {
-		setIsModalVisible(false)
+		dispatch(changeVisibility())
 	}
 
 	const handleCancel = () => {
-		setIsModalVisible(false)
+		dispatch(changeVisibility())
 	}
 
 	const [form] = Form.useForm()
 
 	return (
 		<>
-			<Button type='primary' onClick={showModal}>
-				Open Modal
-			</Button>
 			<Modal
 				title='Создание ивента'
-				visible={isModalVisible}
+				visible={modalVisibility}
 				onOk={handleOk}
 				onCancel={handleCancel}
 				footer={null}
