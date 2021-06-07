@@ -1,69 +1,36 @@
-
+import moment from 'moment'
 import {
 	Form,
 	Input,
-	InputNumber,
 	Button,
 	DatePicker,
 	Select,
-	Cascader,
 	Checkbox,
 	Row,
 	Col,
 	Upload,
+  Tag
 } from 'antd'
 import { UploadOutlined, InboxOutlined } from '@ant-design/icons';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import useForm from '../../hooks/useForm'
+
 
 const { Option } = Select
 const layout = {
-	labelCol: { span: 8 },
+  labelCol: { span: 8 },
 	wrapperCol: { span: 16 },
 }
 const config = {
-	rules: [{ type: 'object', required: true, message: 'Please select time!' }],
+  rules: [{ type: 'object', required: true, message: 'Please select time!' }],
 }
-const residences = [
-	{
-		value: 'zhejiang',
-		label: 'Zhejiang',
-		children: [
-			{
-				value: 'hangzhou',
-				label: 'Hangzhou',
-				children: [
-					{
-						value: 'xihu',
-						label: 'West Lake',
-					},
-				],
-			},
-		],
-	},
-	{
-		value: 'jiangsu',
-		label: 'Jiangsu',
-		children: [
-			{
-				value: 'nanjing',
-				label: 'Nanjing',
-				children: [
-					{
-						value: 'zhonghuamen',
-						label: 'Zhong Hua Men',
-					},
-				],
-			},
-		],
-	},
-]
+
 
 /* eslint-disable no-template-curly-in-string */
 const validateMessages = {
-	required: '${label} is required!',
+  required: '${label} is required!',
 	types: {
-		email: '${label} is not a valid email!',
+    email: '${label} is not a valid email!',
 		number: '${label} is not a valid number!',
 	},
 	number: {
@@ -72,6 +39,36 @@ const validateMessages = {
 }
 
 export default function Profile() {
+  const [values, changeHandler] = useForm()
+  //tags
+  const { CheckableTag } = Tag; 
+  const [tags, setTags] = useState([]);
+  const [selectedTags, setSelectedTags] = useState([]);
+
+  //tags
+  useEffect(() => {
+    fetch("http://localhost:3001/tags")
+      .then((res) => res.json())
+      .then((result) => setTags(result));
+  }, []);
+
+  function handleChange(tag, checked) {
+    const nextSelectedTags = checked
+      ? [...selectedTags, tag]
+      : selectedTags.filter((t) => t !== tag);
+    console.log("You are interested in: ", nextSelectedTags);
+    setSelectedTags(nextSelectedTags)
+  }
+  //date func
+  const [date,setDate] = useState('')
+  const dateHandler = (e) => {
+    const date = new Date(e._d)
+    const normData = moment(date)
+    const dataDa = normData.format('YYYY-MM-DD')
+    setDate(prev => dataDa)
+  }
+  //date func
+
 	const onFinish = (values: any) => {
 		console.log(values)
 	}
@@ -85,10 +82,10 @@ export default function Profile() {
 
   const profileSubmit = (e) => {
     e.preventDefault()
+
     console.log(values)
   }
-  const [values, changeHandler] = useForm()
-  console.log('---------------', values)
+
 	return (
 		<>
 			<Form
@@ -106,14 +103,14 @@ export default function Profile() {
 					<Input name="name" value={values.name || ""} onChange={changeHandler}/>
 				</Form.Item>
 				<Form.Item name='userDate' label='Дата рождения' {...config}>
-					<DatePicker name="userDate" />
+					<DatePicker name="userDate" value={date} onChange={dateHandler}/>
 				</Form.Item>
 				<Form.Item
 					name='gender'
 					label='Пол'
 					rules={[{ required: true, message: 'Please select gender!' }]}
 				>
-					<Select placeholder='select your gender' name="gender" value={values.gender || ""} onChange={changeHandler}>
+					<Select placeholder='select your gender' name="gender" >
 						<Option value='male'>мужской</Option>
 						<Option value='female'>женский</Option>
 						<Option value='other'>дивергент</Option>
@@ -121,13 +118,13 @@ export default function Profile() {
 				</Form.Item>
 				<Form.Item
 					label='Адрес'
-					rules={[{ required: true, message: 'Please select gender!' }]}
+					rules={[{ required: true, message: 'Please select address!' }]}
 				>
 					<Input.Group compact>
 						<Form.Item
 							name={['address', 'address']}
 							noStyle
-							rules={[{ required: true, message: 'Street is required' }]}
+							rules={[{ required: true, message: 'Street is required!' }]}
 						>
 							<Input
 								style={{ width: '50%' }}
@@ -143,38 +140,7 @@ export default function Profile() {
 				</Form.Item>
 				<Form.Item name='tags' label='Тэги' >
 					<Checkbox.Group>
-						<Row>
-							<Col span={8}>
-								<Checkbox value='A' style={{ lineHeight: '32px' }}>
-									A
-								</Checkbox>
-							</Col>
-							<Col span={8}>
-								<Checkbox value='B' style={{ lineHeight: '32px' }}>
-									B
-								</Checkbox>
-							</Col>
-							<Col span={8}>
-								<Checkbox value='C' style={{ lineHeight: '32px' }}>
-									C
-								</Checkbox>
-							</Col>
-							<Col span={8}>
-								<Checkbox value='D' style={{ lineHeight: '32px' }}>
-									D
-								</Checkbox>
-							</Col>
-							<Col span={8}>
-								<Checkbox value='E' style={{ lineHeight: '32px' }}>
-									E
-								</Checkbox>
-							</Col>
-							<Col span={8}>
-								<Checkbox value='F' style={{ lineHeight: '32px' }}>
-									F
-								</Checkbox>
-							</Col>
-						</Row>
+
 					</Checkbox.Group>
 				</Form.Item>
 				<Form.Item
@@ -188,7 +154,17 @@ export default function Profile() {
 						<Button icon={<UploadOutlined />}>Click to upload</Button>
 					</Upload>
 				</Form.Item>
-
+        <>
+            {tags.map((tag) => (
+              <CheckableTag
+                key={tag._id}
+                checked={selectedTags.indexOf(tag) > -1}
+                onChange={(checked) => handleChange(tag, checked)}
+              >
+                {tag.title}
+              </CheckableTag>
+            ))}
+          </>
 				<Form.Item label='Dragger'>
 					<Form.Item
 						name='dragger-avatar'

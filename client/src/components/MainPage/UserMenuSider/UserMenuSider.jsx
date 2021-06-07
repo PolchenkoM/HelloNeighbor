@@ -8,20 +8,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { logoutUser } from '../../../redux/Actions/usersAC';
 
-
 const UserMenuSider = () => {
   const  dispatch = useDispatch()
   const currentUser = useSelector(state => state.users.currentUser)
-
-  useEffect(()=>{
-    
-  },[])
 
   const id = localStorage?.id
 
   const { Title } = Typography
   const size = 'large'
-
 
   const hideSidebar = (e) => {
     const elem = e.target.parentElement.parentElement
@@ -30,7 +24,6 @@ const UserMenuSider = () => {
     labelSpans.forEach(el => el.classList.toggle('hidden'))
     }
 
-
     const signOut =async () => {
       const  GoogleAuth = await  window.gapi?.auth2?.getAuthInstance()
       .then(
@@ -38,12 +31,10 @@ const UserMenuSider = () => {
           localStorage.clear()
           dispatch(logoutUser())
           console.log('sasdasd');
-          // GoogleAuth.signOut()
         },
         () => console.log("signout Error")
       );
     };
-
 
   return (
   
