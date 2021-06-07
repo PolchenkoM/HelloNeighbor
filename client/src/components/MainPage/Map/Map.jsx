@@ -21,7 +21,7 @@ const center = {
   lng: 37.592007,
 };
 
-function MyComponent() {
+function MyComponent () {
   const dispatch = useDispatch();
 
   const events = useSelector((state) => state.events);
@@ -67,11 +67,11 @@ function MyComponent() {
           />
         ))}
       </GoogleMap>
-    </>
       <button onClick={createEvent}>Создать встречу</button>
-    
-  ) : (
-    null
-  );
+    </>
+  ) : 
+    null 
 }
-export default MyComponent;
+
+
+export default MyComponent
