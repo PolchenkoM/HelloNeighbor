@@ -37,7 +37,7 @@ router.route("/").post(async (req, res) => {
 });
 
 router.route("/google").post(async (req, res) => {
-  const { id, email } = req.body;
+  const { email } = req.body;
   const googleUser = await User.findOne({ email });
   if (googleUser == null) {
     const user = await User.create({

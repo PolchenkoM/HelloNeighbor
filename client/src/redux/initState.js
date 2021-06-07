@@ -1,5 +1,8 @@
 const initState = {
-  // user:{},
+  users: {
+    currentUser: {},
+    interestedUser: {},
+  },
   events:[]
 }
 export default initState

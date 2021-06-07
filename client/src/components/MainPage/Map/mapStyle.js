@@ -51,7 +51,7 @@ export default [
     ],
   },
   // {
-  //   featureType: "poi.medical",
+    // featureType: "poi.medical",
   //   elementType: "geometry",
   //   stylers: [
   //     {
@@ -118,7 +118,7 @@ export default [
     elementType: "labels.icon",
     stylers: [
       {
-        visibility: "on",
+        visibility: "off",
       },
     ],
   },
