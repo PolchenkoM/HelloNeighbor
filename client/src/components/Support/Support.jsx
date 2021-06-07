@@ -1,12 +1,12 @@
-import { Header } from "antd/lib/layout/layout"
-import SupportBody from "./SupportBody/SupportBody"
 
 const Support = () => {
   return (
-    <>
-      <Header />
-      <SupportBody />
-    </>
+
+
+    <div>
+      <h1>SUPPORT</h1>
+    </div>
+
   )
 }
 

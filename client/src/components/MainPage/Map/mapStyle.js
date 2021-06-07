@@ -51,6 +51,18 @@ export default [
       },
     ],
   },
+<<<<<<< HEAD:client/src/components/Map/mapStyle.js
+=======
+  // {
+    // featureType: "poi.medical",
+  //   elementType: "geometry",
+  //   stylers: [
+  //     {
+  //       color: "#fcfcfc",
+  //     },
+  //   ],
+  // },
+>>>>>>> 8da6dad981eaa83af854fa26d3560602ae66d212:client/src/components/MainPage/Map/mapStyle.js
   {
     featureType: "poi.medical",
     elementType: "labels.icon",
