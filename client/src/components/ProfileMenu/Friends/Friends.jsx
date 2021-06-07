@@ -1,3 +1,4 @@
+import { Header } from 'antd/lib/layout/layout'
 import { useState } from 'react'
 import Friend from './Friend'
 

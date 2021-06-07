@@ -29,14 +29,14 @@ function Registration() {
           'Content-Type' : 'application/json'
         },
         body: JSON.stringify({
-          id, email
+          email
         })
       })
       .then((res) => res.json())
       .then((result) => {
         localStorage.setItem("id", result._id);
       });
-      // localStorage.setItem('id', id)
+
       setGoogleUser(localStorage)
     };
     

@@ -1,0 +1,2 @@
+export const GET_CURRENT_USER = 'GET_CURRENT_USER'
+export const ADD_USER_AVATAR = 'ADD_USER_AVATAR'

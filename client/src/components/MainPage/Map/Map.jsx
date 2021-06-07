@@ -2,12 +2,12 @@ import React, { useCallback, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
 import mapStyles from "./mapStyle";
-import { addEventSaga, getEventSaga } from "../../redux/Actions/eventAC";
+
+import { addEventSaga } from '../../../redux/Actions/eventAC'
 
 const containerStyle = {
-  borderRadius: "400px",
-  width: "800px",
-  height: "800px",
+  width: "100%",
+  height: "100vh",
 };
 
 const options = {
@@ -52,8 +52,8 @@ console.log("events",events);
   }, []);
 
   return isLoaded ? (
-    <div>
-      <GoogleMap
+      <GoogleMap 
+      className='karta'
         mapContainerStyle={containerStyle}
         center={center}
         zoom={17}
@@ -72,9 +72,8 @@ console.log("events",events);
           />
         ))}
       </GoogleMap>
-    </div>
   ) : (
-    <></>
+    null
   );
 }
 export default MyComponent;
