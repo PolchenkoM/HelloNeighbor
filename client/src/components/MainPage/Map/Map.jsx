@@ -105,8 +105,11 @@ function MyComponent() {
           onClick={onMapClick}
         />
       </GoogleMap>
+      {/* <button onClick={createEvent}>Создать встречу</button> */}
     </>
-  ) : null
+    
+  ) : (
+    null
+  );
 }
-
 export default MyComponent
