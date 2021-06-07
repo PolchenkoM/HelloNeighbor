@@ -6,17 +6,16 @@ import Avatar from 'antd/lib/avatar/avatar';
 import Rater from './Rater/Rater'
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import { logoutUser } from '../../../redux/Actions/usersAC';
 
 
 const UserMenuSider = () => {
-
+  const  dispatch = useDispatch()
   const currentUser = useSelector(state => state.users.currentUser)
 
   useEffect(()=>{
     
   },[])
-
-  const id = localStorage?.id
 
   const id = localStorage?.id
 
@@ -33,17 +32,18 @@ const UserMenuSider = () => {
 
 
     const signOut = () => {
-      const GoogleAuth = window.gapi?.auth2?.getAuthInstance();
-      GoogleAuth.signOut()
+      const GoogleAuth = window.gapi?.auth2?.getAuthInstance()
       .then(
-          () => {
-          localStorage.clear();
-              ;
+        () => {
+          localStorage.clear()
+          dispatch(logoutUser())
+          console.log('sasdasd');
+          GoogleAuth.signOut()
         },
         () => console.log("signout Error")
       );
     };
-  
+
 
   return (
   
@@ -68,9 +68,7 @@ const UserMenuSider = () => {
         </Menu.Item>
         <Menu.Item key="3" className='userLinksButton'icon={<HistoryOutlined />} title='History'>History
         </Menu.Item>
-
-        <Menu.Item key="4" className='userLinksButton'icon={<LogoutOutlined />} title='Logout'>Logout
-
+        <Menu.Item key="4" onClick={signOut} className='userLinksButton'icon={<LogoutOutlined />} title='Logout'>Logout
         </Menu.Item>
       </Menu>
     </div>

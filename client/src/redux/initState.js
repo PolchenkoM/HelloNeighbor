@@ -3,6 +3,10 @@ const initState = {
     currentUser: {},
     interestedUser: {},
   },
-  events:[]
+  events:{
+    allEvents: [],
+    modalVisibility:false,
+    addEventModal: false,
+  },
 }
 export default initState

@@ -1,22 +1,22 @@
-import UserMenuSider from './UserMenuSider/UserMenuSider';
+import UserMenuSider from './UserMenuSider/UserMenuSider'
 import Map from './Map/Map'
-import ShowEventModal from './EventModals/ShowEventModal';
+import EventList from './EventList/EventList'
+import CreateEventModal from './EventModals/CreateEventModal'
 
-const MainPage = () =>  {
-
-  return (
-    <div className='containerMain'>
-      <UserMenuSider /> 
-      <div className='containerMap'>
-        <div ></div>
-        <Map />
-      </div>
-      {/* <div >
-        <UserMenuSider /> 
-      </div> */}
-      <ShowEventModal />
-    </div>
-  )
+const MainPage = () => {
+	return (
+		<div className='container-mt'>
+			<div className='containerMain'>
+				<UserMenuSider />
+				<div className='containerMap'>
+					<div></div>
+					<Map />
+				</div>
+				<CreateEventModal />
+				<EventList />
+			</div>
+		</div>
+	)
 }
 
 export default MainPage
