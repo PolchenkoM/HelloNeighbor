@@ -24,10 +24,9 @@ sagaMiddleware.run(eventSagaWatcher);
 sagaMiddleware.run(getSagaWatcher);
 
 ReactDOM.render(
-  <React.StrictMode>
     <Provider store={store}>
       <App />
     </Provider>
-  </React.StrictMode>,
+,
   document.getElementById("root")
 );

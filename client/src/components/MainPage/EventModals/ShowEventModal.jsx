@@ -3,6 +3,7 @@ import { Modal, Button, Input } from 'antd'
 import ShowAuthorModal from './ShowAuthorModal'
 
 export default function ShowEventModal() {
+  
 	const [isModalVisible, setIsModalVisible] = useState(false)
 
 	const showModal = () => {

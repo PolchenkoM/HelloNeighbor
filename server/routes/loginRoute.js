@@ -7,10 +7,10 @@ router.route("/").post(async (req, res) => {
   const { email, password } = req.body.values;
   const user = await User.findOne({ email });
   if (user && (await bcrypt.compare(password, user.password))) {
-    console.log('user',user);
+
+    res.locals.user = user;
     res.json(user);
   }
 });
 
 module.exports = router;
-

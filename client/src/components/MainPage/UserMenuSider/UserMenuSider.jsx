@@ -1,24 +1,27 @@
 import 'antd/dist/antd.css';
 import { FacebookOutlined,InstagramOutlined,ProfileOutlined,TeamOutlined,HistoryOutlined,LogoutOutlined } from '@ant-design/icons';
-
 import { Typography, Button, Menu } from 'antd';
 
 import Avatar from 'antd/lib/avatar/avatar';
 import Rater from './Rater/Rater'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { getCurrentUserThunk } from '../../../redux/Actions/usersAC';
+import { logoutUser } from '../../../redux/Actions/usersAC';
+
 
 const UserMenuSider = () => {
+  const  dispatch = useDispatch()
+  const currentUser = useSelector(state => state.users.currentUser)
+
+  useEffect(()=>{
+    
+  },[])
+
   const id = localStorage?.id
 
   const { Title } = Typography
   const size = 'large'
-  const dispatch = useDispatch()
-  
-  // useEffect(()=>{
-  //   dispatch(getCurrentUserThunk(id))
-  // },[])
+
 
   const hideSidebar = (e) => {
     const elem = e.target.parentElement.parentElement
@@ -26,6 +29,21 @@ const UserMenuSider = () => {
     const labelSpans = document.querySelectorAll('.ant-menu-title-content')
     labelSpans.forEach(el => el.classList.toggle('hidden'))
     }
+
+
+    const signOut = () => {
+      const GoogleAuth = window.gapi?.auth2?.getAuthInstance()
+      .then(
+        () => {
+          localStorage.clear()
+          dispatch(logoutUser())
+          console.log('sasdasd');
+          GoogleAuth.signOut()
+        },
+        () => console.log("signout Error")
+      );
+    };
+
 
   return (
   
@@ -35,7 +53,7 @@ const UserMenuSider = () => {
       <div span={24} className='avatar'>
         <Avatar size={180} src='https://gameguru.ru/clf/43/ef/08/2e/news.1610973171890.jpg' draggable={false}/> 
       </div>
-      <h3 level={4}>User Name</h3>
+      <h3 level={4}>{currentUser.name}</h3>
       <div className="rater">
         <Rater />
       </div>
@@ -50,7 +68,7 @@ const UserMenuSider = () => {
         </Menu.Item>
         <Menu.Item key="3" className='userLinksButton'icon={<HistoryOutlined />} title='History'>History
         </Menu.Item>
-        <Menu.Item key="4" className='userLinksButton'icon={<LogoutOutlined />} title='Logout'>Logout
+        <Menu.Item key="4" onClick={signOut} className='userLinksButton'icon={<LogoutOutlined />} title='Logout'>Logout
         </Menu.Item>
       </Menu>
     </div>

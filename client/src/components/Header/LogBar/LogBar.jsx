@@ -2,12 +2,19 @@ import React, { useState } from "react";
 import { Modal, Input, Button } from "antd";
 import useRegForm from "../../hooks/useForm";
 
+
 export default function LogBar() {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [values, changeHandler] = useRegForm();
+  const [logValue, setLogValue] = useState('Войти')
 
   const showModal = () => {
-    setIsModalVisible(true);
+    if (localStorage.getItem('id')) {
+      localStorage.clear()
+      setLogValue('Войти')
+    } else {
+      setIsModalVisible(true);
+    }
   };
 
   const handleOk = (e) => {
@@ -24,7 +31,7 @@ export default function LogBar() {
     })
       .then((res) => res.json())
       .then((result) => {
-        localStorage.setItem("id", result._id);
+        localStorage.setItem("email", result.email);
       })
   };
 
@@ -34,9 +41,7 @@ export default function LogBar() {
 
   return (
     <>
-      <Button type="primary" onClick={showModal}>
-        Open Modal
-      </Button>
+      <button className="button" onClick={showModal}>{logValue}</button>
       <Modal
         title="Войдите в аккаунт"
         visible={isModalVisible}

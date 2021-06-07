@@ -6,7 +6,7 @@ export default function CreateEventModal() {
 	// const [isModalVisible, setIsModalVisible] = useState(false)
   const dispatch = useDispatch()
 
-  const modalVisibility = useSelector(state => state.users.modalVisibility)
+  const modalVisibility = useSelector(state => state.events.modalVisibility)
 
 	const showModal = () => {
     console.log(123);

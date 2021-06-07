@@ -1,5 +1,7 @@
 import UserMenuSider from './UserMenuSider/UserMenuSider';
 import Map from './Map/Map'
+import EventList from './EventList/EventList';
+import CreateEventModal from './EventModals/CreateEventModal';
 
 const MainPage = () =>  {
 
@@ -10,9 +12,8 @@ const MainPage = () =>  {
         <div ></div>
         <Map />
       </div>
-      <div >
-        <UserMenuSider /> 
-      </div>
+      <CreateEventModal/>
+      <EventList />
     </div>
   )
 }
