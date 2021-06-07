@@ -9,6 +9,7 @@ import { Provider } from "react-redux";
 import initState from './redux/initState';
 import rootReducer from './redux/Reducers/rootReducer';
 import eventSagaWatcher from './redux/Sagas/eventSaga';
+import getSagaWatcher from './redux/Sagas/getEventSaga';
 const sagaMiddleware = createSagaMiddleware()
 
 const store = createStore(
@@ -18,6 +19,8 @@ const store = createStore(
 );
 
 sagaMiddleware.run(eventSagaWatcher)
+sagaMiddleware.run(getSagaWatcher)
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store = {store}>

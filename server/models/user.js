@@ -40,11 +40,13 @@ const userSchema = new Schema({
   history: [{
     type: Schema.Types.ObjectId,
     ref: 'Events'
-  }]
+  }],
+  avatar: {   //added Danil for avatar
+    type: String, 
+  }
 });
 
 const User = model("User", userSchema);
+
 module.exports = User;
-
-
 

@@ -16,8 +16,7 @@ function App() {
       <div className="App">
         <Header />
         <Routes />
-        <Welcome />
-        <MainPage />
+        {/* <Welcome /> */}
         <ChatList />
         <Map />
         <AddAvatarZone />
