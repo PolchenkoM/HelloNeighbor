@@ -31,7 +31,7 @@ export default function Body() {
     })
       .then((res) => res.json())
       .then((result) => {
-        localStorage.setItem("id", result._id);
+        localStorage.setItem("mail", result.email);
       });
 
     setTimeout(() => {

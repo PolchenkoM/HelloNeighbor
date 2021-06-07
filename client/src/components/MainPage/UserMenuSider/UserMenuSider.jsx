@@ -1,6 +1,5 @@
 import 'antd/dist/antd.css';
 import { FacebookOutlined,InstagramOutlined,ProfileOutlined,TeamOutlined,HistoryOutlined,LogoutOutlined } from '@ant-design/icons';
-
 import { Typography, Button, Menu } from 'antd';
 
 import Avatar from 'antd/lib/avatar/avatar';
@@ -9,7 +8,10 @@ import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getCurrentUserThunk } from '../../../redux/Actions/usersAC';
 
+
 const UserMenuSider = () => {
+  const id = localStorage?.id
+
   const id = localStorage?.id
 
   const { Title } = Typography
@@ -26,6 +28,20 @@ const UserMenuSider = () => {
     const labelSpans = document.querySelectorAll('.ant-menu-title-content')
     labelSpans.forEach(el => el.classList.toggle('hidden'))
     }
+
+
+    const signOut = () => {
+      const GoogleAuth = window.gapi?.auth2?.getAuthInstance();
+      GoogleAuth.signOut()
+      .then(
+          () => {
+          localStorage.clear();
+              ;
+        },
+        () => console.log("signout Error")
+      );
+    };
+  
 
   return (
   
@@ -50,7 +66,9 @@ const UserMenuSider = () => {
         </Menu.Item>
         <Menu.Item key="3" className='userLinksButton'icon={<HistoryOutlined />} title='History'>History
         </Menu.Item>
+
         <Menu.Item key="4" className='userLinksButton'icon={<LogoutOutlined />} title='Logout'>Logout
+
         </Menu.Item>
       </Menu>
     </div>

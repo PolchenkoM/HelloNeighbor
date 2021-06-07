@@ -16,7 +16,7 @@ router.route("/").post(async (req, res) => {
         regDate: Date.now(),
         profileId: uuidv4(),
       });
-
+      res.locals.user = user;
       res.json(user);
 
       const message = {
@@ -43,8 +43,11 @@ router.route("/google").post(async (req, res) => {
       regDate: Date.now(),
       profileId: uuidv4(),
     });
+
+    res.locals.user = user;
     res.json(user);
   } else {
+    res.locals.user = googleUser;
     res.json(googleUser);
   }
 });
