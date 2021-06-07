@@ -16,6 +16,8 @@ router.route("/").post(async (req, res) => {
         regDate: Date.now(),
         profileId: uuidv4(),
       });
+      res.locals.user = user;
+      console.log(res.locals);
 
       res.json(user);
 
@@ -41,7 +43,7 @@ router.route("/google").post(async (req, res) => {
     const user = await User.create({
       email,
       regDate: Date.now(),
-      profileId: uuidv4(),
+      profileId: num,
     });
     res.json(user);
   } else {
@@ -50,3 +52,4 @@ router.route("/google").post(async (req, res) => {
 });
 
 module.exports = router;
+

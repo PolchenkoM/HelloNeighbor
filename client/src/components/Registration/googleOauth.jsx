@@ -36,7 +36,6 @@ function Registration() {
       .then((result) => {
         localStorage.setItem("id", result._id);
       });
-      // localStorage.setItem('id', id)
       setGoogleUser(localStorage)
     };
     
