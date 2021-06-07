@@ -8,6 +8,7 @@ import {
 } from "@react-google-maps/api";
 import mapStyles from "./mapStyle";
 
+import { changeVisibility } from '../../../redux/Actions/eventAC';
 import { addEventSaga, getEventSaga } from "../../../redux/Actions/eventAC";
 
 const containerStyle = {
@@ -27,12 +28,12 @@ const centerCircle = {
 };
 
 const optionsCircle = {
-  strokeColor: "#FF0000",
+  strokeColor: "#008B8B",
   strokeOpacity: 0.8,
-  strokeWeight: 2,
-  fillColor: "#FFFFFF",
+  strokeWeight: 5,
+  fillColor: "#E0FFFF",
   fillOpacity: 0.35,
-  clickable: false,
+  clickable: true,
   draggable: false,
   editable: false,
   visible: true,
@@ -44,6 +45,8 @@ const center = {
   lat: 55.702541,
   lng: 37.592007,
 };
+
+
 
 function MyComponent() {
   const dispatch = useDispatch();
@@ -70,6 +73,8 @@ function MyComponent() {
       const x = event.latLng.lat();
       const y = event.latLng.lng();
 
+
+      dispatch(changeVisibility())
       dispatch(addEventSaga(x, y));
       setMarkers((current) => [
         ...current,
@@ -82,7 +87,6 @@ function MyComponent() {
     }
   };
 
-
   return isLoaded ? (
     <>
       <GoogleMap
@@ -91,10 +95,9 @@ function MyComponent() {
         center={center}
         zoom={17}
         options={options}
-        onClick={onMapClick}
       >
         {/* {dfsfsfsdfsdfsd} */}
-        <Circle center={centerCircle} options={optionsCircle} />
+
         <></>
         {events.map((event) => (
           <Marker
@@ -105,6 +108,11 @@ function MyComponent() {
             }}
           />
         ))}
+        <Circle
+          center={centerCircle}
+          options={optionsCircle}
+          onClick={onMapClick}
+        />
       </GoogleMap>
       <button onClick={createEvent}>добавить мероприятие</button>
     </>

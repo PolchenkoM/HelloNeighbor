@@ -1,4 +1,4 @@
-import { ADD_EVENT, GET_EVENT,} from "../Types/eventTypes";
+import { ADD_EVENT, CHANGE_MODAL_VISIBILITY, GET_EVENT,} from "../Types/eventTypes";
 
 export const eventReducer = (state = [], action) => {
   switch (action.type) {
@@ -6,6 +6,7 @@ export const eventReducer = (state = [], action) => {
       return [...state,action.payload];
       case GET_EVENT:
       return action.payload;
+      
     default:
       return state;
   }
