@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Button } from "antd";
 import { useDispatch } from "react-redux";
 import {getCurrentUserGoogleThunk} from  '../../redux/Actions/usersAC'
+import { useHistory } from "react-router";
 
 function Registration() {
   const [googleUser, setGoogleUser] = useState(localStorage);
   const dispatch = useDispatch()
+  const history = useHistory()
 
   useEffect(() => {
     window.gapi?.load("auth2", function () {
@@ -29,6 +31,7 @@ function Registration() {
       dispatch(getCurrentUserGoogleThunk(email))
       localStorage.setItem("email", email)
       setGoogleUser(localStorage)
+      history.push('/')
     };
     
     const authErr = (e) => {

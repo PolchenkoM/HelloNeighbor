@@ -5,20 +5,22 @@ import { Typography, Button, Menu } from 'antd';
 
 import Avatar from 'antd/lib/avatar/avatar';
 import Rater from './Rater/Rater'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { getCurrentUserThunk } from '../../../redux/Actions/usersAC';
 
 const UserMenuSider = () => {
+
+  const currentUser = useSelector(state => state.users.currentUser)
+
+  useEffect(()=>{
+    
+  },[])
+
   const id = localStorage?.id
 
   const { Title } = Typography
   const size = 'large'
-  const dispatch = useDispatch()
-  
-  // useEffect(()=>{
-  //   dispatch(getCurrentUserThunk(id))
-  // },[])
+
 
   const hideSidebar = (e) => {
     const elem = e.target.parentElement.parentElement
@@ -35,7 +37,7 @@ const UserMenuSider = () => {
       <div span={24} className='avatar'>
         <Avatar size={180} src='https://gameguru.ru/clf/43/ef/08/2e/news.1610973171890.jpg' draggable={false}/> 
       </div>
-      <h3 level={4}>User Name</h3>
+      <h3 level={4}>{currentUser.name}</h3>
       <div className="rater">
         <Rater />
       </div>

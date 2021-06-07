@@ -2,6 +2,7 @@ import LogBar from './LogBar/LogBar'
 import Navbar from './Navbar/Navbar'
 
 export default function Header() {
+  
 	return (
 		<>
 			<header className="header">
