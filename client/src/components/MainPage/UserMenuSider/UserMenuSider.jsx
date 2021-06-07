@@ -31,14 +31,14 @@ const UserMenuSider = () => {
     }
 
 
-    const signOut = () => {
-      const GoogleAuth = window.gapi?.auth2?.getAuthInstance()
+    const signOut =async () => {
+      const  GoogleAuth = await  window.gapi?.auth2?.getAuthInstance()
       .then(
         () => {
           localStorage.clear()
           dispatch(logoutUser())
           console.log('sasdasd');
-          GoogleAuth.signOut()
+          // GoogleAuth.signOut()
         },
         () => console.log("signout Error")
       );
