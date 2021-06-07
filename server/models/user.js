@@ -38,7 +38,10 @@ const userSchema = new Schema({
     //added Danil for avatar
     type: String,
   },
-  address: String,
+  address: {
+    type: String,
+    default: 'Moskow'
+  }
 });
 
 const User = model("User", userSchema);
