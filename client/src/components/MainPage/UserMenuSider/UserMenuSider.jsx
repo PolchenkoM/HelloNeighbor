@@ -10,7 +10,6 @@ import { getCurrentUserThunk } from '../../../redux/Actions/usersAC';
 
 
 const UserMenuSider = () => {
-  const id = localStorage?.id
 
   const id = localStorage?.id
 

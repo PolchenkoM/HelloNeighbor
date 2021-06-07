@@ -46,7 +46,7 @@ function MyComponent() {
           time: Math.random(),
         },
       ]);
-
+    })
   return isLoaded ? (
     <>
       <GoogleMap 
@@ -67,11 +67,11 @@ function MyComponent() {
           />
         ))}
       </GoogleMap>
+      {/* <button onClick={createEvent}>Создать встречу</button> */}
     </>
-      <button onClick={createEvent}>Создать встречу</button>
     
   ) : (
     null
   );
 }
-export default MyComponent;
+export default MyComponent

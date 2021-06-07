@@ -8,10 +8,6 @@ import Friends from '../ProfileMenu/Friends/Friends'
 import { useSelector } from 'react-redux'
 
 
-const Routes = () => {
-  
-  const { currentUser } = useSelector((state) => state.users.currentUser);
-
 
 const Routes = () => {
 
