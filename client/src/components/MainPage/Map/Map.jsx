@@ -31,7 +31,6 @@ function MyComponent() {
   });
 
 
-
   const [markers, setMarkers] = useState([]);
 
   const onMapClick = useCallback((event) => {
@@ -47,9 +46,6 @@ function MyComponent() {
           time: Math.random(),
         },
       ]);
-    
-  }, []);
-
 
   return isLoaded ? (
     <>
@@ -72,6 +68,8 @@ function MyComponent() {
         ))}
       </GoogleMap>
     </>
+      <button onClick={createEvent}>Создать встречу</button>
+    
   ) : (
     null
   );

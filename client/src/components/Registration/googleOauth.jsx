@@ -6,6 +6,7 @@ import {getCurrentUserGoogleThunk} from  '../../redux/Actions/usersAC'
 function Registration() {
 
   const [googleUser, setGoogleUser] = useState(localStorage);
+  const dispatch = useDispatch()
 
   const dispatch = useDispatch()
 

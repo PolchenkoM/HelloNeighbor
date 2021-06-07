@@ -1,3 +1,4 @@
+
 import style from "./styles/style.sass";
 import { useEffect } from "react";
 
@@ -6,10 +7,12 @@ import Routes from "./components/Routes/Routes";
 import { useDispatch, useSelector } from "react-redux";
 import { getCurrentUserGoogleThunk } from "./redux/Actions/usersAC";
 
+
 const { default: Header } = require("./components/Header/Header");
 const { default: Welcome } = require("./components/Welcome/Welcome");
 
 function App() {
+
   const { currentUser } = useSelector((state) => state.users.currentUser);
   const dispatch = useDispatch();
 
