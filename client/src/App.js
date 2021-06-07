@@ -17,7 +17,6 @@ function App() {
         <Header />
         <Routes />
         {/* <Welcome /> */}
-        <MainPage />
         <ChatList />
         <Map />
         <AddAvatarZone />
