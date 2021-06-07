@@ -3,3 +3,7 @@ client id
 
 client secret 
 mbobUSqQ4Zolc3UX8L8cZU5O
+
+
+hello_neighbour@mail.ru
+maxpidr228
