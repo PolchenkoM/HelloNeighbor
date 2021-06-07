@@ -25,9 +25,6 @@ export default function CreateEventModal() {
 
 	return (
 		<>
-			<Button type='primary' onClick={showModal}>
-				Open Modal
-			</Button>
 			<Modal
 				title='Создание ивента'
 				visible={modalVisibility}
