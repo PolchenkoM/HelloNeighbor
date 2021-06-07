@@ -30,8 +30,7 @@ export default function LogBar() {
     })
       .then((res) => res.json())
       .then((result) => {
-        localStorage.setItem("id", result._id)
-        result._id ? setLogValue('Выйти') : setLogValue('Войти')
+        localStorage.setItem("email", result.email);
       })
   };
 
