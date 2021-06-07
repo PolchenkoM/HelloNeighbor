@@ -1,11 +1,13 @@
 import React, { useCallback, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
 import mapStyles from "./mapStyle";
+import { addEventSaga, getEventSaga } from "../../redux/Actions/eventAC";
 
 const containerStyle = {
-  borderRadius: "200px",
-  width: "400px",
-  height: "400px",
+  borderRadius: "400px",
+  width: "800px",
+  height: "800px",
 };
 
 const options = {
@@ -20,33 +22,44 @@ const center = {
 };
 
 function MyComponent() {
+  const dispatch = useDispatch();
+  
+  const events = useSelector((state) => state.events);
+console.log("events",events);
+
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyBwGnNMdsXI-Zrpp6kJLj1B_164V1_PFaM",
   });
 
   const [markers, setMarkers] = useState([]);
 
-  const onMapClick = useCallback(() => {}, [])
+  const  onMapClick = useCallback ((event) => {
+    
+    const x = event.latLng.lat()
+    const y = event.latLng.lng()
+
+
+    dispatch(addEventSaga(x,y))
+
+    setMarkers((current) => [
+      ...current,
+      {
+        lat: event.latLng.lat(),
+        lng: event.latLng.lng(),
+        time: Math.random()
+      },
+    ]);
+  }, []);
 
   return isLoaded ? (
     <div>
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
-        zoom={16}
+        zoom={17}
         options={options}
-        onClick={(event) => {
-          setMarkers((current) => [
-            ...current,
-            {
-              lat: event.latLng.lat(),
-              lng: event.latLng.lng(),
-              time: new Date(),
-            },
-          ]);
-        }}
+        onClick={onMapClick}
       >
-       
         {/* {dfsfsfsdfsdfsd} */}
         <></>
         {markers.map((marker) => (
@@ -54,27 +67,14 @@ function MyComponent() {
             key={marker.time}
             position={{ lat: marker.lat, lng: marker.lng }}
             icon={{
-              url:"/baloon.png"
+              url: "/baloon.png",
             }}
           />
         ))}
       </GoogleMap>
-      
     </div>
   ) : (
     <></>
   );
 }
 export default MyComponent;
-// const mapContainerStyle = {
-//   height: "100px",
-//   width: "100px",
-// };
-// const options = {
-//   disableDefaultUI: true,
-//   zoomControl: true,
-// };
-// const center = {
-//   lat: 55.706541,
-//   lng: 37.597007,
-// };

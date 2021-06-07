@@ -1,16 +1,23 @@
 import React, { useState } from "react";
-import useLoginForm from "../../hooks/useLoginForm";
 import { Modal, Input, Button } from "antd";
+import useRegForm from "../../hooks/useForm";
 
 export default function LogBar() {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [loginValues, changeLoginChandler] = useLoginForm();
+  const [values, changeHandler] = useRegForm();
+  const [logValue, setLogValue] = useState('Войти')
 
   const showModal = () => {
-    setIsModalVisible(true);
+    if (localStorage.getItem('id')) {
+      localStorage.clear()
+      setLogValue('Войти')
+    } else {
+      setIsModalVisible(true);
+    }
   };
 
-  const handleOk = () => {
+  const handleOk = (e) => {
+    e.preventDefault();
     setIsModalVisible(false);
     fetch("http://localhost:3001/login/", {
       method: "POST",
@@ -18,14 +25,14 @@ export default function LogBar() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        loginValues,
+        values,
       }),
     })
       .then((res) => res.json())
       .then((result) => {
-        localStorage.setItem("user", result.username);
-        localStorage.setItem("id", result._id);
-      });
+        localStorage.setItem("id", result._id)
+        result._id ? setLogValue('Выйти') : setLogValue('Войти')
+      })
   };
 
   const handleCancel = () => {
@@ -33,27 +40,39 @@ export default function LogBar() {
   };
 
   return (
-		<>
-			<Button type='primary' onClick={showModal}>
-				Open Modal
-			</Button>
-			<Modal
-				title='Войдите в аккаунт'
-				visible={isModalVisible}
-				onOk={handleOk}
-				onCancel={handleCancel}
-				footer={null}
-			>
-				<form action="">
+    <>
+      <button className="button" onClick={showModal}>{logValue}</button>
+      <Modal
+        title="Войдите в аккаунт"
+        visible={isModalVisible}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        footer={null}
+      >
+        <form method="POST" onSubmit={handleOk}>
           <label htmlFor="">
-          Почта<Input placeholder="Введите текст"/>
+            Почта
+            <Input
+              name="email"
+              type="email"
+              value={values.email || ""}
+              onChange={changeHandler}
+              placeholder="Введите текст"
+            />
           </label>
           <label htmlFor="">
-          Пароль<Input placeholder="Введите текст"/>
+            Пароль
+            <Input
+              name="password"
+              type="password"
+              value={values.password || ""}
+              onChange={changeHandler}
+              placeholder="Введите текст"
+            />
           </label>
           <button className="button">Войти</button>
         </form>
-			</Modal>
-		</>
+      </Modal>
+    </>
   );
 }
