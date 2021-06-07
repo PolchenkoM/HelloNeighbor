@@ -16,7 +16,7 @@ router.route("/").post(async (req, res) => {
         regDate: Date.now(),
         profileId: uuidv4(),
       });
-
+      res.locals.user = user;
       res.json(user);
 
       const message = {
@@ -35,7 +35,7 @@ router.route("/").post(async (req, res) => {
 });
 
 router.route("/google").post(async (req, res) => {
-  const { id, email } = req.body;
+  const { email } = req.body;
   const googleUser = await User.findOne({ email });
   if (googleUser == null) {
     const user = await User.create({
@@ -43,8 +43,11 @@ router.route("/google").post(async (req, res) => {
       regDate: Date.now(),
       profileId: uuidv4(),
     });
+
+    res.locals.user = user;
     res.json(user);
   } else {
+    res.locals.user = googleUser;
     res.json(googleUser);
   }
 });
