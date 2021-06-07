@@ -11,12 +11,14 @@ const userSchema = new Schema({
   },
   age: String,
   gender: String,
-  tags: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Tag'
-  }],
+  tags: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Tag",
+    },
+  ],
   aboutSelf: String,
-  avatar: Array,
+  // avatar: Array,
   rating: Number,
   regDate: Date,
   friends: [
@@ -25,16 +27,19 @@ const userSchema = new Schema({
       ref: "User",
     },
   ],
-  history: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Events'
-  }],
-  avatar: {   //added Danil for avatar
-    type: String, 
-  }
+  history: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Events",
+    },
+  ],
+  avatar: {
+    //added Danil for avatar
+    type: String,
+  },
+  address: String,
 });
 
 const User = model("User", userSchema);
 
 module.exports = User;
-

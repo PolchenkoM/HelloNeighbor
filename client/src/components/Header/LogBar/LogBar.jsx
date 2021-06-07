@@ -24,7 +24,7 @@ export default function LogBar() {
     })
       .then((res) => res.json())
       .then((result) => {
-        localStorage.setItem("user", result);
+        localStorage.setItem("email", result.email);
 
       })
   };

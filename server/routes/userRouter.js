@@ -1,21 +1,22 @@
 const router = require("express").Router();
-const express = require('express')
+const express = require("express");
 const Users = require("../models/user");
-const multer = require('multer')
+const multer = require("multer");
 const { nanoid } = require("nanoid");
+const User = require("../models/user");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, `public/avatars`)
+    cb(null, `public/avatars`);
   },
-  filename: function(req, file, cb) {
-    const extension = '.' + file.originalname.split('.')[1]
-    const currentUserAvaName = nanoid(10)
-    cb(null, currentUserAvaName + extension)
-  }
-})
+  filename: function (req, file, cb) {
+    const extension = "." + file.originalname.split(".")[1];
+    const currentUserAvaName = nanoid(10);
+    cb(null, currentUserAvaName + extension);
+  },
+});
 
-const upload = multer({ storage })
+const upload = multer({ storage });
 
 // router.route("/addAvatar")
 //   .post(upload.single("avatar"), async(req, res) => {
@@ -35,16 +36,34 @@ const upload = multer({ storage })
 //     }
 //   })
 
-  router.route('/getCurrentUser')
-    .post(async (req,res) => {
-      console.log(req.body.id);
-      try {
+router.route("/getCurrentUser").post(async (req, res) => {
+  console.log(req.body.id);
+  try {
+  } catch (error) {
+    console.log(error);
+  }
+});
 
-      } catch (error) {
-        console.log(error)
+router.post("/profile", async (req, res) => {
+  
+  const { name, age, gender, tags, aboutSelf, address, email } = req.body;
+  const { avatar } = req.file.path;
+
+  if (name & age & gender & tags & aboutSelf & avatar & address) {
+    const user = await User.findOneAndUpdate(
+      { email: email },
+      {
+        name: name,
+        age: age,
+        gender: gender,
+        tags: tags,
+        aboutSelf: aboutSelf,
+        avatar: avatar,
+        address: address,
       }
-
-    })
-
+    );
+    res.json(user);
+  }
+});
 
 module.exports = router;
