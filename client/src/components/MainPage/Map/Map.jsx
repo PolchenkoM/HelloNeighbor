@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   GoogleMap,
@@ -46,12 +46,11 @@ const center = {
   lng: 37.592007,
 };
 
-
-
 function MyComponent() {
   const dispatch = useDispatch();
 
-  const events = useSelector((state) => state.events);
+  const events = useSelector((state) => state.events.allEvents)
+  const addEventModal = useSelector(state => state.events.addEventModal)
 
   useEffect(() => {
     dispatch(getEventSaga());
@@ -61,21 +60,12 @@ function MyComponent() {
     googleMapsApiKey: "AIzaSyBwGnNMdsXI-Zrpp6kJLj1B_164V1_PFaM",
   });
 
-
-  const [newEvent, setNewEvent] = useState(false);
   const [markers, setMarkers] = useState([]);
 
-  const createEvent = () => {
-    setNewEvent(!newEvent);
-  };
-
   const onMapClick = (event) => {
-    if (newEvent) {
-
-
+    if (addEventModal) {
       const x = event.latLng.lat();
       const y = event.latLng.lng();
-
 
       dispatch(changeVisibility())
       dispatch(addEventSaga(x, y));
@@ -90,7 +80,6 @@ function MyComponent() {
     }
   };
 
-
   return isLoaded ? (
     <>
       <GoogleMap
@@ -100,16 +89,14 @@ function MyComponent() {
         zoom={17}
         options={options}
       >
-        {/* {dfsfsfsdfsdfsd} */}
-
         <></>
-        {events.map((event) => (
+        {events.length && events.map((event) => (
           <Marker
-            // key={marker.time}
             position={{ lat: event.coordinates.x, lng: event.coordinates.y }}
             icon={{
               url: "/baloon.png",
             }}
+            key={Math.random()}
           />
         ))}
         <Circle
@@ -118,9 +105,8 @@ function MyComponent() {
           onClick={onMapClick}
         />
       </GoogleMap>
-      <button onClick={createEvent}>добавить мероприятие</button>
     </>
-  ) : null;
-
+  ) : null
 }
-export default MyComponent;
+
+export default MyComponent

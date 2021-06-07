@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Modal, Input, Button } from "antd";
 import useRegForm from "../../hooks/useForm";
 
+
 export default function LogBar() {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [values, changeHandler] = useRegForm();

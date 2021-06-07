@@ -11,8 +11,7 @@ const usersReducer = (state={}, action) => {
       return {
         ...state,  currentUser: {...action.payload}
       }
-      case CHANGE_MODAL_VISIBILITY:
-      return {...state,modalVisibility:!state.modalVisibility}
+      
       case LOGOUT_USER: 
       return {
         ...state, currentUser: {}

@@ -1,4 +1,4 @@
-import { ADD_EVENT, ADD_EVENT_SAGA, CHANGE_MODAL_VISIBILITY, GET_EVENT, GET_EVENT_SAGA } from "../Types/eventTypes";
+import { ADD_EVENT, ADD_EVENT_MODAL, ADD_EVENT_SAGA, CHANGE_MODAL_VISIBILITY, GET_EVENT, GET_EVENT_SAGA } from "../Types/eventTypes";
 
 export const addEvent = (coords) => {
   return {
@@ -33,4 +33,8 @@ export const changeVisibility = () => {
   };
 }
 
-
+export const addEventModal = () => {
+  return {
+    type: ADD_EVENT_MODAL,
+  }
+}
