@@ -61,6 +61,7 @@ function MyComponent() {
     googleMapsApiKey: "AIzaSyBwGnNMdsXI-Zrpp6kJLj1B_164V1_PFaM",
   });
 
+
   const [newEvent, setNewEvent] = useState(false);
   const [markers, setMarkers] = useState([]);
 
@@ -70,6 +71,8 @@ function MyComponent() {
 
   const onMapClick = (event) => {
     if (newEvent) {
+
+
       const x = event.latLng.lat();
       const y = event.latLng.lng();
 
@@ -86,6 +89,7 @@ function MyComponent() {
       ]);
     }
   };
+
 
   return isLoaded ? (
     <>
@@ -117,5 +121,6 @@ function MyComponent() {
       <button onClick={createEvent}>добавить мероприятие</button>
     </>
   ) : null;
+
 }
 export default MyComponent;

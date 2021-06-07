@@ -2,24 +2,16 @@ import React, { useEffect, useState } from "react";
 import { Button } from "antd";
 import { useDispatch } from "react-redux";
 import {getCurrentUserGoogleThunk} from  '../../redux/Actions/usersAC'
+import { useHistory } from "react-router";
 
 function Registration() {
+
   const [googleUser, setGoogleUser] = useState(localStorage);
   const dispatch = useDispatch()
+  const history = useHistory()
 
-  useEffect(() => {
-    window.gapi?.load("auth2", function () {
-      window.gapi?.auth2
-        .init({
-          client_id:
-            "213632962035-g4knv9je1q010p9lclqpuq2u73au46l3.apps.googleusercontent.com",
-        })
-        .then(
-          () => console.log("init OK"),
-          () => console.log("init error")
-        );
-    });
-  }, []);
+  const dispatch = useDispatch()
+
 
   const googleSignIn = () => {
     const authOk = (googleUser) => {
@@ -29,6 +21,7 @@ function Registration() {
       dispatch(getCurrentUserGoogleThunk(email))
       localStorage.setItem("email", email)
       setGoogleUser(localStorage)
+      history.push('/')
     };
     
     const authErr = (e) => {
@@ -52,7 +45,6 @@ function Registration() {
     );
   };
 
-  const signUp = () => {};
 
   return (
     <>
@@ -63,9 +55,9 @@ function Registration() {
       <Button onClick={signOut} type="primary">
         sign out
       </Button>
-      <Button onClick={signUp} type="primary">
+      {/* <Button onClick={signUp} type="primary">
         sign up
-      </Button>
+      </Button> */}
     </>
   );
 }

@@ -1,0 +1,64 @@
+.event
+  display: flex
+  flex-direction: column
+  background: #bfd1d3
+  border-radius: 10px
+  &__title
+    color: #e25b4b
+    font-weight: bold
+    font-size: 24px
+    align-self: center
+    text-align: center
+    width: 100%
+    margin: 0
+    padding: 10px 0
+  &__content-main
+    display: flex
+    justify-content: space-between
+    height: 300px
+    background-color: #ecfdff
+  &__photos
+    width: 500px
+  &__description
+    height: 150px
+    font-size: 16px
+  &__tags
+    list-style: none
+    padding: 0
+    margin: 0
+    display: flex
+    align-items: center
+    justify-content: flex-start
+  &__tag
+    cursor: pointer
+    margin-right: 5px
+    padding: 4px 8px
+    border-radius: 12px
+    background: #64778d
+    transition: background 0.1s ease-in
+    &:hover
+      background: #e6d36d
+  &__content-bottom
+    display: flex
+    align-items: center
+    justify-content: space-between
+    padding: 5px 10px
+  &-members
+    list-style: none
+    margin: 0
+    padding: 0
+    display: flex
+    padding: 5px 10px
+    &__member
+      margin: 0 10px
+      width: 50px
+      height: 50px
+      background-color:#e25b4b
+      border-radius: 50%
+      &:first-child
+        margin-left: 0 
+  &__date
+    font-weight: bold
+    font-size: 14px
+.content-main
+  padding: 30px 60px
