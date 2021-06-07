@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCurrentUserGoogleThunk } from "./redux/Actions/usersAC";
 
 
-
 const { default: Header } = require("./components/Header/Header");
 const { default: Welcome } = require("./components/Welcome/Welcome");
 
