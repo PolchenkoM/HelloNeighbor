@@ -9,8 +9,7 @@ import HeaderUnlogged from './components/Header/HeaderUnlogged'
 import HeaderLogged from './components/Header/HeaderLogged'
 
 function App() {
-
-	const currentUser  = useSelector(state => state.users.currentUser)
+	const currentUser = useSelector(state => state.users.currentUser)
 	const dispatch = useDispatch()
 
 	useEffect(() => {
@@ -26,8 +25,8 @@ function App() {
 				)
 		})
 	}, [])
-  console.log('currentUser----',currentUser)
-  console.log('local-----', localStorage)
+	console.log('currentUser----', currentUser.email)
+	console.log('local-----', localStorage)
 
 	useEffect(() => {
 		if (localStorage.email) {
@@ -40,8 +39,10 @@ function App() {
 	return (
 		<Router>
 			<div className='App'>
-				{currentUser.email ? <HeaderLogged/> : <HeaderUnlogged/>}
-				<Routes />
+				{currentUser.email ? <HeaderLogged /> : <HeaderUnlogged />}
+				<div className='container-mt'>
+					<Routes />
+				</div>
 			</div>
 		</Router>
 	)

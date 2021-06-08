@@ -48,9 +48,15 @@ export default function HeaderUnlogged() {
 	return (
 		<>
 			<header className='header'>
-				<img height='50px' src='/img/randomLogo.jpg' alt='SITE LOGO' />
 				<nav className='navbar header__navbar'>
 					<ul className='list navbar__list'>
+						<li className='list__item'>
+							<img
+								className='header__image'
+								src='/img/randomLogo.jpg'
+								alt='SITE LOGO'
+							/>
+						</li>
 						<li className='list__item'>
             <Link to='/products' className='list__item-link'>
             (нот-мейн-хедер)Продукты

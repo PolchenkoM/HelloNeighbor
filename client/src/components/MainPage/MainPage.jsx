@@ -2,6 +2,7 @@ import UserMenuSider from './UserMenuSider/UserMenuSider'
 import Map from './Map/Map'
 import EventList from './EventList/EventList'
 import CreateEventModal from './EventModals/CreateEventModal'
+import { BrowserRouter as Router } from 'react-router-dom'
 
 const MainPage = () => {
 	return (
@@ -9,7 +10,6 @@ const MainPage = () => {
 			<div className='containerMain'>
 				<UserMenuSider />
 				<div className='containerMap'>
-					<div></div>
 					<Map />
 				</div>
 				<CreateEventModal />
