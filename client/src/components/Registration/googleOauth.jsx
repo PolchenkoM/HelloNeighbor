@@ -10,7 +10,6 @@ function Registration() {
   const dispatch = useDispatch()
   const history = useHistory()
 
-
   const googleSignIn = () => {
     const authOk = (googleUser) => {
       const id = googleUser.getBasicProfile().getId()
@@ -53,9 +52,6 @@ function Registration() {
       <Button onClick={signOut} type="primary">
         sign out
       </Button>
-      {/* <Button onClick={signUp} type="primary">
-        sign up
-      </Button> */}
     </>
   );
 }

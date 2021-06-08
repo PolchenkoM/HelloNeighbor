@@ -1,4 +1,3 @@
-
 import {
 	Form,
 	Input,
@@ -12,9 +11,10 @@ import {
 	Col,
 	Upload,
 } from 'antd'
-import { UploadOutlined, InboxOutlined } from '@ant-design/icons';
-import { useState } from 'react';
+import { UploadOutlined, InboxOutlined } from '@ant-design/icons'
+import { useState } from 'react'
 import useForm from '../../hooks/useForm'
+import UserMenuSider from '../../MainPage/UserMenuSider/UserMenuSider'
 
 const { Option } = Select
 const layout = {
@@ -75,22 +75,24 @@ export default function Profile() {
 	const onFinish = (values: any) => {
 		console.log(values)
 	}
-  const normFile = (e: any) => {
-    console.log('Upload event:', e);
-    if (Array.isArray(e)) {
-      return e;
-    }
-    return e && e.fileList;
-  }
+	const normFile = (e: any) => {
+		console.log('Upload event:', e)
+		if (Array.isArray(e)) {
+			return e
+		}
+		return e && e.fileList
+	}
 
-  const profileSubmit = (e) => {
-    e.preventDefault()
-    console.log(values)
-  }
-  const [values, changeHandler] = useForm()
-  console.log('---------------', values)
+	const profileSubmit = e => {
+		e.preventDefault()
+		console.log(values)
+	}
+	const [values, changeHandler] = useForm()
+	console.log('---------------', values)
 	return (
 		<>
+			<div className='containerMain'>
+				<UserMenuSider />
 			<Form
 				{...layout}
 				name='nest-messages'
@@ -100,20 +102,30 @@ export default function Profile() {
 					residence: ['zhejiang', 'hangzhou', 'xihu'],
 					prefix: '86',
 				}}
-        id='profileForm'
+				id='profileForm'
+        className="profile"
 			>
 				<Form.Item name={['user', 'name']} label='Имя'>
-					<Input name="name" value={values.name || ""} onChange={changeHandler}/>
+					<Input
+						name='name'
+						value={values.name || ''}
+						onChange={changeHandler}
+					/>
 				</Form.Item>
 				<Form.Item name='userDate' label='Дата рождения' {...config}>
-					<DatePicker name="userDate" />
+					<DatePicker name='userDate' />
 				</Form.Item>
 				<Form.Item
 					name='gender'
 					label='Пол'
 					rules={[{ required: true, message: 'Please select gender!' }]}
 				>
-					<Select placeholder='select your gender' name="gender" value={values.gender || ""} onChange={changeHandler}>
+					<Select
+						placeholder='select your gender'
+						name='gender'
+						value={values.gender || ''}
+						onChange={changeHandler}
+					>
 						<Option value='male'>мужской</Option>
 						<Option value='female'>женский</Option>
 						<Option value='other'>дивергент</Option>
@@ -132,16 +144,21 @@ export default function Profile() {
 							<Input
 								style={{ width: '50%' }}
 								placeholder='Город, улица, дом'
-                name="address"
-                value={values.address || ""} onChange={changeHandler}
+								name='address'
+								value={values.address || ''}
+								onChange={changeHandler}
 							/>
 						</Form.Item>
 					</Input.Group>
 				</Form.Item>
 				<Form.Item name={['user', 'aboutSelf']} label='О себе'>
-					<Input.TextArea name="aboutSelf" value={values.aboutSelf || ""} onChange={changeHandler}/>
+					<Input.TextArea
+						name='aboutSelf'
+						value={values.aboutSelf || ''}
+						onChange={changeHandler}
+					/>
 				</Form.Item>
-				<Form.Item name='tags' label='Тэги' >
+				<Form.Item name='tags' label='Тэги'>
 					<Checkbox.Group>
 						<Row>
 							<Col span={8}>
@@ -215,6 +232,7 @@ export default function Profile() {
 					</Button>
 				</Form.Item>
 			</Form>
+			</div>
 		</>
 	)
 }

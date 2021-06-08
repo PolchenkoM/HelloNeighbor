@@ -13,7 +13,7 @@ import { addEventSaga, getEventSaga } from "../../../redux/Actions/eventAC";
 
 const containerStyle = {
   width: "100%",
-  height: "100vh",
+  height: "100%",
 };
 
 const options = {
@@ -105,6 +105,7 @@ function MyComponent() {
           onClick={onMapClick}
         />
       </GoogleMap>
+      
     </>
   ) : null
 }

@@ -7,6 +7,7 @@ import Rater from './Rater/Rater'
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { logoutUser } from '../../../redux/Actions/usersAC';
+import { Link } from 'react-router-dom';
 
 
 const UserMenuSider = () => {
@@ -62,13 +63,17 @@ const UserMenuSider = () => {
         <Button type="dashed" className='buttons' icon={<InstagramOutlined />} size={size} />
       </div>
       <Menu className='profileMenu'>
-        <Menu.Item key="1" className='userLinksButton'  icon={<ProfileOutlined className='profileIcon'/>} title='Profile'>Profile
+        <Menu.Item key="1" className='userLinksButton'  icon={<ProfileOutlined className='profileIcon'/>} title='Profile'>
+          <Link to={'/profile'}>Profile</Link>
         </Menu.Item>
-        <Menu.Item key="2" className='userLinksButton' icon={<TeamOutlined />} title='Friends'>Friends
+        <Menu.Item key="2" className='userLinksButton' icon={<TeamOutlined />} title='Friends'>
+          <Link to={'/friends'}>Friends</Link>
         </Menu.Item>
-        <Menu.Item key="3" className='userLinksButton'icon={<HistoryOutlined />} title='History'>History
+        <Menu.Item key="3" className='userLinksButton'icon={<HistoryOutlined />} title='History'>
+          <Link to={'/history'}>History</Link>
         </Menu.Item>
-        <Menu.Item key="4" onClick={signOut} className='userLinksButton'icon={<LogoutOutlined />} title='Logout'>Logout
+        <Menu.Item key="4" onClick={signOut} className='userLinksButton'icon={<LogoutOutlined />} title='Logout'>
+          Logout
         </Menu.Item>
       </Menu>
     </div>
