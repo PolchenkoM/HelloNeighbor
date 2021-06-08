@@ -1,0 +1,65 @@
+.container--friends
+  background-color: rgb(240, 218, 218)
+  height: 100%
+  width: 100%
+.friendsMenu
+  display: flex
+  height: 50px
+  background-color: yellow
+  &__button
+    color: black
+    padding: 10px 20px
+    width: 50%
+    border: 1px solid orange
+    &:hover
+      background-color: #f1b037
+.friends
+  list-style: none
+  margin: 0
+  padding: 20px 20px
+  height: 500px
+  &-wrapper
+    
+  &__friend
+    margin: 5px
+.friend
+  border-radius: 5px
+  padding: 10px 10px
+  background: #a5aaec
+  &__link
+    display: block
+    color: black
+    &:hover
+      color: black
+  &__avatar
+    height: 100px
+    width: 100px
+    border-radius: 50%
+    &-wrapper
+      position: relative
+      &::after
+  &__message-btn
+    padding: 0
+  &-content
+    display: flex
+    justify-content: flex-start
+    &__main
+      display: flex
+      flex-direction: column
+      justify-content: space-between
+      flex-grow: 1
+      padding: 20px
+      &--top
+        display: flex
+        justify-content: space-between
+.onlineStatus
+  content: ''
+  display: block
+  position: absolute
+  background-color: $online
+  border-radius: 50%
+  border: 2px solid #fff
+  bottom: 4%
+  right: 10%
+  width: 12px
+  height: 12px
