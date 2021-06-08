@@ -6,56 +6,82 @@ import {
   Marker,
   Circle,
 } from "@react-google-maps/api";
+
+import { getGeocode, getLatLng } from "use-places-autocomplete";
 import mapStyles from "./mapStyle";
 
-import { changeVisibility } from '../../../redux/Actions/eventAC';
+import { changeVisibility } from "../../../redux/Actions/eventAC";
 import { addEventSaga, getEventSaga } from "../../../redux/Actions/eventAC";
-
-const containerStyle = {
-  width: "100%",
-  height: "100vh",
-};
-
-const options = {
-  styles: mapStyles,
-  disableDefaultUI: true,
-  draggable: false,
-};
-
-const centerCircle = {
-  lat: 55.702541,
-  lng: 37.592007,
-};
-
-const optionsCircle = {
-  strokeColor: "#008B8B",
-  strokeOpacity: 0.8,
-  strokeWeight: 5,
-  fillColor: "#E0FFFF",
-  fillOpacity: 0.35,
-  clickable: true,
-  draggable: false,
-  editable: false,
-  visible: true,
-  radius: 200,
-  zIndex: 1,
-};
-
-const center = {
-  lat: 55.702541,
-  lng: 37.592007,
-};
 
 function MyComponent() {
   const dispatch = useDispatch();
+  
+  const adres = useSelector((state) => state.users.currentUser.address);
+  console.log(adres);
+  const events = useSelector((state) => state.events.allEvents);
+  const addEventModal = useSelector((state) => state.events.addEventModal);
+  
+  const [userAddress, setUserAddress] = useState({});
+  console.log(userAddress);
+  const containerStyle = {
+    width: "100%",
+    height: "100vh",
+  };
 
-  const events = useSelector((state) => state.events.allEvents)
-  const addEventModal = useSelector(state => state.events.addEventModal)
+  const options = {
+    styles: mapStyles,
+    disableDefaultUI: true,
+    draggable: false,
+  };
 
+  const centerCircle = {
+    lat: userAddress.lat,
+    lng: userAddress.lng
+  };
+
+  const optionsCircle = {
+    strokeColor: "#008B8B",
+    strokeOpacity: 0.8,
+    strokeWeight: 5,
+    fillColor: "#E0FFFF",
+    fillOpacity: 0.35,
+    clickable: true,
+    draggable: false,
+    editable: false,
+    visible: true,
+    radius: 500,
+    zIndex: 1,
+  };
+
+  const center = {
+    lat: userAddress.lat,
+    lng: userAddress.lng
+  };
+  
+  
+  // console.log(userAddress);
+  
+  const decodingAdress = async (adres) => {
+    // console.log(123);
+    console.log(">>>>>>>>>>>>>>>>>>>>", adres);
+    if (adres) {
+      const code = await getGeocode({ address: adres })
+      const results = await getLatLng(code[0])
+      setUserAddress(results)
+      console.log(results);
+      
+    }
+    return "dsfsdfsdfds";
+  };
+  
+  useEffect(() => {
+    decodingAdress(adres);
+  }, [adres]);
+  
   useEffect(() => {
     dispatch(getEventSaga());
   }, []);
-
+  
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyBwGnNMdsXI-Zrpp6kJLj1B_164V1_PFaM",
   });
@@ -67,7 +93,7 @@ function MyComponent() {
       const x = event.latLng.lat();
       const y = event.latLng.lng();
 
-      dispatch(changeVisibility())
+      dispatch(changeVisibility());
       dispatch(addEventSaga(x, y));
       setMarkers((current) => [
         ...current,
@@ -86,19 +112,20 @@ function MyComponent() {
         className="karta"
         mapContainerStyle={containerStyle}
         center={center}
-        zoom={17}
+        zoom={16}
         options={options}
       >
         <></>
-        {events.length && events.map((event) => (
-          <Marker
-            position={{ lat: event.coordinates.x, lng: event.coordinates.y }}
-            icon={{
-              url: "/baloon.png",
-            }}
-            key={Math.random()}
-          />
-        ))}
+        {events.length &&
+          events.map((event) => (
+            <Marker
+              position={{ lat: event.coordinates.x, lng: event.coordinates.y }}
+              icon={{
+                url: "/baloon.png",
+              }}
+              key={Math.random()}
+            />
+          ))}
         <Circle
           center={centerCircle}
           options={optionsCircle}
@@ -106,7 +133,7 @@ function MyComponent() {
         />
       </GoogleMap>
     </>
-  ) : null
+  ) : null;
 }
 
-export default MyComponent
+export default MyComponent;
