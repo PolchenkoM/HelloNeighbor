@@ -47,7 +47,7 @@ export default function Body() {
 
   return (
     <>
-      <main className="body">
+      <div className="body">
         <div className="welcome body__welcome">
           <button className="welcome__button" onClick={showModal}>
             Создать аккаунт
@@ -78,7 +78,7 @@ export default function Body() {
           </Modal>
           <h1 className="welcome__title">Найди соседа</h1>
         </div>
-      </main>
+      </div>
     </>
   );
 }

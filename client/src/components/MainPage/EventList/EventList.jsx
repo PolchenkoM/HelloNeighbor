@@ -1,4 +1,3 @@
-
 const EventList = () => {
   return (
     <div className='container--eventList'>

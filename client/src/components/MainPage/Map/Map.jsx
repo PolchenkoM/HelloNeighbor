@@ -13,6 +13,42 @@ import mapStyles from "./mapStyle";
 import { changeVisibility } from "../../../redux/Actions/eventAC";
 import { addEventSaga, getEventSaga } from "../../../redux/Actions/eventAC";
 
+
+const containerStyle = {
+  width: "100%",
+  height: "100%",
+};
+
+const options = {
+  styles: mapStyles,
+  disableDefaultUI: true,
+  draggable: false,
+};
+
+const centerCircle = {
+  lat: 55.702541,
+  lng: 37.592007,
+};
+
+const optionsCircle = {
+  strokeColor: "#008B8B",
+  strokeOpacity: 0.8,
+  strokeWeight: 5,
+  fillColor: "#E0FFFF",
+  fillOpacity: 0.35,
+  clickable: true,
+  draggable: false,
+  editable: false,
+  visible: true,
+  radius: 200,
+  zIndex: 1,
+};
+
+const center = {
+  lat: 55.702541,
+  lng: 37.592007,
+};
+
 function MyComponent() {
   const dispatch = useDispatch();
   
@@ -132,6 +168,7 @@ function MyComponent() {
           onClick={onMapClick}
         />
       </GoogleMap>
+      
     </>
   ) : null;
 }
