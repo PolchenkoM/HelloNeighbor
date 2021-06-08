@@ -8,7 +8,8 @@ import {
 } from "@react-google-maps/api";
 import mapStyles from "./mapStyle";
 
-import { changeVisibility } from '../../../redux/Actions/eventAC';
+import { changeVisibility, getSelectedEvent } from "../../../redux/Actions/eventAC";
+import { modalMatchVisibility } from "../../../redux/Actions/eventAC";
 import { addEventSaga, getEventSaga } from "../../../redux/Actions/eventAC";
 
 const containerStyle = {
@@ -49,8 +50,9 @@ const center = {
 function MyComponent() {
   const dispatch = useDispatch();
 
-  const events = useSelector((state) => state.events.allEvents)
-  const addEventModal = useSelector(state => state.events.addEventModal)
+  const events = useSelector((state) => state.events.allEvents);
+  const addEventModal = useSelector((state) => state.events.addEventModal);
+  const selectedEvent = useSelector((state) => state.events.selectedEvent);
 
   useEffect(() => {
     dispatch(getEventSaga());
@@ -67,7 +69,7 @@ function MyComponent() {
       const x = event.latLng.lat();
       const y = event.latLng.lng();
 
-      dispatch(changeVisibility())
+      dispatch(changeVisibility());
       dispatch(addEventSaga(x, y));
       setMarkers((current) => [
         ...current,
@@ -80,6 +82,12 @@ function MyComponent() {
     }
   };
 
+  const selectEvent = (event) => {
+    console.log(event._id);
+    dispatch(modalMatchVisibility());
+    dispatch(getSelectedEvent(event))
+  };
+
   return isLoaded ? (
     <>
       <GoogleMap
@@ -90,26 +98,30 @@ function MyComponent() {
         options={options}
       >
         <></>
-        {events.length && events.map((event) => (
-          <Marker
-            position={{ lat: event.coordinates.x, lng: event.coordinates.y }}
-            icon={{
-              url: "/baloon.png",
-            }}
-            key={Math.random()}
-          />
-        ))}
+        {events.length &&
+          events.map((event) => (
+            <Marker
+              position={{ lat: event.coordinates.x, lng: event.coordinates.y }}
+              icon={{
+                url: "/baloon.png",
+              }}
+              key={Math.random()}
+              onClick={() => selectEvent(event)}
+              id={event._id}
+              title={`
+                          Название :${event.title}
+ Время: ${event.eventTime}
+ Создатель: ${event.author}`}
+              value={event.title}
+            />
+          ))}
         <Circle
           center={centerCircle}
           options={optionsCircle}
           onClick={onMapClick}
         />
       </GoogleMap>
-      {/* <button onClick={createEvent}>Создать встречу</button> */}
     </>
-    
-  ) : (
-    null
-  );
+  ) : null;
 }
-export default MyComponent
+export default MyComponent;

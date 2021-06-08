@@ -4,9 +4,12 @@ const initState = {
     interestedUser: {},
   },
   events:{
+    selectedEvent: {},
     allEvents: [],
     modalVisibility:false,
     addEventModal: false,
+    modalMatchVisibility:false,
+    
   },
 }
 export default initState

@@ -1,4 +1,3 @@
-
 import style from "./styles/style.sass";
 import { useEffect } from "react";
 
@@ -6,6 +5,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import Routes from "./components/Routes/Routes";
 import { useDispatch, useSelector } from "react-redux";
 import { getCurrentUserGoogleThunk } from "./redux/Actions/usersAC";
+import ShowEventModal from "./components/MainPage/EventModals/ShowEventModal";
 
 
 const { default: Header } = require("./components/Header/Header");
@@ -43,6 +43,7 @@ function App() {
       <div className="App">
         <Header />
         <Routes />
+        <ShowEventModal/>
       </div>
 
     </Router>
