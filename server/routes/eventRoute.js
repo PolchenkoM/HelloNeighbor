@@ -24,4 +24,8 @@ router.route("/").post(async (req, res) => {
   }
 });
 
+router.route("/").put(async (req, res) =>{
+  
+})
+
 module.exports = router;

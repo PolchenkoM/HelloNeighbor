@@ -29,7 +29,7 @@ const userRouter = require("./routes/userRouter");
 const loginRoute = require("./routes/loginRoute");
 
 app.use(cors());
-app.use(express.static("public"));
+app.use(express.static(__dirname))
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

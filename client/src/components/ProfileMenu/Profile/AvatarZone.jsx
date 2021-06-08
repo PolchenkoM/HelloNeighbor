@@ -14,7 +14,7 @@ const AddAvatarZone = () => {
   const onDropHandler =  (e) => {
     e.preventDefault()
     let file = [...e.dataTransfer.files]
-    console.log()
+
     let formData = new FormData()
     formData.append('avatar', file[0])
     formData.append('id', 'ID1459876321')

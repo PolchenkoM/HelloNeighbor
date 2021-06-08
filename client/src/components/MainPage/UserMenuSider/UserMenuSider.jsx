@@ -1,3 +1,4 @@
+
 import "antd/dist/antd.css";
 import {
   FacebookOutlined,
@@ -28,6 +29,7 @@ const UserMenuSider = () => {
           () => console.log("init error")
         );
     });
+
   }, []);
 
   const dispatch = useDispatch();
@@ -35,7 +37,9 @@ const UserMenuSider = () => {
 
   useEffect(() => {}, []);
 
+
   const id = localStorage?.id;
+
 
   const { Title } = Typography;
   const size = "large";
@@ -59,9 +63,11 @@ const UserMenuSider = () => {
     );
   };
 
+
   return (
     <div className="sidebar">
       <div className="sidebar_null"></div>
+
       <div className="sidebar__top">
         <div span={24} className="avatar">
           <Avatar
@@ -118,12 +124,42 @@ const UserMenuSider = () => {
             Logout
           </Menu.Item>
         </Menu>
+
+      <div className='sidebar__top'>
+      <div span={24} className='avatar'>
+        <Avatar size={180} src={`http://localhost:3001/${currentUser.avatar}`} draggable={false} /> 
+
       </div>
       <div className="sidebar__bottom">
         <button className="button sidebar__bottom-button" onClick={hideSidebar}>
           asd
         </button>
       </div>
+
+
+      <div  className='socialsButtons'>
+        <Button type="dashed"  icon={<FacebookOutlined />} size={size} />
+        <Button type="dashed" className='buttons' icon={<InstagramOutlined />} size={size} />
+      </div>
+      <Menu className='profileMenu'>
+        <Menu.Item key="1" className='userLinksButton'  icon={<ProfileOutlined className='profileIcon'/>} title='Profile'>
+          <Link to={'/profile'}>Profile</Link>
+        </Menu.Item>
+        <Menu.Item key="2" className='userLinksButton' icon={<TeamOutlined />} title='Friends'>
+          <Link to={'/friends'}>Friends</Link>
+        </Menu.Item>
+        <Menu.Item key="3" className='userLinksButton'icon={<HistoryOutlined />} title='History'>
+          <Link to={'/history'}>History</Link>
+        </Menu.Item>
+        <Menu.Item key="4" onClick={signOut} className='userLinksButton'icon={<LogoutOutlined />} title='Logout'>
+          Logout
+        </Menu.Item>
+      </Menu>
+    </div>
+    <div className="sidebar__bottom">
+      <button className='button sidebar__bottom-button' onClick={hideSidebar}>asd</button>
+    </div>
+
     </div>
   );
 };
