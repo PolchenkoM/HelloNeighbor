@@ -9,6 +9,21 @@ import { useEffect } from 'react';
 import { logoutUser } from '../../../redux/Actions/usersAC';
 
 const UserMenuSider = () => {
+
+  useEffect(() => {
+    window.gapi?.load("auth2", function () {
+      window.gapi?.auth2
+        .init({
+          client_id:
+            "213632962035-g4knv9je1q010p9lclqpuq2u73au46l3.apps.googleusercontent.com",
+        })
+        .then(
+          () => console.log("init OK"),
+          () => console.log("init error")
+        );
+    });
+  }, [])
+
   const  dispatch = useDispatch()
   const currentUser = useSelector(state => state.users.currentUser)
 
@@ -24,12 +39,15 @@ const UserMenuSider = () => {
     labelSpans.forEach(el => el.classList.toggle('hidden'))
     }
 
-    const signOut =async () => {
-      const  GoogleAuth = await  window.gapi?.auth2?.getAuthInstance()
+    const signOut = () => {
+      console.log('ya tut')
+      const GoogleAuth = window.gapi?.auth2?.getAuthInstance()
       .then(
         () => {
+          console.log('ya sdelal')
           localStorage.clear()
           dispatch(logoutUser())
+          GoogleAuth.signOut()
         },
         () => console.log("signout Error")
       );
@@ -41,7 +59,7 @@ const UserMenuSider = () => {
       <div className="sidebar_null"></div>
       <div className='sidebar__top'>
       <div span={24} className='avatar'>
-        <Avatar size={180} src={`http://localhost:3001/public/avatars/${currentUser.avatar}`} draggable={false} /> 
+        <Avatar size={180} src={`http://localhost:3001/${currentUser.avatar}`} draggable={false} /> 
       </div>
       <h3 level={4}>{currentUser.name}</h3>
       <div className="rater">
