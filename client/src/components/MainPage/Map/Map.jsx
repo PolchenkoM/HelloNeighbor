@@ -94,9 +94,6 @@ function MyComponent() {
     lng: userAddress.lng
   };
   
-  
-  // console.log(userAddress);
-  
   const decodingAdress = async (adres) => {
     // console.log(123);
     console.log(">>>>>>>>>>>>>>>>>>>>", adres);
