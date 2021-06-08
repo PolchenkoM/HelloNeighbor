@@ -1,3 +1,4 @@
+
 import style from './styles/style.sass'
 import { useEffect } from 'react'
 
@@ -47,6 +48,7 @@ function App() {
 			</div>
 		</Router>
 	)
+
 }
 
 export default App

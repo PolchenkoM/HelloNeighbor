@@ -10,7 +10,10 @@ import {
 import { getGeocode, getLatLng } from "use-places-autocomplete";
 import mapStyles from "./mapStyle";
 
-import { changeVisibility } from "../../../redux/Actions/eventAC";
+
+import { changeVisibility, getSelectedEvent } from "../../../redux/Actions/eventAC";
+import { modalMatchVisibility } from "../../../redux/Actions/eventAC";
+
 import { addEventSaga, getEventSaga } from "../../../redux/Actions/eventAC";
 
 
@@ -34,6 +37,11 @@ function MyComponent() {
     disableDefaultUI: true,
     draggable: false,
   };
+
+
+  const events = useSelector((state) => state.events.allEvents);
+  const addEventModal = useSelector((state) => state.events.addEventModal);
+  const selectedEvent = useSelector((state) => state.events.selectedEvent);
 
   const centerCircle = {
     lat: userAddress.lat,
@@ -107,6 +115,12 @@ function MyComponent() {
     }
   };
 
+  const selectEvent = (event) => {
+    console.log(event._id);
+    dispatch(modalMatchVisibility());
+    dispatch(getSelectedEvent(event))
+  };
+
   return isLoaded ? (
     <>
       <GoogleMap
@@ -125,6 +139,15 @@ function MyComponent() {
                 url: "/baloon.png",
               }}
               key={Math.random()}
+
+              onClick={() => selectEvent(event)}
+              id={event._id}
+              title={`
+                          Название :${event.title}
+ Время: ${event.eventTime}
+ Создатель: ${event.author}`}
+              value={event.title}
+
             />
           ))}
         <Circle
@@ -133,9 +156,8 @@ function MyComponent() {
           onClick={onMapClick}
         />
       </GoogleMap>
-      
+
     </>
   ) : null;
 }
-
 export default MyComponent;

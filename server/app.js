@@ -3,7 +3,6 @@ const cors = require("cors");
 const { connect } = require("mongoose");
 const formData = require("express-form-data");
 const path = require("path");
-
 const PORT = 3001;
 const mongoUrl = "mongodb://localhost:27017/hello";
 const atlasUrl =
@@ -11,6 +10,7 @@ const atlasUrl =
 const WebSocket = require("ws");
 const Users = require("./models/user");
 const Tag = require("./models/tag");
+const Event = require("./models/event");
 
 const morgan = require("morgan");
 
@@ -49,6 +49,36 @@ app.use("/login", loginRoute);
 app.get("/tags", async (req, res) => {
   const tags = await Tag.find();
   res.json(tags);
+});
+
+app.post("/createEvent", async (req, res) => {
+  const event = await Event.findById(req.body.eventId);
+  const user = await Users.findOneAndUpdate(
+    { email: req.body.author },
+    { $push: { history: event._id } }
+  ).populate("history");
+
+  const tags = [];
+  console.log('taaaaaags', req.body.selectedTags);
+  req.body.selectedTags.forEach((el) => tags.push(el._id));
+  console.log('tagsArray==>', tags);
+
+  const currentEvent = await Event.findByIdAndUpdate(event._id, {
+    title: req.body.values.title,
+    description: req.body.values.description,
+    eventTime: req.body.values.eventTime,
+    regDate: Date.now(),
+    authorId: user._id,
+    author: user.email,
+    tags: tags,
+  }, {new: true}).populate("tags");
+  console.log("[pop===>>>>>", currentEvent);
+  res.json(currentEvent);
+});
+
+app.post("/delEvent", async (req, res) => {
+  const delEvent = await Event.findByIdAndDelete(req.body.eventId._id);
+  res.json(delEvent);
 });
 
 app.listen(PORT, () => {
