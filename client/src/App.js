@@ -1,6 +1,5 @@
 import style from './styles/style.sass'
 import { useEffect } from 'react'
-
 import { BrowserRouter as Router } from 'react-router-dom'
 import Routes from './components/Routes/Routes'
 import { useDispatch, useSelector } from 'react-redux'
@@ -27,9 +26,8 @@ function App() {
 				)
 		})
 	}, [])
-	console.log('currentUser----', currentUser.email)
-	console.log('local-----', localStorage)
 
+	
 	useEffect(() => {
 		if (localStorage.email) {
 			dispatch(getCurrentUserGoogleThunk(localStorage.email))

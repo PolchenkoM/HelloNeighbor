@@ -21,12 +21,10 @@ function MyComponent() {
   const dispatch = useDispatch();
   
   const adres = useSelector((state) => state.users.currentUser.address);
-  console.log(adres);
   const events = useSelector((state) => state.events.allEvents);
   const addEventModal = useSelector((state) => state.events.addEventModal);
   
   const [userAddress, setUserAddress] = useState({});
-  console.log(userAddress);
   const containerStyle = {
     width: "100%",
     height: "100vh",
@@ -71,13 +69,10 @@ function MyComponent() {
   // console.log(userAddress);
   
   const decodingAdress = async (adres) => {
-    // console.log(123);
-    console.log(">>>>>>>>>>>>>>>>>>>>", adres);
     if (adres) {
       const code = await getGeocode({ address: adres })
       const results = await getLatLng(code[0])
       setUserAddress(results)
-      console.log(results);
       
     }
     return "dsfsdfsdfds";
@@ -116,7 +111,6 @@ function MyComponent() {
   };
 
   const selectEvent = (event) => {
-    console.log(event._id);
     dispatch(modalMatchVisibility());
     dispatch(getSelectedEvent(event))
   };

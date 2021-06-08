@@ -27,9 +27,10 @@ const registerRoute = require("./routes/registrationRoute");
 const eventRoute = require("./routes/eventRoute");
 const userRouter = require("./routes/userRouter");
 const loginRoute = require("./routes/loginRoute");
+const User = require("./models/user");
 
 app.use(cors());
-app.use(express.static(__dirname))
+app.use(express.static(__dirname));
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -51,6 +52,14 @@ app.get("/tags", async (req, res) => {
   res.json(tags);
 });
 
+app.post("/matchEvent", async (req, res) => {
+  // console.log(req.body);
+  const user = await User.findOne({ email: req.body.author });
+  const currentEvent = await Event.findByIdAndUpdate(req.body.id, {
+    $push: { members: user._id },
+  });
+});
+
 app.post("/createEvent", async (req, res) => {
   const event = await Event.findById(req.body.eventId);
   const user = await Users.findOneAndUpdate(
@@ -59,20 +68,21 @@ app.post("/createEvent", async (req, res) => {
   ).populate("history");
 
   const tags = [];
-  console.log('taaaaaags', req.body.selectedTags);
   req.body.selectedTags.forEach((el) => tags.push(el._id));
-  console.log('tagsArray==>', tags);
 
-  const currentEvent = await Event.findByIdAndUpdate(event._id, {
-    title: req.body.values.title,
-    description: req.body.values.description,
-    eventTime: req.body.values.eventTime,
-    regDate: Date.now(),
-    authorId: user._id,
-    author: user.email,
-    tags: tags,
-  }, {new: true}).populate("tags");
-  console.log("[pop===>>>>>", currentEvent);
+  const currentEvent = await Event.findByIdAndUpdate(
+    event._id,
+    {
+      title: req.body.values.title,
+      description: req.body.values.description,
+      eventTime: req.body.values.eventTime,
+      regDate: Date.now(),
+      authorId: user._id,
+      author: user.email,
+      tags: tags,
+    },
+    { new: true }
+  ).populate("tags");
   res.json(currentEvent);
 });
 

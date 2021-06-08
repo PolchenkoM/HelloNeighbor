@@ -13,7 +13,18 @@ export default function ShowEventModal() {
   const selectedEvent = useSelector((state) => state.events.selectedEvent);
 
   const handleOk = () => {
-    console.log("grom OK");
+    const author = localStorage.getItem("email");
+    const id = selectedEvent._id;
+    fetch("http://localhost:3001/matchEvent", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        author,
+        id,
+      }),
+    });
     dispatch(modalMatchVisibility());
   };
 
@@ -22,7 +33,6 @@ export default function ShowEventModal() {
     dispatch(modalMatchVisibility());
   };
 
-  console.log("event==>>>", selectedEvent);
   const [authorModal, setAuthorModal] = useState(false);
 
   function authorShow() {
@@ -66,10 +76,18 @@ export default function ShowEventModal() {
         </div>
 
         <ul className="tags-list">
-        {selectedEvent.tags? selectedEvent.tags.map(tag => <li>[{tag.title}]</li>):null}
+          {selectedEvent.tags
+            ? selectedEvent.tags.map((tag) => <li>[{tag.title}]</li>)
+            : null}
         </ul>
         <div className="button-wrapper">
-          <button className="goButton">Go!</button>
+          <button
+            onClick={handleOk}
+            id={selectedEvent._id}
+            className="goButton"
+          >
+            Go!
+          </button>
         </div>
       </Modal>
     </>
