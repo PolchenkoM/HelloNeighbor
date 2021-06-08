@@ -1,4 +1,3 @@
-
 import style from './styles/style.sass'
 import { useEffect } from 'react'
 
@@ -8,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getCurrentUserGoogleThunk } from './redux/Actions/usersAC'
 import HeaderUnlogged from './components/Header/HeaderUnlogged'
 import HeaderLogged from './components/Header/HeaderLogged'
+import ShowEventModal from './components/MainPage/EventModals/ShowEventModal'
 
 function App() {
 
@@ -41,6 +41,7 @@ function App() {
 	return (
 		<Router>
 			<div className='App'>
+        <ShowEventModal/>
 				{currentUser.email ? <HeaderLogged /> : <HeaderUnlogged />}
 				<div className='container-mt'>
 					<Routes />
