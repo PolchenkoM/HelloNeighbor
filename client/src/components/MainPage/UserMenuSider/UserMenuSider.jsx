@@ -1,5 +1,5 @@
 import 'antd/dist/antd.css';
-import { FacebookOutlined,InstagramOutlined,ProfileOutlined,TeamOutlined,HistoryOutlined,LogoutOutlined } from '@ant-design/icons';
+import { FacebookOutlined,InstagramOutlined,ProfileOutlined,TeamOutlined,InboxOutlined,LogoutOutlined, FieldTimeOutlined, HddOutlined  } from '@ant-design/icons';
 import { Typography, Button, Menu } from 'antd';
 
 import Avatar from 'antd/lib/avatar/avatar';
@@ -66,13 +66,16 @@ const UserMenuSider = () => {
         <Menu.Item key="1" className='userLinksButton'  icon={<ProfileOutlined className='profileIcon'/>} title='Profile'>
           <Link to={'/profile'}>Profile</Link>
         </Menu.Item>
-        <Menu.Item key="2" className='userLinksButton' icon={<TeamOutlined />} title='Friends'>
+        <Menu.Item key="2" className='userLinksButton'  icon={<FieldTimeOutlined   className='currentEvents'/>} title='currentEvents'>
+          <Link to={'/currentEvents'}>currentEvents</Link>
+        </Menu.Item>
+        <Menu.Item key="3" className='userLinksButton' icon={<TeamOutlined />} title='Friends'>
           <Link to={'/friends'}>Friends</Link>
         </Menu.Item>
-        <Menu.Item key="3" className='userLinksButton'icon={<HistoryOutlined />} title='History'>
+        <Menu.Item key="4" className='userLinksButton'icon={<InboxOutlined />} title='History'>
           <Link to={'/history'}>History</Link>
         </Menu.Item>
-        <Menu.Item key="4" onClick={signOut} className='userLinksButton'icon={<LogoutOutlined />} title='Logout'>
+        <Menu.Item key="5" onClick={signOut} className='userLinksButton'icon={<LogoutOutlined />} title='Logout'>
           Logout
         </Menu.Item>
       </Menu>

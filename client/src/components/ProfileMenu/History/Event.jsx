@@ -1,9 +1,10 @@
-export default function Event({ eventInfo, name, eventTime }) {
+export default function Event({ name }) {
+  
 	return (
 		<>
 			<div className='container'>
 				<div className='event'>
-					<h1 className='event__title'>{name}, {eventInfo.name}</h1>
+					<h1 className='event__title'>{name}</h1>
 					<div className='event__content-main'>
 						<div className='event__photos'>
 							<div className='carousel'>
@@ -56,7 +57,7 @@ export default function Event({ eventInfo, name, eventTime }) {
 							<li className='event-members__member'></li>
 							<li className='event-members__member'></li>
 						</ul>
-						<span className='event__date'>{eventInfo.eventTime},{eventTime}</span>
+						<span className='event__date'>date</span>
 					</div>
 				</div>
 			</div>

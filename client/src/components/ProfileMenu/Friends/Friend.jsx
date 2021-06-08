@@ -1,5 +1,10 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import ChatModal from '../../MainPage/ChatModal/ChatModal'
 export default function Friend({ name, onlineStatus }) {
+
+  const [flag, setFlag] = useState(false)
+
 	return (
 		<>
 			<li className='friend friends__friend'>
@@ -22,12 +27,13 @@ export default function Friend({ name, onlineStatus }) {
 							</span>
 						</div>
 						<div className='friend-content__main--bottom'>
-							<button className='button friend__message-btn'>
+							<button className='button friend__message-btn' onClick={() => setFlag(prev => !prev)}>
 								Написать сообщение
 							</button>
 						</div>
 					</div>
 				</div>
+        {flag ? <ChatModal/> : '' }
 			</li>
 		</>
 	)
