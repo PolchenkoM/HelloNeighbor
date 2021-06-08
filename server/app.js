@@ -10,6 +10,7 @@ const atlasUrl =
   "mongodb+srv://userMaxim:maxim123@cluster0.cwgwa.mongodb.net/HelloNeighbor?retryWrites=true&w=majority";
 const WebSocket = require("ws");
 const Users = require("./models/user");
+const Tag = require("./models/tag");
 
 const morgan = require("morgan");
 
@@ -17,22 +18,19 @@ const wss = new WebSocket.Server({ port: 8080 });
 
 const app = express();
 
-
 // const map = new Map();
 
 // const server = http.createServer(app);
 // const wss = new WebSocket.Server({ clientTracking: false, noServer: true });
-
-
 
 const registerRoute = require("./routes/registrationRoute");
 const eventRoute = require("./routes/eventRoute");
 const userRouter = require("./routes/userRouter");
 const loginRoute = require("./routes/loginRoute");
 
-app.use(express.static("public"));
-app.use(morgan("dev"));
 app.use(cors());
+app.use(express.static(__dirname))
+app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -47,6 +45,11 @@ app.use("/registration", registerRoute);
 app.use("/event", eventRoute);
 app.use("/user", userRouter);
 app.use("/login", loginRoute);
+
+app.get("/tags", async (req, res) => {
+  const tags = await Tag.find();
+  res.json(tags);
+});
 
 app.listen(PORT, () => {
   console.log(`Go retard on ${PORT} port`);

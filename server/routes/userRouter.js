@@ -18,23 +18,26 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage })
 
-// router.route("/addAvatar")
-//   .post(upload.single("avatar"), async(req, res) => {
-//     try {
-//       const userId = req.body.id
-//       const userAvatarPath = req.file.path
-//       const user = await Users.create({
-//         username: 'www',
-//         password: '111',
-//         email: 'asd@asd.com',
-//         avatar: req.file.path,
-//       })
-//       await user.save()
-//       res.send(user)
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   })
+router.route("/addAvatar")
+  .post(upload.single("avatar"), 
+  async(req, res) => {
+    try {
+      const {name,address,age,gender,id} = JSON.parse(req.body.profile[0])
+      const tags = JSON.parse(req.body.profile[0]).tags
+      const userAvatarPath = req.file.path
+      const updateProfileUser = await User.findByIdAndUpdate({_id : id},{
+        name: name,
+        address: address,
+        age:age,
+        gender: gender,
+        tags: tags,
+        avatar: userAvatarPath
+      })
+      res.json(updateProfileUser).status(200)
+    } catch (error) {
+      console.log(error);
+    }
+  })
 
 router.route('/getCurrentUser').post(async (req, res) => {
 	console.log(req.body.id)
@@ -45,51 +48,38 @@ router.route('/getCurrentUser').post(async (req, res) => {
 	}
 })
 
-router.post('/profile', async (req, res) => {
-	const { name, age, gender, tags, aboutSelf, address, email } = req.body
-	const { avatar } = req.file.path
 
-	if (name & age & gender & tags & aboutSelf & avatar & address) {
-		const user = await User.findOneAndUpdate(
-			{ email: email },
-			{
-				name: name,
-				age: age,
-				gender: gender,
-				tags: tags,
-				aboutSelf: aboutSelf,
-				avatar: avatar,
-				address: address,
-			}
-		)
-		res.json(user)
-	}
-})
+router.post("/profile", async (req, res) => {
+  const { name, age, gender, tags, aboutSelf, address, email } = req.body;
+  const { avatar } = req.file.path;
+  if (name & age & gender & tags & aboutSelf & avatar & address) {
+    const user = await User.findOneAndUpdate(
+      { email: email },
+      {
+        name: name,
+        age: age,
+        gender: gender,
+        tags: tags,
+        aboutSelf: aboutSelf,
+        avatar: avatar,
+        address: address,
+      }
+    );
+    res.json(user);
+  }
+});
 
-// router.route("/addAvatar")
-//   .post(upload.single("avatar"), async(req, res) => {
-//     try {
-//       const userId = req.body.id
-//       const userAvatarPath = req.file.path
-//       const user = await Users.create({
-//         username: 'www',
-//         password: '111',
-//         email: 'asd@asd.com',
-//         avatar: req.file.path,
-//       })
-//       await user.save()
-//       res.send(user)
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   })
+  router.route('/getCurrentUser')
+    .post(async (req,res) => {
+      console.log(req.body.id);
+      try {
 
-router.route('/getCurrentUser').post(async (req, res) => {
-	console.log(req.body.id)
-	try {
-	} catch (error) {
-		console.log(error)
-	}
-})
+      } catch (error) {
+        console.log(error)
+      }
+
+    })
+
+
 
 module.exports = router
