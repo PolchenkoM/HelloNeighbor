@@ -9,6 +9,7 @@ import HeaderUnlogged from './components/Header/HeaderUnlogged'
 import HeaderLogged from './components/Header/HeaderLogged'
 
 function App() {
+
 	const currentUser = useSelector(state => state.users.currentUser)
 	const dispatch = useDispatch()
 
