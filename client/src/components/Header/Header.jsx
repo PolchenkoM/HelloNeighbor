@@ -11,6 +11,7 @@ export default function Header() {
   const isUser = useSelector(state => state.users.currentUser)
   
   const createEvent = () => {
+    console.log(123);
     dispatch(addEventModal())
   };
 

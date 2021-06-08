@@ -6,15 +6,14 @@ import {
 	DatePicker,
 	Select,
 	Checkbox,
-	Row,
-	Col,
 	Upload,
   Tag
 } from 'antd'
 import { UploadOutlined, InboxOutlined } from '@ant-design/icons';
 import { useEffect, useState } from 'react';
+import {useDispatch, useSelector} from 'react-redux'
 import useForm from '../../hooks/useForm'
-
+import {updateUserThunk} from '../../../redux/Actions/usersAC'
 
 const { Option } = Select
 const layout = {
@@ -24,7 +23,6 @@ const layout = {
 const config = {
   rules: [{ type: 'object', required: true, message: 'Please select time!' }],
 }
-
 
 /* eslint-disable no-template-curly-in-string */
 const validateMessages = {
@@ -39,13 +37,16 @@ const validateMessages = {
 }
 
 export default function Profile() {
+  const dispatch = useDispatch()
+  const currentUser = useSelector(state => state.users.currentUser)
+  const formData = new FormData()
+
   const [values, changeHandler] = useForm()
   //tags
   const { CheckableTag } = Tag; 
   const [tags, setTags] = useState([]);
   const [selectedTags, setSelectedTags] = useState([]);
 
-  //tags
   useEffect(() => {
     fetch("http://localhost:3001/tags")
       .then((res) => res.json())
@@ -56,7 +57,7 @@ export default function Profile() {
     const nextSelectedTags = checked
       ? [...selectedTags, tag]
       : selectedTags.filter((t) => t !== tag);
-    console.log("You are interested in: ", nextSelectedTags);
+    // console.log("You are interested in: ", nextSelectedTags);
     setSelectedTags(nextSelectedTags)
   }
   //date func
@@ -67,24 +68,63 @@ export default function Profile() {
     const dataDa = normData.format('YYYY-MM-DD')
     setDate(prev => dataDa)
   }
-  //date func
+
+  //gender
+  const [gender, setGender] = useState('')
+  const genderHandler = (e) => {
+    console.log('gender',e);
+    setGender(prev => e)
+  }
+//ava
+  const [drag, setDrag] = useState(false)
+  const dragStartHandler = (e) => {
+    e.preventDefault()
+    setDrag(true)
+  }
+  const dragLeaveHandler = (e) => {
+    e.preventDefault()
+    setDrag(false)
+  } 
+
+  const onDropHandler =  (e) => {
+    e.preventDefault()
+    let file = [...e.dataTransfer.files]
+    formData.append('avatar', file[0])
+    console.log('drop OK')
+
+
+    // for (let pair of formData.entries()) {
+    //   console.log(pair[0]+','+pair[1]);
+    // }
+    // const response =  fetch('http://localhost:3001/user/addAvatar', {
+    //   method: "POST",
+    //   body: formData
+    // })
+    // .then(res => res.json())
+    // .then(result => console.log(result))
+    // setDrag(false)
+  }
+
+  //profile
 
 	const onFinish = (values: any) => {
 		console.log(values)
 	}
-  const normFile = (e: any) => {
-    console.log('Upload event:', e);
-    if (Array.isArray(e)) {
-      return e;
-    }
-    return e && e.fileList;
-  }
 
   const profileSubmit = (e) => {
     e.preventDefault()
+    const profile = { 
+      ...values,
+      age: date,
+      gender: gender,
+      tags: selectedTags,
+      id: currentUser._id
+    }
+    formData.append('profile',JSON.stringify(profile))
+    dispatch(updateUserThunk(formData))
 
-    console.log(values)
   }
+
 
 	return (
 		<>
@@ -110,7 +150,7 @@ export default function Profile() {
 					label='Пол'
 					rules={[{ required: true, message: 'Please select gender!' }]}
 				>
-					<Select placeholder='select your gender' name="gender" >
+					<Select placeholder='select your gender' name="gender" value={gender} onChange={genderHandler}>
 						<Option value='male'>мужской</Option>
 						<Option value='female'>женский</Option>
 						<Option value='other'>дивергент</Option>
@@ -140,21 +180,7 @@ export default function Profile() {
 				</Form.Item>
 				<Form.Item name='tags' label='Тэги' >
 					<Checkbox.Group>
-
-					</Checkbox.Group>
-				</Form.Item>
-				<Form.Item
-					name='avatar'
-					label='Фото'
-					valuePropName='fileList'
-					getValueFromEvent={normFile}
-					extra='longgggggggggggggggggggggggggggggggggg'
-				>
-					<Upload name='logo' action='/upload.do' listType='picture'>
-						<Button icon={<UploadOutlined />}>Click to upload</Button>
-					</Upload>
-				</Form.Item>
-        <>
+          <>
             {tags.map((tag) => (
               <CheckableTag
                 key={tag._id}
@@ -165,6 +191,23 @@ export default function Profile() {
               </CheckableTag>
             ))}
           </>
+					</Checkbox.Group>
+				</Form.Item>
+				{/* <Form.Item
+					name='avatar'
+					label='Фото'
+					valuePropName='fileList'
+					getValueFromEvent={normFile}
+					extra=''
+				>
+					<Upload name='logo' action='/upload.do' listType='picture' onChange={fileHandler}>
+						<Button icon={<UploadOutlined />}>Click to upload</Button>
+					</Upload>
+				</Form.Item>
+        <Form.Item >
+          <input type='file' onChange={e=>console.log(e)}/>
+        </Form.Item> */}
+{/* 
 				<Form.Item label='Dragger'>
 					<Form.Item
 						name='dragger-avatar'
@@ -184,7 +227,19 @@ export default function Profile() {
 							</p>
 						</Upload.Dragger>
 					</Form.Item>
-				</Form.Item>
+				</Form.Item> */}
+<div className='droparea'       
+    onDragStart={e => dragStartHandler(e)}
+    onDragLeave={e => dragLeaveHandler(e)}
+    onDragOver={e => dragStartHandler(e)}
+    onDrop={e => onDropHandler(e)}>
+      {drag ? <div 
+
+      >если тянешь - отпусти</div> : <div
+
+      >если хочешь - потяни</div>} 
+    </div>
+
 				<Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
 					<Button type='primary' htmlType='submit' onClick={profileSubmit}>
 						Submit

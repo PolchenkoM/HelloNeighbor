@@ -1,4 +1,4 @@
-import { GET_CURRENT_USER, LOGOUT_USER } from "../Types/userTypes";
+import { GET_CURRENT_USER, LOGOUT_USER, UPDATE_USER } from "../Types/userTypes";
 
 const getCurrentUser = (user) => {
   return {
@@ -22,7 +22,24 @@ const logoutUser = () => {
   }
 }
 
+const updateUser = (user) => {
+  return {
+    type: UPDATE_USER,
+    payload: user
+  }
+}
+const updateUserThunk = (formData) => (dispatch) => {
+  fetch('http://localhost:3001/user/addAvatar', {
+    method: "POST",
+    body: formData,
+  }).then(res => res.json())
+  .then(resault => console.log(resault))
+  // .then(resault => dispatch(updateUser(resault)))
+
+}
+
 export {
   getCurrentUserGoogleThunk,
-  logoutUser
+  logoutUser,
+  updateUserThunk
 }

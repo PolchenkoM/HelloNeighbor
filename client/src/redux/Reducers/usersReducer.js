@@ -1,8 +1,4 @@
-
-import { CHANGE_MODAL_VISIBILITY } from '../Types/eventTypes';
-
 import {GET_CURRENT_USER, LOGOUT_USER} from '../Types/userTypes'
-
 
 const usersReducer = (state={}, action) => {
   console.log();

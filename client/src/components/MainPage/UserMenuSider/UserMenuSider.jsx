@@ -30,7 +30,6 @@ const UserMenuSider = () => {
         () => {
           localStorage.clear()
           dispatch(logoutUser())
-          console.log('sasdasd');
         },
         () => console.log("signout Error")
       );
@@ -42,7 +41,7 @@ const UserMenuSider = () => {
       <div className="sidebar_null"></div>
       <div className='sidebar__top'>
       <div span={24} className='avatar'>
-        <Avatar size={180} src='https://gameguru.ru/clf/43/ef/08/2e/news.1610973171890.jpg' draggable={false}/> 
+        <Avatar size={180} src={`http://localhost:3001/public/avatars/${currentUser.avatar}`} draggable={false} /> 
       </div>
       <h3 level={4}>{currentUser.name}</h3>
       <div className="rater">
