@@ -22,8 +22,9 @@ router.route("/addAvatar")
   .post(upload.single("avatar"), 
   async(req, res) => {
     try {
-      const {name,address,age,gender,id} = JSON.parse(req.body.profile[0])
-      const tags = JSON.parse(req.body.profile[0]).tags
+      const {name,address,age,gender,id} = JSON.parse(req.body.profile)
+      const tags = JSON.parse(req.body.profile).tags
+      console.log('tags', tags);
       const userAvatarPath = req.file.path
       const updateProfileUser = await User.findByIdAndUpdate({_id : id},{
         name: name,
