@@ -1,5 +1,6 @@
 import style from './styles/style.sass'
 import { useEffect } from 'react'
+import ShowEventModal from './components/MainPage/EventModals/ShowEventModal'
 
 import { BrowserRouter as Router } from 'react-router-dom'
 import Routes from './components/Routes/Routes'
@@ -40,6 +41,7 @@ function App() {
 	return (
 		<Router>
 			<div className='App'>
+        {/* <ShowEventModal/> */}
 				{currentUser.email ? <HeaderLogged /> : <HeaderUnlogged />}
 				<div className='container-mt'>
 					<Routes />
