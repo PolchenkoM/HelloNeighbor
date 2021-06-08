@@ -1,4 +1,3 @@
-
 import "antd/dist/antd.css";
 import {
   FacebookOutlined,
@@ -8,13 +7,14 @@ import {
   HistoryOutlined,
   LogoutOutlined,
 } from "@ant-design/icons";
-import { Typography, Button, Menu } from "antd";
+import { Typography, Button, Menu, } from "antd";
 
 import Avatar from "antd/lib/avatar/avatar";
 import Rater from "./Rater/Rater";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { logoutUser } from "../../../redux/Actions/usersAC";
+import { Link } from "react-router-dom";
 
 const UserMenuSider = () => {
   useEffect(() => {
@@ -161,7 +161,8 @@ const UserMenuSider = () => {
     </div>
 
     </div>
+    </div>
   );
 };
 
-export default UserMenuSider;
+export default UserMenuSider

@@ -39,8 +39,8 @@ function MyComponent() {
   };
 
 
-  const events = useSelector((state) => state.events.allEvents);
-  const addEventModal = useSelector((state) => state.events.addEventModal);
+  // const events = useSelector((state) => state.events.allEvents);
+  // const addEventModal = useSelector((state) => state.events.addEventModal);
   const selectedEvent = useSelector((state) => state.events.selectedEvent);
 
   const centerCircle = {
