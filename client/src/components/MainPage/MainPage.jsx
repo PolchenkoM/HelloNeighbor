@@ -1,31 +1,22 @@
-import { useSelector } from 'react-redux';
+import UserMenuSider from './UserMenuSider/UserMenuSider'
 import Map from './Map/Map'
-import UserMenuSider from './UserMenuSider/UserMenuSider';
-import EventList from './EventList/EventList';
-import CreateEventModal from './EventModals/CreateEventModal';
-import Profile from '../ProfileMenu/Profile/Profile'
+import EventList from './EventList/EventList'
+import CreateEventModal from './EventModals/CreateEventModal'
+import { BrowserRouter as Router } from 'react-router-dom'
 
-const MainPage = () =>  {
-
-  const currentUser = useSelector(state => state.users.currentUser)
-
-
-  return (
-    <>
-    { currentUser.name ?     
-    <div className='containerMain'>
-      <UserMenuSider /> 
-      <div className='containerMap'>
-        <div ></div>
-        <Map />
-      </div>
-      <CreateEventModal/>
-      <EventList /> 
-    </div> 
-    : <Profile />
-    }
-    </>
-  )
+const MainPage = () => {
+	return (
+		<div className='container-mt'>
+			<div className='containerMain'>
+				<UserMenuSider />
+				<div className='containerMap'>
+					<Map />
+				</div>
+				<CreateEventModal />
+				<EventList />
+			</div>
+		</div>
+	)
 }
 
 export default MainPage

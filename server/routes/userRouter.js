@@ -1,22 +1,22 @@
-const router = require("express").Router();
-const express = require("express");
-const Users = require("../models/user");
-const multer = require("multer");
-const { nanoid } = require("nanoid");
-const User = require("../models/user");
+const router = require('express').Router()
+const express = require('express')
+const Users = require('../models/user')
+const multer = require('multer')
+const { nanoid } = require('nanoid')
+const User = require('../models/user')
 
 const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, `public/avatars`);
-  },
-  filename: function (req, file, cb) {
-    const extension = "." + file.originalname.split(".")[1];
-    const currentUserAvaName = nanoid(10);
-    cb(null, currentUserAvaName + extension);
-  },
-});
+	destination: function (req, file, cb) {
+		cb(null, `public/avatars`)
+	},
+	filename: function (req, file, cb) {
+		const extension = '.' + file.originalname.split('.')[1]
+		const currentUserAvaName = nanoid(10)
+		cb(null, currentUserAvaName + extension)
+	},
+})
 
-const upload = multer({ storage });
+const upload = multer({ storage })
 
 router.route("/addAvatar")
   .post(upload.single("avatar"), 
@@ -39,14 +39,15 @@ router.route("/addAvatar")
     }
   })
 
+router.route('/getCurrentUser').post(async (req, res) => {
+	console.log(req.body.id)
+	try {
+    
+	} catch (error) {
+		console.log(error)
+	}
+})
 
-router.route("/getCurrentUser").post(async (req, res) => {
-  console.log(req.body.id);
-  try {
-  } catch (error) {
-    console.log(error);
-  }
-});
 
 router.post("/profile", async (req, res) => {
   const { name, age, gender, tags, aboutSelf, address, email } = req.body;
@@ -81,4 +82,4 @@ router.post("/profile", async (req, res) => {
 
 
 
-module.exports = router;
+module.exports = router

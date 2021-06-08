@@ -14,6 +14,8 @@ import { useEffect, useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux'
 import useForm from '../../hooks/useForm'
 import {updateUserThunk} from '../../../redux/Actions/usersAC'
+import UserMenuSider from '../../MainPage/UserMenuSider/UserMenuSider'
+
 
 const { Option } = Select
 const layout = {
@@ -128,6 +130,8 @@ export default function Profile() {
 
 	return (
 		<>
+			<div className='containerMain'>
+				<UserMenuSider />
 			<Form
 				{...layout}
 				name='nest-messages'
@@ -137,10 +141,15 @@ export default function Profile() {
 					residence: ['zhejiang', 'hangzhou', 'xihu'],
 					prefix: '86',
 				}}
-        id='profileForm'
+				id='profileForm'
+        className="profile"
 			>
 				<Form.Item name={['user', 'name']} label='Имя'>
-					<Input name="name" value={values.name || ""} onChange={changeHandler}/>
+					<Input
+						name='name'
+						value={values.name || ''}
+						onChange={changeHandler}
+					/>
 				</Form.Item>
 				<Form.Item name='userDate' label='Дата рождения' {...config}>
 					<DatePicker name="userDate" value={date} onChange={dateHandler}/>
@@ -169,16 +178,21 @@ export default function Profile() {
 							<Input
 								style={{ width: '50%' }}
 								placeholder='Город, улица, дом'
-                name="address"
-                value={values.address || ""} onChange={changeHandler}
+								name='address'
+								value={values.address || ''}
+								onChange={changeHandler}
 							/>
 						</Form.Item>
 					</Input.Group>
 				</Form.Item>
 				<Form.Item name={['user', 'aboutSelf']} label='О себе'>
-					<Input.TextArea name="aboutSelf" value={values.aboutSelf || ""} onChange={changeHandler}/>
+					<Input.TextArea
+						name='aboutSelf'
+						value={values.aboutSelf || ''}
+						onChange={changeHandler}
+					/>
 				</Form.Item>
-				<Form.Item name='tags' label='Тэги' >
+				<Form.Item name='tags' label='Тэги'>
 					<Checkbox.Group>
           <>
             {tags.map((tag) => (
@@ -246,6 +260,7 @@ export default function Profile() {
 					</Button>
 				</Form.Item>
 			</Form>
+			</div>
 		</>
 	)
 }
