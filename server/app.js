@@ -52,7 +52,6 @@ app.get("/tags", async (req, res) => {
 });
 
 app.post("/matchEvent", async (req, res) => {
-  // console.log(req.body);
   const user = await User.findOne({ email: req.body.author });
   const currentEvent = await Event.findByIdAndUpdate(req.body.id, {
     $push: { members: user._id },
@@ -60,7 +59,6 @@ app.post("/matchEvent", async (req, res) => {
 });
 
 app.post("/eventAuthor", async (req, res) => {
-  // console.log('=====------',req.body.authorId);
   const user = await User.findOne({ name: req.body.author }).populate("tags");
   res.json(user);
 });

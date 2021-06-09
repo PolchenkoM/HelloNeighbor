@@ -1,6 +1,5 @@
 const Event = require("../models/event");
 const router = require("express").Router();
-// const { isPointWithinRadius } = require("geolib");
 const geolib = require("geolib");
 
 router.route("/").get(async (req, res) => {
@@ -8,7 +7,7 @@ router.route("/").get(async (req, res) => {
     const allEvens = await Event.find()
       .populate("tags")
       .populate("members")
-      .populate("authorId")
+      .populate("authorId");
     res.json(allEvens);
   } catch (e) {
     console.log(e);

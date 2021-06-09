@@ -48,7 +48,6 @@ export default function ShowAuthorModal({ setAuthorModal }) {
   const handleOk = () => {};
 
   const handleCancel = () => {
-    console.log("fromcancel");
     setIsModalVisible(false);
     setAuthorModal(false);
   };

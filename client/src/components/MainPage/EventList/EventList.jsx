@@ -1,4 +1,3 @@
-import ChatModal from "../ChatModal/ChatModal";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Modal, Button, Input, Form, Radio } from "antd";
@@ -22,7 +21,6 @@ const EventList = () => {
           </>
           ))}
       </ul>
-      <ChatModal />
     </div>
   );
 };

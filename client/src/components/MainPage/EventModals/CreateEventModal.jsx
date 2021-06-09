@@ -52,7 +52,6 @@ export default function CreateEventModal() {
   };
 
   const createEvent = (e) => {
-    console.log("fromCreatewEvent");
     e.preventDefault();
     const author = localStorage.getItem("email");
     const eventId = event[event.length - 1];

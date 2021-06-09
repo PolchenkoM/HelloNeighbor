@@ -37,9 +37,7 @@ function MyComponent() {
     draggable: false,
   };
 
-  // const events = useSelector((state) => state.events.allEvents);
-  // const addEventModal = useSelector((state) => state.events.addEventModal);
-  const selectedEvent = useSelector((state) => state.events.selectedEvent);
+  // const selectedEvent = useSelector((state) => state.events.selectedEvent);
 
   const centerCircle = {
     lat: userAddress.lat,
@@ -64,8 +62,6 @@ function MyComponent() {
     lat: userAddress.lat,
     lng: userAddress.lng,
   };
-
-  // console.log(userAddress);
 
   const decodingAdress = async (adres) => {
     if (adres) {
