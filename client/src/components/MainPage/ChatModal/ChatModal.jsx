@@ -1,31 +1,3 @@
-// import React, { useEffect } from 'react';
-// import { Widget, addResponseMessage } from 'react-chat-widget';
-
-// import 'react-chat-widget/lib/styles.css';
-
-// export default function ChatModal() {
-// 	useEffect(() => {
-// 		addResponseMessage('Welcome to this awesome chat!')
-// 	}, [])
-
-// 	const handleNewUserMessage = newMessage => {
-// 		console.log(`New message incoming! ${newMessage}`)
-// 		// Now send the message throught the backend API
-// 	}
-
-// 	return (
-// 		<>
-// 			<Widget
-// 				handleNewUserMessage={handleNewUserMessage}
-// 				profileAvatar={'./img/caruselPhotos/image2.jpeg'}
-// 				title='eventName here'
-// 				subtitle='здесь могут быть совпадающие теги'
-//         senderPlaceHolder='Напишите сообщение...'
-//         showCloseButton={true}
-// 			/>
-// 		</>
-// 	)
-// }
 import { Input } from 'antd'
 import {
 	CameraOutlined,
@@ -34,24 +6,30 @@ import {
 	PaperClipOutlined,
 } from '@ant-design/icons'
 import SmilesModal from '../../Modals/SmilesModal/SmilesModal'
+import { useDispatch } from 'react-redux'
+import { changeChatModalVisibility } from '../../../redux/Actions/modalAC'
 
 const { TextArea } = Input
 
 export default function ChatModal() {
+  const dispatch = useDispatch()
 
   function showSmiles() {
-    const smiles = document.querySelector('.smiles-container')
-    smiles.classList.toggle('.smiles-container--hidden')
+
   }
   function addFile() {
     
+  }
+  function closeChatModal() {
+    dispatch(changeChatModalVisibility())
   }
 
 
 	return (
 		<>
-			<div className='container-chat'>
+			<div className='chat-container'>
 				<div className='chat'>
+          <button className="button closeChatButton" onClick={closeChatModal}></button>
 					<div className='chat__header'>
 						<h4 className='chat__title'>chat title</h4>
 					</div>
@@ -68,14 +46,14 @@ export default function ChatModal() {
 						</div>
 					</div>
 					<div className='chat__footer'>
-						<div className='container-chatInput'>
+						<div className='chat__chatInput-container'>
 							<PaperClipOutlined className='button chat__addFileIcon' onClick={addFile}/>
 							<textarea
 								className='chat__chatInput'
 								placeholder='Напишите сообщение...'
 							/>
-							<SmileOutlined className='button chat__smileOutlined' onClick={showSmiles}/>
-              {/* <SmilesModal/> */}
+							<SmileOutlined className='button chat__smileOutlined' onMouseOver={showSmiles}/>
+              <SmilesModal/>
 						</div>
 					</div>
 				</div>

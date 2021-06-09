@@ -11,5 +11,8 @@ const initState = {
     modalMatchVisibility:false,
     
   },
+  modals: {
+    chatModalVisible: false,
+  },
 }
 export default initState

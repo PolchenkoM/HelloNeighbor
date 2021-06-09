@@ -1,9 +1,16 @@
 import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { changeChatModalVisibility } from '../../../redux/Actions/modalAC'
 import ChatModal from '../../MainPage/ChatModal/ChatModal'
 export default function Friend({ name, onlineStatus }) {
 
-  const [flag, setFlag] = useState(false)
+  const chatVisibility = useSelector(state => state.modals.chatModalVisible)
+  const dispatch = useDispatch()
+
+  function showChatModal() {
+    dispatch(changeChatModalVisibility())
+  }
 
 	return (
 		<>
@@ -27,13 +34,13 @@ export default function Friend({ name, onlineStatus }) {
 							</span>
 						</div>
 						<div className='friend-content__main--bottom'>
-							<button className='button friend__message-btn' onClick={() => setFlag(prev => !prev)}>
+							<button className='button friend__message-btn' onClick={showChatModal}>
 								Написать сообщение
 							</button>
 						</div>
 					</div>
 				</div>
-        {flag ? <ChatModal/> : '' }
+        {chatVisibility ? <ChatModal/> : '' }
 			</li>
 		</>
 	)
