@@ -25,7 +25,7 @@ function App() {
 					() => console.log('init error')
 				)
 		})
-	}, [])
+	}, [window.gapi])
 
 	
 	useEffect(() => {

@@ -28,9 +28,6 @@ export default function CreateEventModal() {
     setSelectedTags(nextSelectedTags);
   }
 
-  // const showModal = () => {
-  //   dispatch(changeVisibility());
-  // };
 
   const handleOk = () => {
     dispatch(changeVisibility());
