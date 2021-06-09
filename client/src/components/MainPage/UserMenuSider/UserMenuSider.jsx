@@ -9,20 +9,14 @@ import { useEffect } from 'react';
 import { logoutUser } from '../../../redux/Actions/usersAC';
 import { Link } from 'react-router-dom';
 
-
 const UserMenuSider = () => {
   const  dispatch = useDispatch()
   const currentUser = useSelector(state => state.users.currentUser)
-
-  useEffect(()=>{
-    
-  },[])
 
   const id = localStorage?.id
 
   const { Title } = Typography
   const size = 'large'
-
 
   const hideSidebar = (e) => {
     const elem = e.target.parentElement.parentElement
@@ -31,20 +25,16 @@ const UserMenuSider = () => {
     labelSpans.forEach(el => el.classList.toggle('hidden'))
     }
 
-
-    const signOut = () => {
-      const GoogleAuth = window.gapi?.auth2?.getAuthInstance()
+    const signOut =async () => {
+      const  GoogleAuth = await  window.gapi?.auth2?.getAuthInstance()
       .then(
         () => {
           localStorage.clear()
           dispatch(logoutUser())
-          console.log('sasdasd');
-          GoogleAuth.signOut()
         },
         () => console.log("signout Error")
       );
     };
-
 
   return (
   
@@ -52,7 +42,7 @@ const UserMenuSider = () => {
       <div className="sidebar_null"></div>
       <div className='sidebar__top'>
       <div span={24} className='avatar'>
-        <Avatar size={180} src='https://gameguru.ru/clf/43/ef/08/2e/news.1610973171890.jpg' draggable={false}/> 
+        <Avatar size={180} src={`http://localhost:3001/${currentUser.avatar}`} draggable={false} /> 
       </div>
       <h3 level={4}>{currentUser.name}</h3>
       <div className="rater">
