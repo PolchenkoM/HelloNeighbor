@@ -7,8 +7,6 @@ export default function Welcome() {
 		<>
 			<Body />
 			<Footer />
-
-
 		</>
 	)
 }
