@@ -5,19 +5,22 @@ import { GoogleMap, useJsApiLoader, Marker, Circle } from "@react-google-maps/ap
 import { getGeocode, getLatLng } from "use-places-autocomplete"
 import mapStyles from "./mapStyle"
 
-import { changeVisibility } from "../../../redux/Actions/eventAC"
+import { changeVisibility, getSelectedEvent } from "../../../redux/Actions/eventAC"
+import { modalMatchVisibility } from "../../../redux/Actions/eventAC"
+import { addAddressUserThunk } from "../../../redux/Actions/usersAC"
+
 import { addEventSaga, getEventSaga } from "../../../redux/Actions/eventAC"
 
 function MyComponent() {
 	const dispatch = useDispatch()
 
 	const adres = useSelector((state) => state.users.currentUser.address)
-	console.log(adres)
+	const currentUser = useSelector((state) => state.users.currentUser)
 	const events = useSelector((state) => state.events.allEvents)
 	const addEventModal = useSelector((state) => state.events.addEventModal)
 
 	const [userAddress, setUserAddress] = useState({})
-	console.log(userAddress)
+
 	const containerStyle = {
 		width: "100%",
 		height: "100vh"
@@ -28,6 +31,8 @@ function MyComponent() {
 		disableDefaultUI: true,
 		draggable: false
 	}
+
+	const selectedEvent = useSelector((state) => state.events.selectedEvent)
 
 	const centerCircle = {
 		lat: userAddress.lat,
@@ -54,16 +59,14 @@ function MyComponent() {
 	}
 
 	const decodingAdress = async (adres) => {
-		// console.log(123);
-		console.log(">>>>>>>>>>>>>>>>>>>>", adres)
-		// return "dsfsdfsdfds";
 		if (adres) {
 			const code = await getGeocode({ address: adres })
 			const results = await getLatLng(code[0])
 			setUserAddress(results)
-			console.log(results)
 		}
+		return "dsfsdfsdfds"
 	}
+	console.log("userAddress", userAddress.lat)
 	useEffect(() => {
 		if (adres && window.google) {
 			decodingAdress(adres)
@@ -73,6 +76,13 @@ function MyComponent() {
 	useEffect(() => {
 		dispatch(getEventSaga())
 	}, [])
+
+	useEffect(() => {
+		if (userAddress.lat) {
+			const currentId = currentUser._id
+			dispatch(addAddressUserThunk(userAddress, currentId))
+		}
+	}, [userAddress])
 
 	const { isLoaded } = useJsApiLoader({
 		googleMapsApiKey: "AIzaSyBwGnNMdsXI-Zrpp6kJLj1B_164V1_PFaM"
@@ -98,6 +108,11 @@ function MyComponent() {
 		}
 	}
 
+	const selectEvent = (event) => {
+		dispatch(modalMatchVisibility())
+		dispatch(getSelectedEvent(event))
+	}
+
 	return isLoaded ? (
 		<>
 			<GoogleMap className='karta' mapContainerStyle={containerStyle} center={center} zoom={16} options={options}>
@@ -110,6 +125,13 @@ function MyComponent() {
 								url: "/baloon.png"
 							}}
 							key={Math.random()}
+							onClick={() => selectEvent(event)}
+							id={event._id}
+							title={`
+                          Название :${event.title}
+ Время: ${event.eventTime}
+ Создатель: ${event.author}`}
+							value={event.title}
 						/>
 					))}
 				<Circle center={centerCircle} options={optionsCircle} onClick={onMapClick} />
@@ -117,5 +139,4 @@ function MyComponent() {
 		</>
 	) : null
 }
-
 export default MyComponent

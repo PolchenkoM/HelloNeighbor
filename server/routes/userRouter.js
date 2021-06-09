@@ -41,4 +41,15 @@ router.route("/addAvatar").post(upload.single("avatar"), async (req, res) => {
 	}
 })
 
+router.route("/addAddress").post(async (req, res) => {
+	const updateProfileUser = await User.findByIdAndUpdate(
+		{ _id: req.body.currentUserId },
+		{
+			coordinates: { x: req.body.userAddress.lat, y: req.body.userAddress.lng }
+		}
+	)
+	console.log(updateProfileUser)
+	res.json(updateProfileUser)
+})
+
 module.exports = router

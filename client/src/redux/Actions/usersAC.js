@@ -1,4 +1,4 @@
-import { GET_CURRENT_USER, LOGOUT_USER, UPDATE_USER } from "../Types/userTypes"
+import { ADD_ADDRES_USER, GET_CURRENT_USER, LOGOUT_USER, UPDATE_USER } from "../Types/userTypes"
 
 const getCurrentUser = (user) => {
 	return {
@@ -37,4 +37,20 @@ const updateUserThunk = (formData) => (dispatch) => {
 		.then((resault) => dispatch(updateUser(resault)))
 }
 
-export { getCurrentUserGoogleThunk, logoutUser, updateUserThunk }
+const addAddressUser = (currentUser) => {
+	return {
+		type: ADD_ADDRES_USER,
+		payload: currentUser
+	}
+}
+const addAddressUserThunk = (userAddress, currentUserId) => (dispatch) => {
+	fetch("http://localhost:3001/user/addAddress", {
+		method: "POST",
+		headers: { "Content-Type": "application/json" },
+		body: JSON.stringify({ userAddress, currentUserId })
+	})
+		.then((res) => res.json())
+		.then((result) => dispatch(addAddressUser(result)))
+}
+
+export { getCurrentUserGoogleThunk, logoutUser, updateUserThunk, addAddressUserThunk }
