@@ -7,7 +7,7 @@ const PORT = 3001
 const mongoUrl = "mongodb://localhost:27017/hello"
 const atlasUrl = "mongodb+srv://userMaxim:maxim123@cluster0.cwgwa.mongodb.net/HelloNeighbor?retryWrites=true&w=majority"
 const WebSocket = require("ws")
-const Users = require("./models/user")
+const User = require("./models/user")
 const Tag = require("./models/tag")
 const Event = require("./models/event")
 
@@ -26,7 +26,6 @@ const registerRoute = require("./routes/registrationRoute")
 const eventRoute = require("./routes/eventRoute")
 const userRouter = require("./routes/userRouter")
 const loginRoute = require("./routes/loginRoute")
-const User = require("./models/user")
 
 app.use(cors())
 app.use(express.static(__dirname))
@@ -34,25 +33,24 @@ app.use(morgan("dev"))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-
-wss.on('connection', function connection(ws) {
-  ws.on('message', function (message) {
-      message = JSON.parse(message)
-      switch (message.event) {
-          case 'message':
-              broadcastMessage(message)
-              break;
-          case 'connection':
-              broadcastMessage(message)
-              break;
-      }
-  })
+wss.on("connection", function connection(ws) {
+	ws.on("message", function (message) {
+		message = JSON.parse(message)
+		switch (message.event) {
+			case "message":
+				broadcastMessage(message)
+				break
+			case "connection":
+				broadcastMessage(message)
+				break
+		}
+	})
 })
 
 function broadcastMessage(message, id) {
-  wss.clients.forEach(client => {
-      client.send(JSON.stringify(message))
-  })
+	wss.clients.forEach((client) => {
+		client.send(JSON.stringify(message))
+	})
 }
 
 app.use("/registration", registerRoute)
@@ -73,9 +71,15 @@ app.post("/matchEvent", async (req, res) => {
 	})
 })
 
+app.post("/eventAuthor", async (req, res) => {
+	// console.log('=====------',req.body.authorId);
+	const user = await User.findOne({ name: req.body.author }).populate("tags")
+	res.json(user)
+})
+
 app.post("/createEvent", async (req, res) => {
 	const event = await Event.findById(req.body.eventId)
-	const user = await Users.findOneAndUpdate({ email: req.body.author }, { $push: { history: event._id } }).populate("history")
+	const user = await User.findOneAndUpdate({ email: req.body.author }, { $push: { history: event._id } }).populate("history")
 
 	const tags = []
 	req.body.selectedTags.forEach((el) => tags.push(el._id))
@@ -88,7 +92,7 @@ app.post("/createEvent", async (req, res) => {
 			eventTime: req.body.values.eventTime,
 			regDate: Date.now(),
 			authorId: user._id,
-			author: user.email,
+			author: user.name,
 			tags: tags
 		},
 		{ new: true }
@@ -99,6 +103,20 @@ app.post("/createEvent", async (req, res) => {
 app.post("/delEvent", async (req, res) => {
 	const delEvent = await Event.findByIdAndDelete(req.body.eventId._id)
 	res.json(delEvent)
+})
+
+app.post("/addFriend", async (req, res) => {
+	const author = await User.findOne({ name: req.body.author })
+	const user = await User.findOneAndUpdate({ email: req.body.me }, { $push: { friends: author._id } })
+	const anotherUser = await User.findOneAndUpdate(
+		{ name: req.body.author },
+		{
+			$push: {
+				friends: user._id
+			}
+		}
+	)
+	res.sendStatus(200)
 })
 
 app.listen(PORT, () => {

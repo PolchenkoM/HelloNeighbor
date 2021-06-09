@@ -1,14 +1,40 @@
+import React from "react"
 import { useSelector } from "react-redux"
-import ChatModal from "../ChatModal/ChatModal"
+import { Button } from "antd"
 
 const EventList = () => {
-	const circleEvents = useSelector((state) => state.events.circleEvents)
+	const events = useSelector((state) => state.events.circleEvents)
+	const allEvents = useSelector((state) => state.events.allEvents)
 
 	return (
 		<div className='container--eventList'>
-			<ul className='eventList'>
-				{circleEvents.length ? circleEvents.map((el) => <li className='eventList__item'> {el.author}</li>) : null}
-				<ChatModal />
+			<p className='eventList__item'>EVENT LIST </p>
+			<ul>
+				{events.length &&
+					events.map((el, ind) => (
+						<>
+							{el.title && (
+								<li>
+									<Button>{el.title}</Button> <br />
+									<br />
+								</li>
+							)}
+						</>
+					))}
+			</ul>
+			<hr />
+			<ul>
+				{allEvents.length &&
+					allEvents.map((el, ind) => (
+						<>
+							{el.title && (
+								<li>
+									<Button>{el.title}</Button> <br />
+									<br />
+								</li>
+							)}
+						</>
+					))}
 			</ul>
 		</div>
 	)

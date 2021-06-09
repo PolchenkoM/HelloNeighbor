@@ -1,7 +1,9 @@
 import React, { useState } from "react"
-import { Modal, Button, Input } from "antd"
+import { Modal } from "antd"
 import ShowAuthorModal from "./ShowAuthorModal"
 import { useDispatch, useSelector } from "react-redux"
+import { Tag } from "antd"
+
 import { modalMatchVisibility } from "../../../redux/Actions/eventAC"
 
 export default function ShowEventModal() {
@@ -11,7 +13,7 @@ export default function ShowEventModal() {
 	const selectedEvent = useSelector((state) => state.events.selectedEvent)
 
 	const handleOk = () => {
-    console.log('fromhandleOK');
+		console.log("fromhandleOK")
 		const author = localStorage.getItem("email")
 		const id = selectedEvent._id
 		fetch("http://localhost:3001/matchEvent", {
@@ -68,7 +70,15 @@ export default function ShowEventModal() {
 					<p>{selectedEvent.description}</p>
 				</div>
 
-				<ul className='tags-list'>{selectedEvent.tags ? selectedEvent.tags.map((tag) => <li>[{tag.title}]</li>) : null}</ul>
+				<div className='tags-list'>
+					{selectedEvent.tags
+						? selectedEvent.tags.map((tag, ind) => (
+								<Tag color='#55acee' key={ind}>
+									{tag.title}
+								</Tag>
+						  ))
+						: null}
+				</div>
 				<div className='button-wrapper'>
 					<button onClick={handleOk} id={selectedEvent._id} className='goButton'>
 						Go!

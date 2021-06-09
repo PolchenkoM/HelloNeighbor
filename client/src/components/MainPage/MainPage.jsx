@@ -5,7 +5,8 @@ import UserMenuSider from "./UserMenuSider/UserMenuSider"
 import Profile from "../ProfileMenu/Profile/Profile"
 import Map from "./Map/Map"
 import { getCircleEventThunk } from "../../redux/Actions/eventAC"
-import ChatList from "../ChatList/ChatList"
+import CreateEventModal from "./EventModals/CreateEventModal"
+import Sider from "../MainPage/EventList/EventList"
 
 const MainPage = () => {
 	const dispatch = useDispatch()
@@ -40,8 +41,9 @@ const MainPage = () => {
 						<div className='containerMap'>
 							<Map />
 						</div>
+						<CreateEventModal />
+						<Sider />
 					</div>
-					<ChatList />
 				</div>
 			) : (
 				<Profile />
