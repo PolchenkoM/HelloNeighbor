@@ -1,2 +1,84 @@
-.rcw-title
-  padding: 0!important
+.container
+  &-chat
+    background-color: #f8f8f8
+    border-radius: 10px
+    overflow: hidden
+    width: 320px
+    height: 400px
+  &-chatInput
+    position: relative
+    display: flex
+    background-color: #fff
+    height: fit-content
+.chat
+  height: 100%
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  align-items: center
+  &__header
+    width: 100%
+    background-color: #41962c
+  &__title
+    margin: 0
+    text-align: center
+    padding: 5px 10px
+    color: #000000
+    font-size: 18px
+    font-weight: bold
+  &__body
+    align-self: flex-start
+  &__message
+    display: flex
+    align-items: center
+  &__text
+    background-color: #c0c0c0
+    padding: 5px
+    margin: 0
+  &__user-avatar
+    height: 20px
+    width: 20px
+    border-radius: 50%
+    margin-right: 5px
+  &__footer
+    width: 100%
+    height: fit-content
+    border-top: 1px solid #ececec
+  &__chatInput
+    width: 100%
+    resize: none
+    border: none
+    min-height: 60px
+    max-height: 180px
+    padding: 10px 30px 5px 30px
+    background: #fff
+    display: flex
+    bottom: 0
+    line-height: 1.2
+    &:focus
+      outline: none
+  &__addFileIcon
+    display: inline-block
+    position: absolute
+    top: 0
+    left: 0
+    padding: 5px
+    align-self: flex-start
+    background: none
+    color: black
+    transition: color 0.1s linear
+    font-size: 18px
+    &:hover
+      color: #7ce0ff
+  &__smileOutlined
+    display: inline-block
+    position: absolute
+    bottom: 0
+    right: 15px
+    padding: 5px
+    background: none
+    color: black
+    transition: color 0.1s linear
+    font-size: 18px
+    &:hover
+      color: #7ce0ff
