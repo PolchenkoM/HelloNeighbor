@@ -13,7 +13,7 @@ const Event = require("./models/event")
 
 const morgan = require("morgan")
 
-const wss = new WebSocket.Server({ port: 8080 })
+const wss = new WebSocket.Server({ port: 5000 })
 
 const app = express()
 
@@ -34,12 +34,26 @@ app.use(morgan("dev"))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-wss.on("connection", function connection(ws) {
-	ws.on("message", function incoming(message) {
-		console.log("received: %s", message)
-		ws.send("Shama hi")
-	})
+
+wss.on('connection', function connection(ws) {
+  ws.on('message', function (message) {
+      message = JSON.parse(message)
+      switch (message.event) {
+          case 'message':
+              broadcastMessage(message)
+              break;
+          case 'connection':
+              broadcastMessage(message)
+              break;
+      }
+  })
 })
+
+function broadcastMessage(message, id) {
+  wss.clients.forEach(client => {
+      client.send(JSON.stringify(message))
+  })
+}
 
 app.use("/registration", registerRoute)
 app.use("/event", eventRoute)

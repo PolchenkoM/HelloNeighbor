@@ -11,6 +11,7 @@ export default function ShowEventModal() {
 	const selectedEvent = useSelector((state) => state.events.selectedEvent)
 
 	const handleOk = () => {
+    console.log('fromhandleOK');
 		const author = localStorage.getItem("email")
 		const id = selectedEvent._id
 		fetch("http://localhost:3001/matchEvent", {
@@ -27,7 +28,6 @@ export default function ShowEventModal() {
 	}
 
 	const handleCancel = () => {
-		console.log("cancel")
 		dispatch(modalMatchVisibility())
 	}
 
@@ -64,7 +64,7 @@ export default function ShowEventModal() {
 				</div>
 				<div className='eventInfo'>
 					<hr />
-					<h3 className='eventInfo__title'>Покурить</h3>
+					<h3 className='eventInfo__title'>{selectedEvent.title}</h3>
 					<p>{selectedEvent.description}</p>
 				</div>
 

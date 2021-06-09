@@ -18,6 +18,7 @@ function MyComponent() {
 	const currentUser = useSelector((state) => state.users.currentUser)
 	const events = useSelector((state) => state.events.allEvents)
 	const addEventModal = useSelector((state) => state.events.addEventModal)
+	const selectedEvent = useSelector((state) => state.events.selectedEvent)
 
 	const [userAddress, setUserAddress] = useState({})
 
@@ -31,8 +32,6 @@ function MyComponent() {
 		disableDefaultUI: true,
 		draggable: false
 	}
-
-	const selectedEvent = useSelector((state) => state.events.selectedEvent)
 
 	const centerCircle = {
 		lat: userAddress.lat,

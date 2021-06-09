@@ -5,6 +5,7 @@ import UserMenuSider from "./UserMenuSider/UserMenuSider"
 import Profile from "../ProfileMenu/Profile/Profile"
 import Map from "./Map/Map"
 import { getCircleEventThunk } from "../../redux/Actions/eventAC"
+import ChatList from "../ChatList/ChatList"
 
 const MainPage = () => {
 	const dispatch = useDispatch()
@@ -40,6 +41,7 @@ const MainPage = () => {
 							<Map />
 						</div>
 					</div>
+					<ChatList />
 				</div>
 			) : (
 				<Profile />

@@ -8,6 +8,7 @@ import { getCurrentUserGoogleThunk } from "./redux/Actions/usersAC"
 import HeaderLogged from "./components/Header/HeaderLogged"
 import HeaderUnlogged from "./components/Header/HeaderUnlogged"
 import ShowEventModal from "./components/MainPage/EventModals/ShowEventModal"
+import CreateEventModal from "./components/MainPage/EventModals/CreateEventModal"
 
 function App() {
 	const currentUser = useSelector((state) => state.users.currentUser)
@@ -37,6 +38,7 @@ function App() {
 	return (
 		<Router>
 			<div className='App'>
+        <CreateEventModal/>
 				<ShowEventModal />
 				{currentUser.email ? <HeaderLogged /> : <HeaderUnlogged />}
 				<div className='container-mt'>
@@ -47,4 +49,4 @@ function App() {
 	)
 }
 
-export default App
+export default App;

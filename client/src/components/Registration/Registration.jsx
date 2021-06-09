@@ -17,6 +17,8 @@ function Registration() {
 		})
 	}, [])
 
+  
+
 	const googleSignIn = () => {
 		const authOk = (googleUser) => {
 			const user = googleUser.getBasicProfile().getName()
@@ -51,7 +53,6 @@ function Registration() {
 
 	return (
 		<>
-			{googleUser.user && <p>Здарова {googleUser.user}</p>}
 			<Button onClick={googleSignIn} type='primary'>
 				googleAuth
 			</Button>

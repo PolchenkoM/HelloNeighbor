@@ -18,6 +18,8 @@ export default function HeaderLogged() {
 	// header and navbar
 	const isUser = useSelector(state => state.users.currentUser)
 
+
+
 	const dispatch = useDispatch()
 
 	const createEvent = () => {
