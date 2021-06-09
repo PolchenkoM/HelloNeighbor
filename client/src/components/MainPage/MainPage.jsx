@@ -1,10 +1,13 @@
 import { useEffect } from "react"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+
 import UserMenuSider from "./UserMenuSider/UserMenuSider"
 import Profile from "../ProfileMenu/Profile/Profile"
 import Map from "./Map/Map"
+import { getCircleEventThunk } from "../../redux/Actions/eventAC"
 
 const MainPage = () => {
+	const dispatch = useDispatch()
 	const currentUser = useSelector((state) => state.users.currentUser)
 
 	useEffect(() => {
@@ -19,6 +22,14 @@ const MainPage = () => {
 				)
 		})
 	}, [])
+
+	useEffect(() => {
+		if (currentUser) {
+			console.log("currentUser._id", currentUser._id)
+			dispatch(getCircleEventThunk(currentUser._id))
+		}
+	}, [currentUser])
+
 	return (
 		<>
 			{currentUser.name ? (
