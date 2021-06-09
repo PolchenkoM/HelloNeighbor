@@ -28,10 +28,6 @@ export default function CreateEventModal() {
     setSelectedTags(nextSelectedTags);
   }
 
-  // const showModal = () => {
-  //   dispatch(changeVisibility());
-  // };
-
   const handleOk = () => {
     dispatch(changeVisibility());
   };
@@ -52,6 +48,7 @@ export default function CreateEventModal() {
   };
 
   const createEvent = (e) => {
+    console.log("fromCreatewEvent");
     e.preventDefault();
     const author = localStorage.getItem("email");
     const eventId = event[event.length - 1];
