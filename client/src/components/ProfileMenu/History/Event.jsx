@@ -1,5 +1,4 @@
 export default function Event({ name }) {
-  
 	return (
 		<>
 			<div className='container'>
@@ -9,45 +8,30 @@ export default function Event({ name }) {
 						<div className='event__photos'>
 							<div className='carousel'>
 								<div class='carousel__item'>
-									<img
-										className='carousel__image'
-										src='./img/caruselPhotos/image1.jpeg'
-										alt='RANDOM PHOTO'
-									/>
+									<img className='carousel__image' src='./img/caruselPhotos/image1.jpeg' alt='RANDOM PHOTO' />
 								</div>
 								<div class='carousel__item'>
-									<img
-										className='carousel__image'
-										src='./img/caruselPhotos/image3.jpeg'
-										alt='RANDOM PHOTO'
-									/>
+									<img className='carousel__image' src='./img/caruselPhotos/image3.jpeg' alt='RANDOM PHOTO' />
 								</div>
 								<div class='carousel__item'>
-									<img
-										className='carousel__image'
-										src='./img/caruselPhotos/image4.jpeg'
-										alt='RANDOM PHOTO'
-									/>
+									<img className='carousel__image' src='./img/caruselPhotos/image4.jpeg' alt='RANDOM PHOTO' />
 								</div>
 								<div class='carousel__item'>
-									<img
-										className='carousel__image'
-										src='./img/caruselPhotos/image5.jpeg'
-										alt='RANDOM PHOTO'
-									/>
+									<img className='carousel__image' src='./img/caruselPhotos/image5.jpeg' alt='RANDOM PHOTO' />
 								</div>
 							</div>
 						</div>
 						<div className='content-main'>
 							<p className='event__description'>
-								Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt ducimus quas consequatur, natus asperiores eligendi maiores sequi deleniti quo unde odit illo consequuntur obcaecati minus vitae. Totam beatae iste voluptas?
+								Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt ducimus quas consequatur, natus asperiores eligendi maiores sequi
+								deleniti quo unde odit illo consequuntur obcaecati minus vitae. Totam beatae iste voluptas?
 							</p>
-              <hr />
+							<hr />
 							<ul className='event__tags'>
-								<li className="event__tag">#JS</li>
-								<li className="event__tag">#Смузи</li>
-								<li className="event__tag">#Чипсы</li>
-								<li className="event__tag">#Курятина</li>
+								<li className='event__tag'>#JS</li>
+								<li className='event__tag'>#Смузи</li>
+								<li className='event__tag'>#Чипсы</li>
+								<li className='event__tag'>#Курятина</li>
 							</ul>
 						</div>
 					</div>
