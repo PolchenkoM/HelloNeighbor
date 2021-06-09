@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Button } from "antd"
 import { useDispatch } from "react-redux"
 import { getCurrentUserGoogleThunk } from "../../redux/Actions/usersAC"
@@ -40,6 +40,19 @@ function Registration() {
 			() => console.log("signout Error")
 		)
 	}
+
+	useEffect(() => {
+		window.gapi?.load("auth2", function () {
+			window.gapi?.auth2
+				.init({
+					client_id: "213632962035-g4knv9je1q010p9lclqpuq2u73au46l3.apps.googleusercontent.com"
+				})
+				.then(
+					() => console.log("init OK"),
+					() => console.log("init error")
+				)
+		})
+	}, [window.gapi])
 
 	return (
 		<>

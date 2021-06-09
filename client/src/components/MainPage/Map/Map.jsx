@@ -56,16 +56,14 @@ function MyComponent() {
 	const decodingAdress = async (adres) => {
 		// console.log(123);
 		console.log(">>>>>>>>>>>>>>>>>>>>", adres)
-
-		console.log("getgeocodes", getGeocode)
-		const code = await getGeocode({ address: adres })
-		const results = await getLatLng(code[0])
-		setUserAddress(results)
-		console.log(results)
-
-		return "dsfsdfsdfds"
+		// return "dsfsdfsdfds";
+		if (adres) {
+			const code = await getGeocode({ address: adres })
+			const results = await getLatLng(code[0])
+			setUserAddress(results)
+			console.log(results)
+		}
 	}
-
 	useEffect(() => {
 		if (adres && window.google) {
 			decodingAdress(adres)

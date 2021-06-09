@@ -19,7 +19,6 @@ const userSchema = new Schema({
     },
   ],
   aboutSelf: String,
-  // avatar: Array,
   rating: Number,
   regDate: Date,
   friends: [
@@ -31,17 +30,20 @@ const userSchema = new Schema({
   history: [
     {
       type: Schema.Types.ObjectId,
-      ref: "Events",
+      ref: "Event",
     },
   ],
   avatar: {
-    //added Danil for avatar
     type: String,
   },
   address: {
     type: String,
-    default: 'Moskow'
-  }
+    default: "Moskow",
+  },
+  coordinates: {
+    x: Number,
+    y: Number,
+  },
 });
 
 const User = model("User", userSchema);

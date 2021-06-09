@@ -41,32 +41,4 @@ router.route("/addAvatar").post(upload.single("avatar"), async (req, res) => {
 	}
 })
 
-router.route("/getCurrentUser").post(async (req, res) => {
-	console.log(req.body.id)
-	try {
-	} catch (error) {
-		console.log(error)
-	}
-})
-
-router.post("/profile", async (req, res) => {
-	const { name, age, gender, tags, aboutSelf, address, email } = req.body
-	const { avatar } = req.file.path
-	if (name & age & gender & tags & aboutSelf & avatar & address) {
-		const user = await User.findOneAndUpdate(
-			{ email: email },
-			{
-				name: name,
-				age: age,
-				gender: gender,
-				tags: tags,
-				aboutSelf: aboutSelf,
-				avatar: avatar,
-				address: address
-			}
-		)
-		res.json(user)
-	}
-})
-
 module.exports = router

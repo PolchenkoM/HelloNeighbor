@@ -1,5 +1,5 @@
-import style from "./AddAvatarZone.sass"
 import { useState } from "react"
+import style from "./AddAvatarZone.sass"
 
 const AddAvatarZone = () => {
 	const [drag, setDrag] = useState(false)

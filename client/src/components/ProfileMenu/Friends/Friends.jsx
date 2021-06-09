@@ -1,57 +1,57 @@
-import { useState } from 'react'
-import UserMenuSider from '../../MainPage/UserMenuSider/UserMenuSider'
-import Friend from './Friend'
+import { useState } from "react"
+import UserMenuSider from "../../MainPage/UserMenuSider/UserMenuSider"
+import Friend from "./Friend"
 
 export default function Friends() {
 	const friendsArray = [
 		{
-			name: 'Danil',
+			name: "Danil",
 			onlineStatus: false,
 			age: 10,
-			gender: 'мужской',
-			tags: ['1tag, 2tag, 3tag'],
-			aboutSelf: 'lalala1',
-			rating: '5',
-			regDate: '06-06-11',
-			avatar: 'типо ава',
-			address: 'adress1',
+			gender: "мужской",
+			tags: ["1tag, 2tag, 3tag"],
+			aboutSelf: "lalala1",
+			rating: "5",
+			regDate: "06-06-11",
+			avatar: "типо ава",
+			address: "adress1"
 		},
 		{
-			name: 'Shamil',
+			name: "Shamil",
 			onlineStatus: true,
 			age: 20,
-			gender: 'мужской',
-			tags: ['1tag, 2tag, 3tag'],
-			aboutSelf: 'lalala2',
-			rating: '5',
-			regDate: '06-06-22',
-			avatar: 'типо ава',
-			address: 'adress2',
+			gender: "мужской",
+			tags: ["1tag, 2tag, 3tag"],
+			aboutSelf: "lalala2",
+			rating: "5",
+			regDate: "06-06-22",
+			avatar: "типо ава",
+			address: "adress2"
 		},
 		{
-			name: 'Maksil',
+			name: "Maksil",
 			onlineStatus: true,
 			age: 30,
-			gender: 'мужской',
-			tags: ['1tag, 2tag, 3tag'],
-			aboutSelf: 'lalala3',
-			rating: '5',
-			regDate: '06-06-33',
-			avatar: 'типо ава',
-			address: 'adress3',
+			gender: "мужской",
+			tags: ["1tag, 2tag, 3tag"],
+			aboutSelf: "lalala3",
+			rating: "5",
+			regDate: "06-06-33",
+			avatar: "типо ава",
+			address: "adress3"
 		},
 		{
-			name: 'test',
+			name: "test",
 			onlineStatus: false,
 			age: 40,
-			gender: 'мужской',
-			tags: ['1tag, 2tag, 3tag'],
-			aboutSelf: 'test',
-			rating: 'test',
-			regDate: 'test',
-			avatar: 'test',
-			address: 'test',
-		},
+			gender: "мужской",
+			tags: ["1tag, 2tag, 3tag"],
+			aboutSelf: "test",
+			rating: "test",
+			regDate: "test",
+			avatar: "test",
+			address: "test"
+		}
 	]
 
 	const [showOnline, setShowOnline] = useState(false)
@@ -59,44 +59,32 @@ export default function Friends() {
 
 	function showFriendsOnline() {
 		return friendsArray
-			.filter(friend => friend.onlineStatus === true)
-			.map(friend => (
-				<Friend name={friend.name} onlineStatus={friend.onlineStatus} />
-			))
+			.filter((friend) => friend.onlineStatus === true)
+			.map((friend) => <Friend name={friend.name} onlineStatus={friend.onlineStatus} />)
 	}
 	function showFriendsAll() {
 		return friendsArray
 			.sort((b, a) => a.onlineStatus - b.onlineStatus)
-			.map(friend => (
-				<Friend name={friend.name} onlineStatus={friend.onlineStatus} />
-			))
+			.map((friend) => <Friend name={friend.name} onlineStatus={friend.onlineStatus} />)
 	}
 
 	return (
 		<>
 			<div className='containerMain'>
 				<UserMenuSider />
-			<div className='container--friends'>
-				<div className='friendsMenu'>
-					<button
-						className='button friendsMenu__button'
-						onClick={() => setShowOnline(false)}
-					>
-						Все друзья
-					</button>
-					<button
-						className='button friendsMenu__button'
-						onClick={() => setShowOnline(true)}
-					>
-						Онлайн
-					</button>
+				<div className='container--friends'>
+					<div className='friendsMenu'>
+						<button className='button friendsMenu__button' onClick={() => setShowOnline(false)}>
+							Все друзья
+						</button>
+						<button className='button friendsMenu__button' onClick={() => setShowOnline(true)}>
+							Онлайн
+						</button>
+					</div>
+					<div className='friends-wrapper'>
+						<ul className='friends'>{showOnline ? showFriendsOnline() : showFriendsAll()}</ul>
+					</div>
 				</div>
-				<div className='friends-wrapper'>
-					<ul className='friends'>
-						{showOnline ? showFriendsOnline() : showFriendsAll()}
-					</ul>
-				</div>
-			</div>
 			</div>
 		</>
 	)

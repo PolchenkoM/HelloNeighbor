@@ -5,8 +5,9 @@ import { BrowserRouter as Router } from "react-router-dom"
 import Routes from "./components/Routes/Routes"
 import { useDispatch, useSelector } from "react-redux"
 import { getCurrentUserGoogleThunk } from "./redux/Actions/usersAC"
-import HeaderUnlogged from "./components/Header/HeaderUnlogged"
 import HeaderLogged from "./components/Header/HeaderLogged"
+import HeaderUnlogged from "./components/Header/HeaderUnlogged"
+import ShowEventModal from "./components/MainPage/EventModals/ShowEventModal"
 
 function App() {
 	const currentUser = useSelector((state) => state.users.currentUser)
@@ -23,9 +24,7 @@ function App() {
 					() => console.log("init error")
 				)
 		})
-	}, [])
-	console.log("currentUser----", currentUser.email)
-	console.log("local-----", localStorage)
+	}, [window.gapi])
 
 	useEffect(() => {
 		if (localStorage.email) {
@@ -38,6 +37,7 @@ function App() {
 	return (
 		<Router>
 			<div className='App'>
+				<ShowEventModal />
 				{currentUser.email ? <HeaderLogged /> : <HeaderUnlogged />}
 				<div className='container-mt'>
 					<Routes />

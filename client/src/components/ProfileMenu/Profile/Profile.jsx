@@ -166,6 +166,7 @@ export default function Profile() {
 					>
 						{drag ? <div>если тянешь - отпусти</div> : <div>если хочешь - потяни</div>}
 					</div>
+
 					<Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
 						<Button type='primary' htmlType='submit' onClick={profileSubmit}>
 							Submit

@@ -1,39 +1,56 @@
 import "antd/dist/antd.css"
-import { FacebookOutlined, InstagramOutlined, ProfileOutlined, TeamOutlined, HistoryOutlined, LogoutOutlined } from "@ant-design/icons"
+import {
+	FacebookOutlined,
+	InstagramOutlined,
+	ProfileOutlined,
+	TeamOutlined,
+	InboxOutlined,
+	LogoutOutlined,
+	FieldTimeOutlined
+} from "@ant-design/icons"
 import { Typography, Button, Menu } from "antd"
-
 import Avatar from "antd/lib/avatar/avatar"
 import Rater from "./Rater/Rater"
 import { useDispatch, useSelector } from "react-redux"
+import { useEffect } from "react"
 import { logoutUser } from "../../../redux/Actions/usersAC"
 import { Link } from "react-router-dom"
-
 const UserMenuSider = () => {
+	useEffect(() => {
+		window.gapi?.load("auth2", function () {
+			window.gapi?.auth2
+				.init({
+					client_id: "213632962035-g4knv9je1q010p9lclqpuq2u73au46l3.apps.googleusercontent.com"
+				})
+				.then(
+					() => console.log("init OK"),
+					() => console.log("init error")
+				)
+		})
+	}, [])
 	const dispatch = useDispatch()
 	const currentUser = useSelector((state) => state.users.currentUser)
-
 	const id = localStorage?.id
-
 	const { Title } = Typography
 	const size = "large"
-
 	const hideSidebar = (e) => {
 		const elem = e.target.parentElement.parentElement
 		elem.classList.toggle("sidebar-hidden")
 		const labelSpans = document.querySelectorAll(".ant-menu-title-content")
 		labelSpans.forEach((el) => el.classList.toggle("hidden"))
 	}
-
-	const signOut = async () => {
-		const GoogleAuth = await window.gapi?.auth2?.getAuthInstance().then(
+	const signOut = () => {
+		console.log("ya tut")
+		const GoogleAuth = window.gapi?.auth2?.getAuthInstance().then(
 			() => {
+				console.log("ya sdelal")
 				localStorage.clear()
 				dispatch(logoutUser())
+				GoogleAuth.signOut()
 			},
 			() => console.log("signout Error")
 		)
 	}
-
 	return (
 		<div className='sidebar'>
 			<div className='sidebar_null'></div>
@@ -53,13 +70,16 @@ const UserMenuSider = () => {
 					<Menu.Item key='1' className='userLinksButton' icon={<ProfileOutlined className='profileIcon' />} title='Profile'>
 						<Link to={"/profile"}>Profile</Link>
 					</Menu.Item>
-					<Menu.Item key='2' className='userLinksButton' icon={<TeamOutlined />} title='Friends'>
+					<Menu.Item key='2' className='userLinksButton' icon={<FieldTimeOutlined className='currentEvents' />} title='currentEvents'>
+						<Link to={"/currentEvents"}>currentEvents</Link>
+					</Menu.Item>
+					<Menu.Item key='3' className='userLinksButton' icon={<TeamOutlined />} title='Friends'>
 						<Link to={"/friends"}>Friends</Link>
 					</Menu.Item>
-					<Menu.Item key='3' className='userLinksButton' icon={<HistoryOutlined />} title='History'>
+					<Menu.Item key='4' className='userLinksButton' icon={<InboxOutlined />} title='History'>
 						<Link to={"/history"}>History</Link>
 					</Menu.Item>
-					<Menu.Item key='4' onClick={signOut} className='userLinksButton' icon={<LogoutOutlined />} title='Logout'>
+					<Menu.Item key='5' onClick={signOut} className='userLinksButton' icon={<LogoutOutlined />} title='Logout'>
 						Logout
 					</Menu.Item>
 				</Menu>
@@ -72,5 +92,4 @@ const UserMenuSider = () => {
 		</div>
 	)
 }
-
 export default UserMenuSider
