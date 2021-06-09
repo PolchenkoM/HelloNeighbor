@@ -1,163 +1,136 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import {
-  GoogleMap,
-  useJsApiLoader,
-  Marker,
-  Circle,
-} from "@react-google-maps/api";
+	GoogleMap,
+	useJsApiLoader,
+	Marker,
+	Circle,
+} from '@react-google-maps/api'
 
-import { getGeocode, getLatLng } from "use-places-autocomplete";
-import mapStyles from "./mapStyle";
+import { getGeocode, getLatLng } from 'use-places-autocomplete'
+import mapStyles from './mapStyle'
 
-
-import { changeVisibility, getSelectedEvent } from "../../../redux/Actions/eventAC";
-import { modalMatchVisibility } from "../../../redux/Actions/eventAC";
-
-import { addEventSaga, getEventSaga } from "../../../redux/Actions/eventAC";
-
+import { changeVisibility } from '../../../redux/Actions/eventAC'
+import { addEventSaga, getEventSaga } from '../../../redux/Actions/eventAC'
 
 function MyComponent() {
-  const dispatch = useDispatch();
-  
-  const adres = useSelector((state) => state.users.currentUser.address);
-  console.log(adres);
-  const events = useSelector((state) => state.events.allEvents);
-  const addEventModal = useSelector((state) => state.events.addEventModal);
-  
-  const [userAddress, setUserAddress] = useState({});
-  console.log(userAddress);
-  const containerStyle = {
-    width: "100%",
-    height: "100vh",
-  };
+	const dispatch = useDispatch()
 
-  const options = {
-    styles: mapStyles,
-    disableDefaultUI: true,
-    draggable: false,
-  };
+	const adres = useSelector(state => state.users.currentUser.address)
+	console.log(adres)
+	const events = useSelector(state => state.events.allEvents)
+	const addEventModal = useSelector(state => state.events.addEventModal)
 
+	const [userAddress, setUserAddress] = useState({})
+	console.log(userAddress)
+	const containerStyle = {
+		width: '100%',
+		height: '100vh',
+	}
 
-  const events = useSelector((state) => state.events.allEvents);
-  const addEventModal = useSelector((state) => state.events.addEventModal);
-  const selectedEvent = useSelector((state) => state.events.selectedEvent);
+	const options = {
+		styles: mapStyles,
+		disableDefaultUI: true,
+		draggable: false,
+	}
 
-  const centerCircle = {
-    lat: userAddress.lat,
-    lng: userAddress.lng
-  };
+	const centerCircle = {
+		lat: userAddress.lat,
+		lng: userAddress.lng,
+	}
 
-  const optionsCircle = {
-    strokeColor: "#008B8B",
-    strokeOpacity: 0.8,
-    strokeWeight: 5,
-    fillColor: "#E0FFFF",
-    fillOpacity: 0.35,
-    clickable: true,
-    draggable: false,
-    editable: false,
-    visible: true,
-    radius: 500,
-    zIndex: 1,
-  };
+	const optionsCircle = {
+		strokeColor: '#008B8B',
+		strokeOpacity: 0.8,
+		strokeWeight: 5,
+		fillColor: '#E0FFFF',
+		fillOpacity: 0.35,
+		clickable: true,
+		draggable: false,
+		editable: false,
+		visible: true,
+		radius: 500,
+		zIndex: 1,
+	}
 
-  const center = {
-    lat: userAddress.lat,
-    lng: userAddress.lng
-  };
-  
-  
-  // console.log(userAddress);
-  
-  const decodingAdress = async (adres) => {
-    // console.log(123);
-    console.log(">>>>>>>>>>>>>>>>>>>>", adres);
-    if (adres) {
-      const code = await getGeocode({ address: adres })
-      const results = await getLatLng(code[0])
-      setUserAddress(results)
-      console.log(results);
-      
-    }
-    return "dsfsdfsdfds";
-  };
-  
-  useEffect(() => {
-    decodingAdress(adres);
-  }, [adres]);
-  
-  useEffect(() => {
-    dispatch(getEventSaga());
-  }, []);
-  
-  const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: "AIzaSyBwGnNMdsXI-Zrpp6kJLj1B_164V1_PFaM",
-  });
+	const center = {
+		lat: userAddress.lat,
+		lng: userAddress.lng,
+	}
 
-  const [markers, setMarkers] = useState([]);
+	const decodingAdress = async adres => {
+		// console.log(123);
+		console.log('>>>>>>>>>>>>>>>>>>>>', adres)
+		// return "dsfsdfsdfds";
+		if (adres) {
+			const code = await getGeocode({ address: adres })
+			const results = await getLatLng(code[0])
+			setUserAddress(results)
+			console.log(results)
+		}
+	}
+	useEffect(() => {
+		if (adres && window.google) {
+		 decodingAdress(adres)
+		}
+	}, [adres, window.google])
 
-  const onMapClick = (event) => {
-    if (addEventModal) {
-      const x = event.latLng.lat();
-      const y = event.latLng.lng();
+	useEffect(() => {
+		dispatch(getEventSaga())
+	}, [])
 
-      dispatch(changeVisibility());
-      dispatch(addEventSaga(x, y));
-      setMarkers((current) => [
-        ...current,
-        {
-          lat: event.latLng.lat(),
-          lng: event.latLng.lng(),
-          time: Math.random(),
-        },
-      ]);
-    }
-  };
+	const { isLoaded } = useJsApiLoader({
+		googleMapsApiKey: 'AIzaSyBwGnNMdsXI-Zrpp6kJLj1B_164V1_PFaM',
+	})
 
-  const selectEvent = (event) => {
-    console.log(event._id);
-    dispatch(modalMatchVisibility());
-    dispatch(getSelectedEvent(event))
-  };
+	const [markers, setMarkers] = useState([])
 
-  return isLoaded ? (
-    <>
-      <GoogleMap
-        className="karta"
-        mapContainerStyle={containerStyle}
-        center={center}
-        zoom={16}
-        options={options}
-      >
-        <></>
-        {events.length &&
-          events.map((event) => (
-            <Marker
-              position={{ lat: event.coordinates.x, lng: event.coordinates.y }}
-              icon={{
-                url: "/baloon.png",
-              }}
-              key={Math.random()}
+	const onMapClick = event => {
+		if (addEventModal) {
+			const x = event.latLng.lat()
+			const y = event.latLng.lng()
 
-              onClick={() => selectEvent(event)}
-              id={event._id}
-              title={`
-                          Название :${event.title}
- Время: ${event.eventTime}
- Создатель: ${event.author}`}
-              value={event.title}
+			dispatch(changeVisibility())
+			dispatch(addEventSaga(x, y))
+			setMarkers(current => [
+				...current,
+				{
+					lat: event.latLng.lat(),
+					lng: event.latLng.lng(),
+					time: Math.random(),
+				},
+			])
+		}
+	}
 
-            />
-          ))}
-        <Circle
-          center={centerCircle}
-          options={optionsCircle}
-          onClick={onMapClick}
-        />
-      </GoogleMap>
-
-    </>
-  ) : null;
+	return isLoaded ? (
+		<>
+			<GoogleMap
+				className='karta'
+				mapContainerStyle={containerStyle}
+				center={center}
+				zoom={16}
+				options={options}
+			>
+				<></>
+				{events.length &&
+					events.map(event => (
+						<Marker
+							position={{ lat: event.coordinates.x, lng: event.coordinates.y }}
+							icon={{
+								url: '/baloon.png',
+							}}
+							key={Math.random()}
+						/>
+					))}
+				<Circle
+					center={centerCircle}
+					options={optionsCircle}
+					onClick={onMapClick}
+				/>
+			</GoogleMap>
+		</>
+	) : null
 }
-export default MyComponent;
+
+export default MyComponent

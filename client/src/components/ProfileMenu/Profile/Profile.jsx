@@ -93,18 +93,6 @@ export default function Profile() {
     let file = [...e.dataTransfer.files]
     formData.append('avatar', file[0])
     console.log('drop OK')
-
-
-    // for (let pair of formData.entries()) {
-    //   console.log(pair[0]+','+pair[1]);
-    // }
-    // const response =  fetch('http://localhost:3001/user/addAvatar', {
-    //   method: "POST",
-    //   body: formData
-    // })
-    // .then(res => res.json())
-    // .then(result => console.log(result))
-    // setDrag(false)
   }
 
   //profile
@@ -124,7 +112,6 @@ export default function Profile() {
     }
     formData.append('profile',JSON.stringify(profile))
     dispatch(updateUserThunk(formData))
-
   }
 
 
@@ -207,52 +194,17 @@ export default function Profile() {
           </>
 					</Checkbox.Group>
 				</Form.Item>
-				{/* <Form.Item
-					name='avatar'
-					label='Фото'
-					valuePropName='fileList'
-					getValueFromEvent={normFile}
-					extra=''
-				>
-					<Upload name='logo' action='/upload.do' listType='picture' onChange={fileHandler}>
-						<Button icon={<UploadOutlined />}>Click to upload</Button>
-					</Upload>
-				</Form.Item>
-        <Form.Item >
-          <input type='file' onChange={e=>console.log(e)}/>
-        </Form.Item> */}
-{/* 
-				<Form.Item label='Dragger'>
-					<Form.Item
-						name='dragger-avatar'
-						valuePropName='fileList'
-						getValueFromEvent={normFile}
-						noStyle
-					>
-						<Upload.Dragger name='files' action='/upload.do'>
-							<p className='ant-upload-drag-icon'>
-								<InboxOutlined />
-							</p>
-							<p className='ant-upload-text'>
-								Click or drag file to this area to upload
-							</p>
-							<p className='ant-upload-hint'>
-								Support for a single or bulk upload.
-							</p>
-						</Upload.Dragger>
-					</Form.Item>
-				</Form.Item> */}
-<div className='droparea'       
-    onDragStart={e => dragStartHandler(e)}
-    onDragLeave={e => dragLeaveHandler(e)}
-    onDragOver={e => dragStartHandler(e)}
-    onDrop={e => onDropHandler(e)}>
-      {drag ? <div 
+        <div className='droparea'       
+            onDragStart={e => dragStartHandler(e)}
+            onDragLeave={e => dragLeaveHandler(e)}
+            onDragOver={e => dragStartHandler(e)}
+            onDrop={e => onDropHandler(e)}>
+              {drag ? <div 
 
-      >если тянешь - отпусти</div> : <div
+              >если тянешь - отпусти</div> : <div
 
-      >если хочешь - потяни</div>} 
-    </div>
+              >если хочешь - потяни</div>} 
+            </div>
 
 				<Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
 					<Button type='primary' htmlType='submit' onClick={profileSubmit}>

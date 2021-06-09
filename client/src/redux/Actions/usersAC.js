@@ -33,8 +33,7 @@ const updateUserThunk = (formData) => (dispatch) => {
     method: "POST",
     body: formData,
   }).then(res => res.json())
-  .then(resault => console.log(resault))
-  // .then(resault => dispatch(updateUser(resault)))
+  .then(resault => dispatch(updateUser(resault)))
 
 }
 

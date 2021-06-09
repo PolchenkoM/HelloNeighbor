@@ -1,4 +1,4 @@
-import {GET_CURRENT_USER, LOGOUT_USER} from '../Types/userTypes'
+import {GET_CURRENT_USER, LOGOUT_USER, UPDATE_USER} from '../Types/userTypes'
 
 const usersReducer = (state={}, action) => {
   console.log();
@@ -7,7 +7,11 @@ const usersReducer = (state={}, action) => {
       return {
         ...state,  currentUser: {...action.payload}
       }
-      
+      case UPDATE_USER:
+        return {
+          ...state,
+          currentUser: action.payload
+        }
       case LOGOUT_USER: 
       return {
         ...state, currentUser: {}

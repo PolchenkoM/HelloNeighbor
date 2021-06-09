@@ -1,5 +1,7 @@
 const Event = require("../models/event");
 const router = require("express").Router();
+// const { isPointWithinRadius } = require("geolib");
+const geolib = require("geolib");
 
 router.route("/").get(async (req, res) => {
   try {
@@ -24,8 +26,18 @@ router.route("/").post(async (req, res) => {
   }
 });
 
-router.route("/").put(async (req, res) =>{
-  
-})
+router.route("/").put(async (req, res) => {
+  const allEvens = await Event.find();
+    console.log('allEvens',allEvens);
+    const isWithinRange =  allEvens.filter(event => {
+      return geolib.isPointWithinRadius(
+        {latitude: event.coordinates.x , longitude: event.coordinates.y},
+        { latitude: 55.678652, longitude: 37.7478465 },
+        500
+      );
+    });
+    
+    console.log("geoliiiiib",isWithinRange);
+});
 
 module.exports = router;
