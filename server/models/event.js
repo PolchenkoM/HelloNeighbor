@@ -2,10 +2,11 @@ const { model, Schema } = require("mongoose");
 const eventSchema = new Schema({
   title: String,
   description: String,
-  author: {
+  authorId: {
     type: Schema.Types.ObjectId,
     ref: "User",
   },
+  author: String,
   members: [
     {
       type: Schema.Types.ObjectId,
@@ -19,13 +20,14 @@ const eventSchema = new Schema({
       ref: "Tag",
     },
   ],
-  regDate : Date,
-  eventTime: Date,
+  regDate: Date,
+  eventTime: String,
   eventStatus: Boolean,
   coordinates: {
     x: Number,
-    y: Number
-  }
+    y: Number,
+  },
+  chat: Array,
 });
 
 const Event = model("Event", eventSchema);

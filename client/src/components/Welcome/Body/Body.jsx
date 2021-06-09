@@ -2,11 +2,16 @@ import React from "react";
 import { Modal, Input } from "antd";
 import Registration from "../../Registration/googleOauth";
 import useRegForm from "../../hooks/useForm";
+import { useDispatch } from "react-redux";
+import { getCurrentUserGoogleThunk } from "../../../redux/Actions/usersAC";
+import { useHistory } from "react-router";
 
 export default function Body() {
   function openModalSignUp() {
     console.log("test");
   }
+  const dispatch = useDispatch();
+  const history = useHistory()
 
   const [values, changeHandler] = useRegForm();
   const [visible, setVisible] = React.useState(false);
@@ -31,7 +36,8 @@ export default function Body() {
     })
       .then((res) => res.json())
       .then((result) => {
-        localStorage.setItem("mail", result.email);
+        localStorage.setItem("email", result.email);
+        dispatch(getCurrentUserGoogleThunk(result.email));
       });
 
     setTimeout(() => {

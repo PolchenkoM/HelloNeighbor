@@ -1,56 +1,81 @@
-import React, { useState } from "react";
-var socket = new WebSocket("ws://localhost:8080");
+import React, { useEffect, useRef, useState } from "react"
 
-function ChatList() {
-  // document.forms.publish.onsubmit = function () {
-  //   var outgoingMessage = this.message.value;
+const ChatList = () => {
+	const [messages, setMessages] = useState([])
+	const [value, setValue] = useState("")
+	const socket = useRef()
+	const [connected, setConnected] = useState(false)
+	const [username, setUsername] = useState("")
 
-  //   socket.send(outgoingMessage);
-  //   return false;
-  // };
+	function connect() {
+		socket.current = new WebSocket("ws://localhost:5000")
 
-  // обработчик входящих сообщений
-  socket.onmessage = function (event) {
-    const incomingMessage = event.data;
-    // showMessage(incomingMessage);
-    console.log(incomingMessage);
-  };
+		socket.current.onopen = () => {
+			setConnected(true)
+			const message = {
+				event: "connection",
+				username,
+				id: Date.now()
+			}
+			socket.current.send(JSON.stringify(message))
+		}
+		socket.current.onmessage = (event) => {
+			const message = JSON.parse(event.data)
+			setMessages((prev) => [message, ...prev])
+		}
+		socket.current.onclose = () => {
+			console.log("Socket закрыт")
+		}
+		socket.current.onerror = () => {
+			console.log("Socket произошла ошибка")
+		}
+	}
 
-  const [server, setServer] = useState("");
+	const sendMessage = async () => {
+		const message = {
+			username,
+			message: value,
+			id: Date.now(),
+			event: "message"
+		}
+		socket.current.send(JSON.stringify(message))
+		setValue("")
+	}
 
-  // показать сообщение в div#subscribe
-  // function showMessage(message) {
-  //   var messageElem = document.createElement("div");
-  //   messageElem.appendChild(document.createTextNode(message));
-  //   document.getElementById("subscribe").appendChild(messageElem);
-  // }
-  const [input, setInput] = useState("");
-  const [div, setDiv] = useState("");
-  console.log(div);
+	if (!connected) {
+		return (
+			<div style={{ height: "400px", marginTop: 30 }} className='center'>
+				<div className='form'>
+					<input value={username} onChange={(e) => setUsername(e.target.value)} type='text' placeholder='Введите ваше имя' />
+					<button onClick={connect}>Войти</button>
+				</div>
+			</div>
+		)
+	}
 
-  const changeInput = (e) => {
-    setInput(e.target.value);
-  };
-
-  const addHandler = (e) => {
-    e.preventDefault();
-    setDiv((prev) => [...prev, input]);
-    socket.send(input);
-  };
-
-  return (
-    <>
-      <div>
-        <form onSubmit={addHandler} action="">
-          <button>add</button>
-          <input onChange={changeInput} type="text" value={input} />
-        </form>
-      </div>
-      <ul>
-        <li>{div}</li>
-      </ul>
-    </>
-  );
+	return (
+		<div style={{ height: "400px", marginTop: 30 }} height='400px' className='center'>
+			<div>
+				<div className='form'>
+					<input value={value} onChange={(e) => setValue(e.target.value)} type='text' />
+					<button onClick={sendMessage}>Отправить</button>
+				</div>
+				<div className='messages'>
+					{messages.map((mess) => (
+						<div key={mess.id}>
+							{mess.event === "connection" ? (
+								<div className='connection_message'>Пользователь {mess.username} подключился</div>
+							) : (
+								<div className='message'>
+									{mess.username}. {mess.message}
+								</div>
+							)}
+						</div>
+					))}
+				</div>
+			</div>
+		</div>
+	)
 }
 
-export default ChatList;
+export default ChatList

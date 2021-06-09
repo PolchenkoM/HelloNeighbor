@@ -13,7 +13,6 @@ const fetchEvent = ({payload}) => {
     }),
   })
     .then((res) => res.json())
-    // .then((result) => console.log(result));
 };
 
 function* eventSagaWorker( payload ) {

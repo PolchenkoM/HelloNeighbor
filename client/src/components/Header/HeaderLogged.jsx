@@ -9,8 +9,7 @@ import {
 } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
 
-const { SubMenu } = Menu
-const { Content, Sider } = Layout
+
 
 export default function HeaderLogged() {
 	// logBar
@@ -19,19 +18,26 @@ export default function HeaderLogged() {
 	const isUser = useSelector(state => state.users.currentUser)
 
 
+
 	const dispatch = useDispatch()
 
 	const createEvent = () => {
-  console.log(123);
+		console.log(123)
 		dispatch(addEventModal())
 	}
 
 	return (
 		<>
 			<header className='header'>
-				<img className='header__image' src='/img/randomLogo.jpg' alt='SITE LOGO' />
 				<nav className='navbar header__navbar'>
 					<ul className='list navbar__list'>
+						<li className='list__item'>
+							<img
+								className='header__image'
+								src='/img/randomLogo.jpg'
+								alt='SITE LOGO'
+							/>
+						</li>
 						<li className='list__item'>
 							<Link to='/products' className='list__item-link'>
 								(мейн-хедер)Поддержка
@@ -48,11 +54,12 @@ export default function HeaderLogged() {
 							</Link>
 						</li>
 						<li className='list__item'>
-								<button onClick={createEvent}>Создать ивент</button>
-						</li>     
+							<button onClick={createEvent}>Создать ивент</button>
+						</li>
 					</ul>
 				</nav>
-				<button className='button'>Какая-то кнопка</button>
+				{/* <button className='button'>Какая-то кнопка</button> */}
+
 			</header>
 		</>
 	)
