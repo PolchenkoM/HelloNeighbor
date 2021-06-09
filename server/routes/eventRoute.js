@@ -1,20 +1,18 @@
-const Event = require("../models/eventModel");
+const Event = require("../models/event");
 const router = require("express").Router();
 // const { isPointWithinRadius } = require("geolib");
 const geolib = require("geolib");
 
 router.route("/").get(async (req, res) => {
   try {
-    const allEvens =await Event.find()
-    res.json(allEvens)
-    
+    const allEvens = await Event.find().populate("tags");
+    res.json(allEvens);
   } catch (e) {
     console.log(e);
   }
 });
 
 router.route("/").post(async (req, res) => {
-  console.log("server", req.body);
   try {
     const newEvent = await Event.create({
       coordinates: {
