@@ -40,6 +40,7 @@ export default function ShowEventModal() {
   }
 
   return (
+    
     <>
       <Modal
         footer={null}
