@@ -44,6 +44,8 @@ const userSchema = new Schema({
     x: Number,
     y: Number,
   },
+  instagram: String,
+  facebook: String,
 });
 
 const User = model("User", userSchema);

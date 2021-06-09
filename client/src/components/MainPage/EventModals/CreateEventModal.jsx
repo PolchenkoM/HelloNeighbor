@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Modal, Button, Input, Form, Radio } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { changeVisibility, getEventSaga } from "../../../redux/Actions/eventAC";
+import {
+  addEvent,
+  changeVisibility,
+  getEventSaga,
+} from "../../../redux/Actions/eventAC";
 import { Tag } from "antd";
 import useForm from "../../hooks/useForm";
 
@@ -11,7 +15,7 @@ export default function CreateEventModal() {
   const modalVisibility = useSelector((state) => state.events.modalVisibility);
   const [tags, setTags] = useState([]);
   const [selectedTags, setSelectedTags] = useState([]);
-  const [values, changeHandler] = useForm();
+  const [values, changeHandler, setValues] = useForm();
   const event = useSelector((state) => state.events.allEvents);
 
   useEffect(() => {
@@ -63,9 +67,12 @@ export default function CreateEventModal() {
         selectedTags,
         eventId,
       }),
-    });
+    })
+      .then((res) => res.json())
+      .then((result) => dispatch(addEvent(result)));
 
     dispatch(changeVisibility());
+    setValues("");
   };
 
   const [form] = Form.useForm();

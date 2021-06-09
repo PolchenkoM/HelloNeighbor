@@ -9,8 +9,7 @@ import {
 } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
 
-const { SubMenu } = Menu
-const { Content, Sider } = Layout
+
 
 export default function HeaderLogged() {
 	// logBar
@@ -57,7 +56,8 @@ export default function HeaderLogged() {
 						</li>
 					</ul>
 				</nav>
-				<button className='button'>Какая-то кнопка</button>
+				{/* <button className='button'>Какая-то кнопка</button> */}
+
 			</header>
 		</>
 	)

@@ -3,6 +3,8 @@ import { useSelector } from "react-redux"
 import UserMenuSider from "./UserMenuSider/UserMenuSider"
 import Profile from "../ProfileMenu/Profile/Profile"
 import Map from "./Map/Map"
+import CreateEventModal from './EventModals/CreateEventModal'
+import Sider from '../MainPage/EventList/EventList'
 
 const MainPage = () => {
 	const currentUser = useSelector((state) => state.users.currentUser)
@@ -20,20 +22,21 @@ const MainPage = () => {
 		})
 	}, [])
 	return (
-		<>
-			{currentUser.name ? (
-				<div className='container-mt'>
-					<div className='containerMain'>
-						<UserMenuSider />
-						<div className='containerMap'>
-							<Map />
-						</div>
-					</div>
+    <>
+    { currentUser.name ?   
+		<div className='container-mt'>
+			<div className='containerMain'>
+				<UserMenuSider />
+				<div className='containerMap'>
+					<Map />
 				</div>
-			) : (
-				<Profile />
-			)}
-		</>
+				<CreateEventModal />
+				<Sider />
+			</div>
+		</div>
+    : <Profile />
+  }
+    </>
 	)
 }
 
