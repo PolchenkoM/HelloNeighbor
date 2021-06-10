@@ -3,7 +3,7 @@ import { Form, Input, Button, DatePicker, Select, Checkbox, Tag } from "antd"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import useForm from "../../hooks/useForm"
-import { updateUserThunk } from "../../../redux/Actions/usersAC"
+import { getCurrentUserGoogleThunk, updateUserThunk } from "../../../redux/Actions/usersAC"
 import UserMenuSider from "../../MainPage/UserMenuSider/UserMenuSider"
 
 const { Option } = Select
@@ -99,6 +99,7 @@ export default function Profile() {
 		}
 		formData.append("profile", JSON.stringify(profile))
 		dispatch(updateUserThunk(formData))
+		dispatch(getCurrentUserGoogleThunk(localStorage.email))
 	}
 
 	return (

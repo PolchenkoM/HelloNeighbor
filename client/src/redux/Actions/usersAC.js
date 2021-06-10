@@ -23,6 +23,7 @@ const logoutUser = () => {
 }
 
 const updateUser = (user) => {
+	console.log(user)
 	return {
 		type: UPDATE_USER,
 		payload: user
