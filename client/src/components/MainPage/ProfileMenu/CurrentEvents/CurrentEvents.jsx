@@ -1,4 +1,3 @@
-import UserMenuSider from '../../MainPage/UserMenuSider/UserMenuSider'
 import Event from '../History/Event'
 
 export default function CurrentEvents() {

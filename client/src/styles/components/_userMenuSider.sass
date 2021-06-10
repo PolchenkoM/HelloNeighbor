@@ -7,6 +7,8 @@
   background: #292929
   border-top-right-radius: 15px
   border-bottom-right-radius: 15px
+  margin-left: 0
+  transition: margin-left 2s linear
   &__username
     font-size: 20px
     color: $light
@@ -41,11 +43,9 @@
     border-radius: 8px
     &-icon
       color: $orange
-      font-size: 20px
+      font-size: 30px
     &-text
       color: $orange
-      font-size: 20px
-
   .avatar
     margin: 10px 0px
   .socialsButtons
@@ -111,3 +111,20 @@
   background-color: none
 .hidden
   display: none
+
+.sidebar-animation-hide
+  transition: all 1s linear
+  margin-left: 50px
+.sidebar-animation-show
+  transition: width 0.5s linear
+  width: 250px
+@keyframes hideSideBar
+  0%
+    left: 0
+  100%
+    left: -100px
+@keyframes showSideBar
+  0%
+    left: -100px
+  100%
+    left: 0

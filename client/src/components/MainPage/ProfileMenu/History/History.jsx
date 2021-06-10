@@ -1,4 +1,4 @@
-import UserMenuSider from "../../MainPage/UserMenuSider/UserMenuSider";
+import UserMenuSider from "../../../MainPage/ProfileMenu/UserMenuSider";
 import Event from "./Event";
 import { useSelector } from "react-redux";
 

@@ -1,20 +1,17 @@
 import 'antd/dist/antd.css'
 import {
-	FacebookOutlined,
-	InstagramOutlined,
 	ProfileOutlined,
 	TeamOutlined,
 	InboxOutlined,
 	LogoutOutlined,
 	FieldTimeOutlined,
-	HddOutlined,
 	LeftSquareOutlined,
 } from '@ant-design/icons'
 import { Typography, Button, Menu } from 'antd'
 import Avatar from 'antd/lib/avatar/avatar'
-import Rater from './Rater/Rater'
+import Rater from './Rater'
 import { useDispatch, useSelector } from 'react-redux'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { logoutUser } from '../../../redux/Actions/usersAC'
 import { Link } from 'react-router-dom'
 const UserMenuSider = () => {
@@ -33,14 +30,26 @@ const UserMenuSider = () => {
 	}, [])
 	const dispatch = useDispatch()
 	const currentUser = useSelector(state => state.users.currentUser)
-	const id = localStorage?.id
-	const { Title } = Typography
-	const size = 'large'
+	const [test, setTest] = useState(true)
+
 	const hideSidebar = e => {
-		const elem = e.target.parentElement.parentElement
-		elem.classList.toggle('sidebar-hidden')
-		const labelSpans = document.querySelectorAll('.ant-menu-title-content')
-		labelSpans.forEach(el => el.classList.toggle('hidden'))
+		const elem = document.querySelector('.container--sidebar')
+		elem.classList.toggle('sidebar-animation-hide')
+		// if (test) {
+		// 	elem.classList.toggle('sidebar-animation-hide')
+		// 	setTest(prev => !prev)
+		// 	const labelSpans = document.querySelectorAll('.ant-menu-title-content')
+		// 	labelSpans.forEach(el => el.classList.toggle('hidden'))
+		// } else {
+		//   elem.classList.toggle('sidebar-animation-hide')
+		//   elem.classList.toggle('sidebar-animation-show')
+		//   setTest(prev => !prev)
+		// }
+	}
+	const showSidebar = e => {
+		const elem = document.querySelector('.container--sidebar')
+		elem.classList.toggle('sidebar-animation-hide')
+		elem.classList.toggle('sidebar-animation-show')
 	}
 	const signOut = () => {
 		console.log('ya tut')
@@ -149,12 +158,9 @@ const UserMenuSider = () => {
 					</ul>
 				</div>
 				<div className='sidebar__bottom'>
-					<button
-						className='button sidebar__closeButton'
-						onClick={hideSidebar}
-					>
-						<LeftSquareOutlined className="sidebar__closeButton-icon"/>
-            <span className="sidebar__closeButton-text">Далее</span>
+					<button className='button sidebar__closeButton' onClick={hideSidebar}>
+						<LeftSquareOutlined className='sidebar__closeButton-icon' />
+						<span className='sidebar__closeButton-text'></span>
 					</button>
 				</div>
 			</div>

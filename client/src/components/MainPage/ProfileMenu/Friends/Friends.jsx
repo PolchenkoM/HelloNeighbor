@@ -1,5 +1,5 @@
 import { useState } from "react"
-import UserMenuSider from "../../MainPage/UserMenuSider/UserMenuSider"
+import UserMenuSider from "../../../MainPage/ProfileMenu/UserMenuSider"
 import Friend from "./Friend"
 
 export default function Friends() {
