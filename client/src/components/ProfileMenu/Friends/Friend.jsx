@@ -3,8 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { changeChatModalVisibility } from '../../../redux/Actions/modalAC'
 import ChatModal from '../../MainPage/ChatModal/ChatModal'
-export default function Friend({ name, onlineStatus }) {
-  const [flag, setFlag] = useState(false);
+export default function Friend({ name, onlineStatus, avatar }) {
 
   const chatVisibility = useSelector(state => state.modals.chatModalVisible)
   const dispatch = useDispatch()
@@ -20,7 +19,7 @@ export default function Friend({ name, onlineStatus }) {
 					<div className='friend__avatar-wrapper'>
 						<img
 							className='friend__avatar'
-							src='./img/caruselPhotos/image1.jpeg'
+							src={`http://localhost:3001/${avatar}`}
 							alt=''
 						/>
 						{onlineStatus ? <span className='friend__onlineStatus-mark'></span> : ''}

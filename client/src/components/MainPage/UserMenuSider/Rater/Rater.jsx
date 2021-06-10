@@ -2,7 +2,7 @@ import { useState } from "react"
 import { Rate } from "antd"
 
 const Rater = () => {
-	const [value, setValue] = useState(3)
+	const [value, setValue] = useState(5)
 
 	const handleChange = (value) => {
 		setValue((prev) => value)

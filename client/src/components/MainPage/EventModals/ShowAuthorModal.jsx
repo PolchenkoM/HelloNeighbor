@@ -1,11 +1,11 @@
-import { notification } from 'antd';
-import {  useSelector } from "react-redux";
+import { notification } from "antd";
+import { useSelector } from "react-redux";
 import React, { useEffect, useState } from "react";
 import { Modal } from "antd";
 import { Tag } from "antd";
 
 export default function ShowAuthorModal({ setAuthorModal }) {
-  const key = 'updatable';
+  const key = "updatable";
 
   const [isModalVisible, setIsModalVisible] = useState(true);
   const selectedEvent = useSelector((state) => state.events.selectedEvent);
@@ -43,14 +43,14 @@ export default function ShowAuthorModal({ setAuthorModal }) {
     });
     notification.open({
       key,
-      message: 'Секундочку...',
-      description: 'Отправляем запрос',
+      message: "Секундочку...",
+      description: "Отправляем запрос",
     });
     setTimeout(() => {
       notification.open({
         key,
-        message: 'Успешно!',
-        description: `Вы подружились c ${eventAuthor.name}`
+        message: "Успешно!",
+        description: `Вы подружились c ${eventAuthor.name}`,
       });
     }, 1000);
     setIsModalVisible(false);
@@ -64,8 +64,7 @@ export default function ShowAuthorModal({ setAuthorModal }) {
     setAuthorModal(false);
   };
 
-  console.log('from author show==>', eventAuthor);
-
+  console.log("from author show==>", eventAuthor);
 
   return (
     <>

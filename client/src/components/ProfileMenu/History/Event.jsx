@@ -68,14 +68,11 @@ export default function Event({ name }) {
               <div className="event__content-bottom">
                 <ul className="event-members">
                   {el.members.map((member, ind) => (
-                    <li className="event-members__member">{member.name}</li>
+                    <li className="event-members__member"><img className="event-members__member" src={`http://localhost:3001/${member.avatar}`}></img></li>
                   ))}
-                  {/* <li className="event-members__member"></li>
-                  <li className="event-members__member"></li>
-                  <li className="event-members__member"></li> */}
                 </ul>
               </div>
-              <span className="event__date">{el.regDate}</span>
+              <span className="event__date">&nbsp;&nbsp;Дата: &nbsp;&nbsp;&nbsp;&nbsp;{el.regDate}</span>
             </div>
           </div>
         ))}
