@@ -1,2 +1,132 @@
-.rcw-title
-  padding: 0!important
+
+.chat
+  height: 100%
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  align-items: center
+  position: relative
+  &-container
+    position: fixed
+    right: 20px
+    bottom: 20px
+    background-color: #f8f8f8
+    border-radius: 10px
+    overflow: hidden
+    width: 320px
+    height: 400px
+  &-input
+    position: relative
+    display: flex
+    background-color: #fff
+    height: fit-content
+  &__header
+    width: 100%
+    height: 40px
+    background-color: $orange
+  &__title
+    margin: 0
+    text-align: center
+    padding: 5px 10px
+    color: #000000
+    font-size: 18px
+    font-weight: bold
+  &__body
+    align-self: flex-start
+    overflow-y: auto
+    width: 100%
+    height: 100%
+  &__message
+    display: flex
+    flex-direction: column
+    align-items: flex-start
+    overflow-y: auto
+    
+    &-person
+      display: flex
+      justify-content: flex-start
+      margin-bottom: 5px
+  &__text
+    padding: 5px
+    margin: 0
+  &__user-avatar
+    height: 30px
+    width: 30px
+    border-radius: 50%
+    margin-right: 5px
+  &__footer
+    width: 100%
+    height: fit-content
+    border-top: 1px solid #ececec
+  &__chatInput
+    width: 100%
+    resize: none
+    border: none
+    min-height: 60px
+    max-height: 180px
+    padding: 10px 30px 5px 30px
+    background: #fff
+    display: flex
+    bottom: 0
+    line-height: 1.2
+    &:focus
+      outline: none
+    &-container
+      position: relative
+      display: flex
+      background-color: #fff
+      height: fit-content
+  &__addFileIcon
+    display: inline-block
+    position: absolute
+    top: 0
+    left: 0
+    padding: 5px
+    align-self: flex-start
+    background: none
+    color: black
+    transition: color 0.1s linear
+    font-size: 18px
+    &:hover
+      color: #7ce0ff
+  &__smileOutlined
+    display: inline-block
+    position: absolute
+    bottom: 0
+    right: 15px
+    padding: 5px
+    background: none
+    color: black
+    transition: color 0.1s linear
+    font-size: 18px
+    &:hover
+      color: #7ce0ff
+.closeChatButton
+  height: 40px
+  width: 40px
+  position: absolute
+  top: 0
+  right: 0
+  opacity: 0.6
+  &:hover
+    opacity: 1
+  &::before
+    content: ""
+    position: absolute
+    top: 30%
+    left: 50%
+    transform: translate(-50%, -50%)
+    transform: rotate(45deg)
+    width: 1px
+    height: 20px
+    background-color: black
+  &::after
+    content: ""
+    position: absolute
+    top: 30%
+    left: 50%
+    transform: translate(-50%, -50%)
+    transform: rotate(-45deg)
+    width: 1px
+    height: 20px
+    background-color: black

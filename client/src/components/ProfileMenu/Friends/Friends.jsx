@@ -70,22 +70,27 @@ export default function Friends() {
 
 	return (
 		<>
-			<div className='containerMain'>
-				<UserMenuSider />
 				<div className='container--friends'>
 					<div className='friendsMenu'>
-						<button className='button friendsMenu__button' onClick={() => setShowOnline(false)}>
+						<button
+							className={!showOnline ? 'button friendsMenu__button friendsMenu__button--active': 'button friendsMenu__button'}
+							onClick={() => setShowOnline(false)}
+						>
 							Все друзья
 						</button>
-						<button className='button friendsMenu__button' onClick={() => setShowOnline(true)}>
+						<button
+							className={showOnline ? 'button friendsMenu__button friendsMenu__button--active': 'button friendsMenu__button'}
+							onClick={() => setShowOnline(true)}
+						>
 							Онлайн
 						</button>
 					</div>
 					<div className='friends-wrapper'>
-						<ul className='friends'>{showOnline ? showFriendsOnline() : showFriendsAll()}</ul>
+						<ul className='friends'>
+							{showOnline ? showFriendsOnline() : showFriendsAll()}
+						</ul>
 					</div>
 				</div>
-			</div>
 		</>
 	)
 }

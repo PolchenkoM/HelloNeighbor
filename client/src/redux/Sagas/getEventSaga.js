@@ -6,7 +6,7 @@ import { addEvent, getEvent } from "../Actions/eventAC";
 const fetchGetEvent = () => {
   return fetch("http://localhost:3001/event")
     .then((res) => res.json())
-    // .then((result) => console.log(result));
+    
 };
 
 function* getSagaWorker() {

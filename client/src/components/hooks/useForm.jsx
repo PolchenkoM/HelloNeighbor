@@ -5,7 +5,7 @@ const useForm = () => {
   const changeChandler = (e) => {
     setValues((prev) => ({ ...prev, [e?.target?.name]: e?.target?.value }));
   };
-  return [values, changeChandler];
+  return [values, changeChandler, setValues];
 };
 
 export default useForm;

@@ -20,13 +20,14 @@ const eventSchema = new Schema({
       ref: "Tag",
     },
   ],
-  regDate : Date,
+  regDate: Date,
   eventTime: String,
   eventStatus: Boolean,
   coordinates: {
     x: Number,
-    y: Number
-  }
+    y: Number,
+  },
+  chat: Array,
 });
 
 const Event = model("Event", eventSchema);

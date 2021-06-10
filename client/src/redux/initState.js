@@ -9,7 +9,11 @@ const initState = {
     modalVisibility:false,
     addEventModal: false,
     modalMatchVisibility:false,
+    circleEvents: []
     
+  },
+  modals: {
+    chatModalVisible: false,
   },
 }
 export default initState

@@ -4,6 +4,7 @@ import {
 	ADD_EVENT_SAGA,
 	CHANGE_MATCH_MODAL_VISIBILITY,
 	CHANGE_MODAL_VISIBILITY,
+	GET_CIRCLE_EVENTS,
 	GET_EVENT,
 	GET_EVENT_SAGA,
 	GET_SELECTED_EVENT
@@ -59,4 +60,19 @@ export const getSelectedEvent = (event) => {
 		type: GET_SELECTED_EVENT,
 		payload: event
 	}
+}
+
+export const getCircleEvents = (circleEvents) => {
+	return {
+		type: GET_CIRCLE_EVENTS,
+		payload: circleEvents
+	}
+}
+
+export const getCircleEventThunk = (currentUserId) => (dispatch) => {
+	fetch("http://localhost:3001/event/circle", {
+		method: "POST",
+		headers: { "Content-Type": "application/json" },
+		body: JSON.stringify({ currentUserId })
+	}).then((res) => res.json().then((result) => dispatch(getCircleEvents(result))))
 }
