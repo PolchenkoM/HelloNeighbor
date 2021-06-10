@@ -37,7 +37,7 @@ function MyComponent() {
 
   const containerStyle = {
     width: "100%",
-    height: "100vh",
+    height: "100%",
   };
 
   const options = {
@@ -140,6 +140,8 @@ function MyComponent() {
 
   return isLoaded ? (
     <>
+			<div className='container--map'>
+
       <GoogleMap
         className="karta"
         mapContainerStyle={containerStyle}
@@ -171,6 +173,7 @@ function MyComponent() {
           onClick={onMapClick}
         />
       </GoogleMap>
+      </div>
     </>
   ) : null;
 }

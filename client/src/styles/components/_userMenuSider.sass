@@ -1,15 +1,18 @@
 .sidebar
-  background: $light
-  position: relative
-  max-width: 225px
+  background: $white
   height: 100%
   display: flex
   justify-content: flex-start
   flex-direction: column
-  background: rgb(255, 228, 228)
+  background: #292929
+  border-top-right-radius: 15px
+  border-bottom-right-radius: 15px
+  &__username
+    font-size: 20px
+    color: $light
   &_null
     margin: 25px
-    background: $light
+    background: $white
   &-hidden
     width: 100px
     .avatar
@@ -20,17 +23,28 @@
       display: flex
       flex-direction: column
       transform: scale(0.8)
-  &__top  
+  &__top
     display: flex
     flex-direction: column
     align-items: center
   &__bottom
-    &-button 
-      position: absolute
-      bottom: 0
-      width: 100%
-      height: 50px
-      background:#66ccff
+  &__closeButton
+    display: flex
+    align-items: center
+    justify-content: center
+    position: absolute
+    bottom: 0
+    width: 100%
+    height: 50px
+    background: #1b1b1b
+    border: 2px solid $orange
+    border-radius: 8px
+    &-icon
+      color: $orange
+      font-size: 20px
+    &-text
+      color: $orange
+      font-size: 20px
 
   .avatar
     margin: 10px 0px
@@ -38,33 +52,62 @@
 
   .ratingButtons
 
-  .avatar 
+  .avatar
     margin: 10px
 
   .userName
 
-  .userLinksButton 
-    display: flex
-    justify-content: flex-start
+.userLinksButton
+  display: flex
+  justify-content: flex-start
 
   .ant-layout-sider-trigger
 
-    
 .dangerButton
   position: absolute
   top: 0px
   right: -100px
 
-.ant-menu-item-icon 
+.ant-menu-item-icon
   display: flex
   justify-content: center
 
-.profileIcon
-
-
-ul.profileMenu
-  background: none
-  border: 0
-
+.profileMenu
+  list-style: none
+  padding: 0
+  margin: 0
+  width: 60%
+  &__item
+    font-size: 16px
+    color: $light
+    &-link
+      display: flex
+      align-items: center
+      justify-content: flex-start
+      padding: 5px 10px
+      border-radius: 2px
+      color: inherit
+      transition: 0.1s linear
+      &:hover
+        color: $orange
+    &-icon
+      color: inherit
+      &--logout
+    &-text
+      margin-left: 5px
+.social
+  display: flex
+  align-items: center
+  justify-content: space-between
+  &__link
+    padding: 1px 6px
+    border-radius: 4px
+    transition: background 0.1s linear
+    &:hover
+      background: grey
+  &__icon
+    height: 35px
+.testIcon
+  background-color: none
 .hidden
   display: none

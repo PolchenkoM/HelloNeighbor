@@ -12,9 +12,10 @@ export default function History() {
 
   return (
     <>
-      <div className="containerMain">
-        <UserMenuSider />
-        <Event />
+      <div className="container--history">
+        <ul className="history">
+          <Event />
+        </ul>
       </div>
     </>
   );

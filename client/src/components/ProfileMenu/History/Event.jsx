@@ -11,7 +11,7 @@ export default function Event({ name }) {
     <div>
       {currentUser &&
         userHistory?.map((el) => (
-          <div className="container">
+          <div className="container-event">
             <div className="event">
               <h1 className="event__title">{el.title} </h1>
               <div className="event__content-main">

@@ -1,12 +1,9 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
-import UserMenuSider from "./UserMenuSider/UserMenuSider";
 import Profile from "../ProfileMenu/Profile/Profile";
 import Map from "./Map/Map";
 import { getCircleEventThunk } from "../../redux/Actions/eventAC";
 import CreateEventModal from "./EventModals/CreateEventModal";
-import Sider from "../MainPage/EventList/EventList";
 import EventList from "../MainPage/EventList/EventList";
 
 const MainPage = () => {
@@ -34,23 +31,20 @@ const MainPage = () => {
   }, [currentUser]);
 
   return (
-    <>
-      {currentUser.name ? (
-        <div className="container-mt">
-          <div className="containerMain">
-            <UserMenuSider />
-            <div className="containerMap">
-              <Map />
-            </div>
-            <CreateEventModal />
-            <EventList />
-          </div>
-        </div>
-      ) : (
-        <Profile />
-      )}
-    </>
-  );
+		<>
+			{currentUser.name ? (
+				<>
+					<div className='container--map'>
+						<Map />
+					</div>
+					<CreateEventModal />
+					<EventList />
+				</>
+			) : (
+				<Profile />
+			)}
+		</>
+	)
 };
 
-export default MainPage;
+export default MainPage

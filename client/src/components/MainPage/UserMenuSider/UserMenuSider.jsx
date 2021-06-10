@@ -1,131 +1,164 @@
-import "antd/dist/antd.css";
+import 'antd/dist/antd.css'
 import {
-  FacebookOutlined,
-  InstagramOutlined,
-  ProfileOutlined,
-  TeamOutlined,
-  InboxOutlined,
-  LogoutOutlined,
-  FieldTimeOutlined,
-} from "@ant-design/icons";
-import { Typography, Button, Menu } from "antd";
-import Avatar from "antd/lib/avatar/avatar";
-import Rater from "./Rater/Rater";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { logoutUser } from "../../../redux/Actions/usersAC";
-import { Link } from "react-router-dom";
+	FacebookOutlined,
+	InstagramOutlined,
+	ProfileOutlined,
+	TeamOutlined,
+	InboxOutlined,
+	LogoutOutlined,
+	FieldTimeOutlined,
+	HddOutlined,
+	LeftSquareOutlined,
+} from '@ant-design/icons'
+import { Typography, Button, Menu } from 'antd'
+import Avatar from 'antd/lib/avatar/avatar'
+import Rater from './Rater/Rater'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { logoutUser } from '../../../redux/Actions/usersAC'
+import { Link } from 'react-router-dom'
 const UserMenuSider = () => {
-  useEffect(() => {
-    window.gapi?.load("auth2", function () {
-      window.gapi?.auth2
-        .init({
-          client_id:
-            "213632962035-g4knv9je1q010p9lclqpuq2u73au46l3.apps.googleusercontent.com",
-        })
-        .then(
-          () => console.log("init OK"),
-          () => console.log("init error")
-        );
-    });
-  }, []);
-  const dispatch = useDispatch();
-  const currentUser = useSelector((state) => state.users.currentUser);
-  const id = localStorage?.id;
-  const { Title } = Typography;
-  const size = "large";
-  const hideSidebar = (e) => {
-    const elem = e.target.parentElement.parentElement;
-    elem.classList.toggle("sidebar-hidden");
-    const labelSpans = document.querySelectorAll(".ant-menu-title-content");
-    labelSpans.forEach((el) => el.classList.toggle("hidden"));
-  };
-
-  const signOut = () => {
-    const GoogleAuth = window.gapi?.auth2?.getAuthInstance().then(
-      () => {
-        localStorage.clear();
-        dispatch(logoutUser());
-        GoogleAuth.signOut();
-      },
-      () => console.log("signout Error")
-    );
-  };
-
-  return (
-    <div className="sidebar">
-      <div className="sidebar_null"></div>
-      <div className="sidebar__top">
-        <div span={24} className="avatar">
-          <Avatar
-            size={180}
-            src={`http://localhost:3001/${currentUser.avatar}`}
-            draggable={false}
-          />
-        </div>
-        <h3 level={4}>{currentUser.name}</h3>
-        <div className="rater">
-          <Rater />
-        </div>
-        <div className="socialsButtons">
-          <Button type="dashed" icon={<FacebookOutlined />} size={size} />
-          <Button
-            type="dashed"
-            className="buttons"
-            icon={<InstagramOutlined />}
-            size={size}
-          />
-        </div>
-        <Menu className="profileMenu">
-          <Menu.Item
-            key="1"
-            className="userLinksButton"
-            icon={<ProfileOutlined className="profileIcon" />}
-            title="Profile"
-          >
-            <Link to={"/profile"}>Profile</Link>
-          </Menu.Item>
-          <Menu.Item
-            key="2"
-            className="userLinksButton"
-            icon={<FieldTimeOutlined className="currentEvents" />}
-            title="currentEvents"
-          >
-            <Link to={"/currentEvents"}>currentEvents</Link>
-          </Menu.Item>
-          <Menu.Item
-            key="3"
-            className="userLinksButton"
-            icon={<TeamOutlined />}
-            title="Friends"
-          >
-            <Link to={"/friends"}>Friends</Link>
-          </Menu.Item>
-          <Menu.Item
-            key="4"
-            className="userLinksButton"
-            icon={<InboxOutlined />}
-            title="History"
-          >
-            <Link to={"/history"}>History</Link>
-          </Menu.Item>
-          <Menu.Item
-            key="5"
-            onClick={signOut}
-            className="userLinksButton"
-            icon={<LogoutOutlined />}
-            title="Logout"
-          >
-            Logout
-          </Menu.Item>
-        </Menu>
-      </div>
-      <div className="sidebar__bottom">
-        <button className="button sidebar__bottom-button" onClick={hideSidebar}>
-          asd
-        </button>
-      </div>
-    </div>
-  );
-};
-export default UserMenuSider;
+	useEffect(() => {
+		window.gapi?.load('auth2', function () {
+			window.gapi?.auth2
+				.init({
+					client_id:
+						'213632962035-g4knv9je1q010p9lclqpuq2u73au46l3.apps.googleusercontent.com',
+				})
+				.then(
+					() => console.log('init OK'),
+					() => console.log('init error')
+				)
+		})
+	}, [])
+	const dispatch = useDispatch()
+	const currentUser = useSelector(state => state.users.currentUser)
+	const id = localStorage?.id
+	const { Title } = Typography
+	const size = 'large'
+	const hideSidebar = e => {
+		const elem = e.target.parentElement.parentElement
+		elem.classList.toggle('sidebar-hidden')
+		const labelSpans = document.querySelectorAll('.ant-menu-title-content')
+		labelSpans.forEach(el => el.classList.toggle('hidden'))
+	}
+	const signOut = () => {
+		console.log('ya tut')
+		const GoogleAuth = window.gapi?.auth2?.getAuthInstance().then(
+			() => {
+				console.log('ya sdelal')
+				localStorage.clear()
+				dispatch(logoutUser())
+				GoogleAuth.signOut()
+			},
+			() => console.log('signout Error')
+		)
+	}
+	return (
+		<div className='container--sidebar'>
+			<div className='sidebar'>
+				<div className='sidebar__top'>
+					<div span={24} className='avatar'>
+						<Avatar
+							size={180}
+							src={`http://localhost:3001/${currentUser.avatar}`}
+							draggable={false}
+						/>
+					</div>
+					<h4 className='sidebar__username'>{currentUser.name}</h4>
+					<div className='rater'>
+						<Rater />
+					</div>
+					<div className='social'>
+						<a
+							className='button social__link'
+							href='https://www.instagram.com/arianagrande/'
+							target='_blank'
+						>
+							<img
+								src='/img/social-icons/instagramm.svg'
+								alt='instagramm-icon'
+								className='social__icon'
+							/>
+						</a>
+						<a
+							className='button social__link'
+							href='https://vk.com/hokage_kun'
+							target='_blank'
+						>
+							<img
+								src='/img/social-icons/vkontakte.svg'
+								alt=''
+								className='social__icon'
+							/>
+						</a>
+						<a
+							className='button social__link'
+							href='https://twitter.com/arianagrande'
+							target='_blank'
+						>
+							<img
+								src='/img/social-icons/twitter.svg'
+								alt=''
+								className='social__icon'
+							/>
+						</a>
+						<a
+							className='button social__link'
+							href='https://ru-ru.facebook.com/arianagrande/'
+							target='_blank'
+						>
+							<img
+								src='/img/social-icons/facebook.svg'
+								alt=''
+								className='social__icon'
+							/>
+						</a>
+					</div>
+					<ul className='profileMenu'>
+						<li key='1' className='profileMenu__item'>
+							<Link className='profileMenu__item-link' to={'/profile'}>
+								<ProfileOutlined className='profileMenu__item-icon' />
+								<span className='profileMenu__item-text'>Profile</span>
+							</Link>
+						</li>
+						<li key='2' className='profileMenu__item'>
+							<Link className='profileMenu__item-link' to={'/currentEvents'}>
+								<FieldTimeOutlined className='profileMenu__item-icon' />
+								<span className='profileMenu__item-text'>currentEvents</span>
+							</Link>
+						</li>
+						<li key='3' className='profileMenu__item'>
+							<Link className='profileMenu__item-link' to={'/friends'}>
+								<TeamOutlined className='profileMenu__item-icon' />
+								<span className='profileMenu__item-text'>Friends</span>
+							</Link>
+						</li>
+						<li key='4' className='profileMenu__item'>
+							<Link className='profileMenu__item-link' to={'/history'}>
+								<InboxOutlined className='profileMenu__item-icon' />
+								<span className='profileMenu__item-text'>History</span>
+							</Link>
+						</li>
+						<li key='5' onClick={signOut} className='profileMenu__item'>
+							<Link className='profileMenu__item-link'>
+								<LogoutOutlined className='profileMenu__item-icon profileMenu__item-icon--logout' />
+								<span className='profileMenu__item-text'>Logout</span>
+							</Link>
+						</li>
+					</ul>
+				</div>
+				<div className='sidebar__bottom'>
+					<button
+						className='button sidebar__closeButton'
+						onClick={hideSidebar}
+					>
+						<LeftSquareOutlined className="sidebar__closeButton-icon"/>
+            <span className="sidebar__closeButton-text">Далее</span>
+					</button>
+				</div>
+			</div>
+		</div>
+	)
+}
+export default UserMenuSider

@@ -1,24 +1,29 @@
-.container
-  &-chat
-    background-color: #f8f8f8
-    border-radius: 10px
-    overflow: hidden
-    width: 320px
-    height: 400px
-  &-chatInput
-    position: relative
-    display: flex
-    background-color: #fff
-    height: fit-content
+
 .chat
   height: 100%
   display: flex
   flex-direction: column
   justify-content: space-between
   align-items: center
+  position: relative
+  &-container
+    position: fixed
+    right: 20px
+    bottom: 20px
+    background-color: #f8f8f8
+    border-radius: 10px
+    overflow: hidden
+    width: 320px
+    height: 400px
+  &-input
+    position: relative
+    display: flex
+    background-color: #fff
+    height: fit-content
   &__header
     width: 100%
-    background-color: #41962c
+    height: 40px
+    background-color: $orange
   &__title
     margin: 0
     text-align: center
@@ -57,6 +62,11 @@
     line-height: 1.2
     &:focus
       outline: none
+    &-container
+      position: relative
+      display: flex
+      background-color: #fff
+      height: fit-content
   &__addFileIcon
     display: inline-block
     position: absolute
@@ -82,3 +92,32 @@
     font-size: 18px
     &:hover
       color: #7ce0ff
+.closeChatButton
+  height: 40px
+  width: 40px
+  position: absolute
+  top: 0
+  right: 0
+  opacity: 0.6
+  &:hover
+    opacity: 1
+  &::before
+    content: ""
+    position: absolute
+    top: 30%
+    left: 50%
+    transform: translate(-50%, -50%)
+    transform: rotate(45deg)
+    width: 1px
+    height: 20px
+    background-color: black
+  &::after
+    content: ""
+    position: absolute
+    top: 30%
+    left: 50%
+    transform: translate(-50%, -50%)
+    transform: rotate(-45deg)
+    width: 1px
+    height: 20px
+    background-color: black

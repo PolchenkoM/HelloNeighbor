@@ -22,10 +22,10 @@ const EventList = () => {
 
   const events = useSelector((state) => state.events.circleEvents);
   const allEvents = useSelector((state) => state.events.allEvents);
-  const num = allEvents.length - events.length;
+  // const num = allEvents.length - events.length;
   
   const psedoAll = allEvents.map(el => el._id)
-  const psedoEv = events.map(el => el._id)
+  const psedoEv = events?.map(el => el._id)
   const arr = psedoAll.filter(el => !psedoEv.includes(el))
   const newArr = allEvents.filter(el => arr.includes(el._id))
 
