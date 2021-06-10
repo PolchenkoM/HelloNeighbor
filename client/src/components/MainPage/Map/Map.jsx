@@ -25,7 +25,7 @@ function MyComponent() {
 	console.log(userAddress)
 	const containerStyle = {
 		width: '100%',
-		height: '100vh',
+		height: '100%',
 	}
 
 	const options = {
@@ -71,7 +71,7 @@ function MyComponent() {
 	}
 	useEffect(() => {
 		if (adres && window.google) {
-		 decodingAdress(adres)
+			decodingAdress(adres)
 		}
 	}, [adres, window.google])
 
@@ -105,30 +105,34 @@ function MyComponent() {
 
 	return isLoaded ? (
 		<>
-			<GoogleMap
-				className='karta'
-				mapContainerStyle={containerStyle}
-				center={center}
-				zoom={16}
-				options={options}
-			>
-				<></>
-				{events.length &&
-					events.map(event => (
-						<Marker
-							position={{ lat: event.coordinates.x, lng: event.coordinates.y }}
-							icon={{
-								url: '/baloon.png',
-							}}
-							key={Math.random()}
-						/>
-					))}
-				<Circle
-					center={centerCircle}
-					options={optionsCircle}
-					onClick={onMapClick}
-				/>
-			</GoogleMap>
+			<div className='container--map'>
+				<GoogleMap
+					className='karta'
+					mapContainerStyle={containerStyle}
+					center={center}
+					zoom={16}
+					options={options}
+				>
+					{events.length &&
+						events.map(event => (
+							<Marker
+								position={{
+									lat: event.coordinates.x,
+									lng: event.coordinates.y,
+								}}
+								icon={{
+									url: '/baloon.png',
+								}}
+								key={Math.random()}
+							/>
+						))}
+					<Circle
+						center={centerCircle}
+						options={optionsCircle}
+						onClick={onMapClick}
+					/>
+				</GoogleMap>
+			</div>
 		</>
 	) : null
 }

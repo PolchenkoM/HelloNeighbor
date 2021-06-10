@@ -2,7 +2,7 @@ export default function Event({ name }) {
   
 	return (
 		<>
-			<div className='container'>
+			<div className='container-event'>
 				<div className='event'>
 					<h1 className='event__title'>{name}</h1>
 					<div className='event__content-main'>

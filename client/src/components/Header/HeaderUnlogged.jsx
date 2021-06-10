@@ -62,16 +62,6 @@ export default function HeaderUnlogged() {
             (нот-мейн-хедер)Продукты
 							</Link>
 						</li>
-						<li className='list__item'>
-							<Link to='/about' className='list__item-link'>
-								О&nbsp;нас
-							</Link>
-						</li>
-						<li className='list__item'>
-							<Link to='/support' className='list__item-link'>
-								Поддержка
-							</Link>
-						</li>
 					</ul>
 				</nav>
 				<button className='button' onClick={showModal}>

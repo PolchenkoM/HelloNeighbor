@@ -21,7 +21,13 @@ export default function ChatModal() {
     
   }
   function closeChatModal() {
+    console.log('check--------------')
     dispatch(changeChatModalVisibility())
+  }
+  function handleKeyPress(e) {
+    if (e.keyCode == 27) {
+      dispatch(changeChatModalVisibility())
+    }
   }
 
 
@@ -29,7 +35,7 @@ export default function ChatModal() {
 		<>
 			<div className='chat-container'>
 				<div className='chat'>
-          <button className="button closeChatButton" onClick={closeChatModal}></button>
+          <button className="button closeChatButton" onClick={closeChatModal} onKeyPress={(e) => handleKeyPress(e)}></button>
 					<div className='chat__header'>
 						<h4 className='chat__title'>chat title</h4>
 					</div>

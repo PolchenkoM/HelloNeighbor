@@ -8,6 +8,7 @@ import {
 	LogoutOutlined,
 	FieldTimeOutlined,
 	HddOutlined,
+	LeftSquareOutlined,
 } from '@ant-design/icons'
 import { Typography, Button, Menu } from 'antd'
 import Avatar from 'antd/lib/avatar/avatar'
@@ -54,56 +55,108 @@ const UserMenuSider = () => {
 		)
 	}
 	return (
-		<div className='sidebar'>
-			<div className='sidebar_null'></div>
-			<div className='sidebar__top'>
-				<div span={24} className='avatar'>
-					<Avatar
-						size={180}
-						src={`http://localhost:3001/${currentUser.avatar}`}
-						draggable={false}
-					/>
+		<div className='container--sidebar'>
+			<div className='sidebar'>
+				<div className='sidebar__top'>
+					<div span={24} className='avatar'>
+						<Avatar
+							size={180}
+							src={`http://localhost:3001/${currentUser.avatar}`}
+							draggable={false}
+						/>
+					</div>
+					<h4 className='sidebar__username'>{currentUser.name}</h4>
+					<div className='rater'>
+						<Rater />
+					</div>
+					<div className='social'>
+						<a
+							className='button social__link'
+							href='https://www.instagram.com/arianagrande/'
+							target='_blank'
+						>
+							<img
+								src='/img/social-icons/instagramm.svg'
+								alt='instagramm-icon'
+								className='social__icon'
+							/>
+						</a>
+						<a
+							className='button social__link'
+							href='https://vk.com/hokage_kun'
+							target='_blank'
+						>
+							<img
+								src='/img/social-icons/vkontakte.svg'
+								alt=''
+								className='social__icon'
+							/>
+						</a>
+						<a
+							className='button social__link'
+							href='https://twitter.com/arianagrande'
+							target='_blank'
+						>
+							<img
+								src='/img/social-icons/twitter.svg'
+								alt=''
+								className='social__icon'
+							/>
+						</a>
+						<a
+							className='button social__link'
+							href='https://ru-ru.facebook.com/arianagrande/'
+							target='_blank'
+						>
+							<img
+								src='/img/social-icons/facebook.svg'
+								alt=''
+								className='social__icon'
+							/>
+						</a>
+					</div>
+					<ul className='profileMenu'>
+						<li key='1' className='profileMenu__item'>
+							<Link className='profileMenu__item-link' to={'/profile'}>
+								<ProfileOutlined className='profileMenu__item-icon' />
+								<span className='profileMenu__item-text'>Profile</span>
+							</Link>
+						</li>
+						<li key='2' className='profileMenu__item'>
+							<Link className='profileMenu__item-link' to={'/currentEvents'}>
+								<FieldTimeOutlined className='profileMenu__item-icon' />
+								<span className='profileMenu__item-text'>currentEvents</span>
+							</Link>
+						</li>
+						<li key='3' className='profileMenu__item'>
+							<Link className='profileMenu__item-link' to={'/friends'}>
+								<TeamOutlined className='profileMenu__item-icon' />
+								<span className='profileMenu__item-text'>Friends</span>
+							</Link>
+						</li>
+						<li key='4' className='profileMenu__item'>
+							<Link className='profileMenu__item-link' to={'/history'}>
+								<InboxOutlined className='profileMenu__item-icon' />
+								<span className='profileMenu__item-text'>History</span>
+							</Link>
+						</li>
+						<li key='5' onClick={signOut} className='profileMenu__item'>
+							<Link className='profileMenu__item-link'>
+								<LogoutOutlined className='profileMenu__item-icon profileMenu__item-icon--logout' />
+								<span className='profileMenu__item-text'>Logout</span>
+							</Link>
+						</li>
+					</ul>
 				</div>
-				<h3 level={4}>{currentUser.name}</h3>
-				<div className='rater'>
-					<Rater />
+				<div className='sidebar__bottom'>
+					<button
+						className='button sidebar__closeButton'
+						onClick={hideSidebar}
+					>
+						<LeftSquareOutlined className="sidebar__closeButton-icon"/>
+            <span className="sidebar__closeButton-text">Далее</span>
+					</button>
 				</div>
-				<div className='socialsButtons'>
-					<Button type='dashed' icon={<FacebookOutlined />} size={size} />
-					<Button
-						type='dashed'
-						className='buttons'
-						icon={<InstagramOutlined />}
-						size={size}
-					/>
-				</div>
-				<ul className='profileMenu'>
-					<li key='1' className='userLinksButton'>
-						<ProfileOutlined className='profileIcon' />
-						<Link to={'/profile'}>Profile</Link>
-					</li>
-					<li key='2' className='userLinksButton'>
-						<FieldTimeOutlined className='currentEvents' />
-						<Link to={'/currentEvents'}>currentEvents</Link>
-					</li>
-					<li key='3' className='userLinksButton'>
-						<TeamOutlined className='' />
-						<Link to={'/friends'}>Friends</Link>
-					</li>
-					<li key='4' className='userLinksButton'>
-						<InboxOutlined />
-						<Link to={'/history'}>History</Link>
-					</li>
-					<li key='5' onClick={signOut} className='userLinksButton'>
-						<LogoutOutlined />
-						<span>Logout</span>
-					</li>
-				</ul>
-			</div>
-			<div className='sidebar__bottom'>
-				<button className='button sidebar__bottom-button' onClick={hideSidebar}>
-					asd
-				</button>
 			</div>
 		</div>
 	)

@@ -16,9 +16,7 @@ export default function History() {
 
 	return (
 		<>
-			<div className='containerMain'>
-				<UserMenuSider />
-				<div className='container'>
+			<div className='container--history'>
 					<ul className='history'>
 						{history.map(event => (
 							<Event
@@ -38,7 +36,6 @@ export default function History() {
 							/>
 						))}
 					</ul>
-				</div>
 			</div>
 		</>
 	)

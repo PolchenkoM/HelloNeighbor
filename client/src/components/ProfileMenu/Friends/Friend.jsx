@@ -22,7 +22,7 @@ export default function Friend({ name, onlineStatus }) {
 							src='./img/caruselPhotos/image1.jpeg'
 							alt=''
 						/>
-						{onlineStatus ? <span className='onlineStatus'></span> : ''}
+						{onlineStatus ? <span className='friend__onlineStatus-mark'></span> : ''}
 					</div>
 					<div className='friend-content__main'>
 						<div className='friend-content__main--top'>
