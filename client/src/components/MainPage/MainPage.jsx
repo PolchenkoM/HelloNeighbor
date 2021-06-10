@@ -1,55 +1,56 @@
-import { useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import UserMenuSider from "./UserMenuSider/UserMenuSider"
-import Profile from "../ProfileMenu/Profile/Profile"
-import Map from "./Map/Map"
-import { getCircleEventThunk } from "../../redux/Actions/eventAC"
-import CreateEventModal from "./EventModals/CreateEventModal"
-import Sider from "../MainPage/EventList/EventList"
+import UserMenuSider from "./UserMenuSider/UserMenuSider";
+import Profile from "../ProfileMenu/Profile/Profile";
+import Map from "./Map/Map";
+import { getCircleEventThunk } from "../../redux/Actions/eventAC";
+import CreateEventModal from "./EventModals/CreateEventModal";
+import Sider from "../MainPage/EventList/EventList";
+import EventList from "../MainPage/EventList/EventList";
 
 const MainPage = () => {
-	const dispatch = useDispatch()
-	const currentUser = useSelector((state) => state.users.currentUser)
+  const dispatch = useDispatch();
+  const currentUser = useSelector((state) => state.users.currentUser);
 
-	useEffect(() => {
-		window.gapi?.load("auth2", function () {
-			window.gapi?.auth2
-				.init({
-					client_id: "213632962035-g4knv9je1q010p9lclqpuq2u73au46l3.apps.googleusercontent.com"
-				})
-				.then(
-					() => console.log("init OK"),
-					() => console.log("init error")
-				)
-		})
-	}, [])
+  useEffect(() => {
+    window.gapi?.load("auth2", function () {
+      window.gapi?.auth2
+        .init({
+          client_id:
+            "213632962035-g4knv9je1q010p9lclqpuq2u73au46l3.apps.googleusercontent.com",
+        })
+        .then(
+          () => console.log("init OK"),
+          () => console.log("init error")
+        );
+    });
+  }, []);
 
-	useEffect(() => {
-		if (currentUser) {
-			console.log("currentUser._id", currentUser._id)
-			dispatch(getCircleEventThunk(currentUser._id))
-		}
-	}, [currentUser])
+  useEffect(() => {
+    if (currentUser) {
+      dispatch(getCircleEventThunk(currentUser._id));
+    }
+  }, [currentUser]);
 
-	return (
-		<>
-			{currentUser.name ? (
-				<div className='container-mt'>
-					<div className='containerMain'>
-						<UserMenuSider />
-						<div className='containerMap'>
-							<Map />
-						</div>
-						<CreateEventModal />
-						<Sider />
-					</div>
-				</div>
-			) : (
-				<Profile />
-			)}
-		</>
-	)
-}
+  return (
+    <>
+      {currentUser.name ? (
+        <div className="container-mt">
+          <div className="containerMain">
+            <UserMenuSider />
+            <div className="containerMap">
+              <Map />
+            </div>
+            <CreateEventModal />
+            <EventList />
+          </div>
+        </div>
+      ) : (
+        <Profile />
+      )}
+    </>
+  );
+};
 
-export default MainPage
+export default MainPage;

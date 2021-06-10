@@ -16,7 +16,6 @@ import { useEffect } from "react";
 import { logoutUser } from "../../../redux/Actions/usersAC";
 import { Link } from "react-router-dom";
 const UserMenuSider = () => {
-  
   useEffect(() => {
     window.gapi?.load("auth2", function () {
       window.gapi?.auth2
