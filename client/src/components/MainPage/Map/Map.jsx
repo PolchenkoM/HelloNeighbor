@@ -14,6 +14,12 @@ import { addEventSaga, getEventSaga } from "../../../redux/Actions/eventAC"
 function MyComponent() {
 	const dispatch = useDispatch()
 
+	const [eventAuthor, setEventAuthor] = useState({})
+
+	const selectedEvent = useSelector((state) => state.events.selectedEvent)
+
+	const author = selectedEvent?.author
+
 	const adres = useSelector((state) => state.users.currentUser.address)
 	const currentUser = useSelector((state) => state.users.currentUser)
 	const events = useSelector((state) => state.events.allEvents)
@@ -23,7 +29,7 @@ function MyComponent() {
 
 	const containerStyle = {
 		width: "100%",
-		height: "100vh"
+		height: "100%"
 	}
 
 	const options = {
@@ -64,7 +70,6 @@ function MyComponent() {
 		}
 		return "dsfsdfsdfds"
 	}
-	console.log("userAddress", userAddress.lat)
 	useEffect(() => {
 		if (adres && window.google) {
 			decodingAdress(adres)
@@ -106,6 +111,20 @@ function MyComponent() {
 		}
 	}
 
+	useEffect(async () => {
+		fetch("http://localhost:3001/eventAuthor", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify({
+				author
+			})
+		})
+			.then((res) => res.json())
+			.then((result) => setEventAuthor(result))
+	}, [])
+
 	const selectEvent = (event) => {
 		dispatch(modalMatchVisibility())
 		dispatch(getSelectedEvent(event))
@@ -113,27 +132,29 @@ function MyComponent() {
 
 	return isLoaded ? (
 		<>
-			<GoogleMap className='karta' mapContainerStyle={containerStyle} center={center} zoom={16} options={options}>
-				<></>
-				{events.length &&
-					events.map((event) => (
-						<Marker
-							position={{ lat: event.coordinates.x, lng: event.coordinates.y }}
-							icon={{
-								url: "/baloon.png"
-							}}
-							key={Math.random()}
-							onClick={() => selectEvent(event)}
-							id={event._id}
-							title={`
+			<div className='container--map'>
+				<GoogleMap className='karta' mapContainerStyle={containerStyle} center={center} zoom={16} options={options}>
+					<></>
+					{events.length &&
+						events.map((event) => (
+							<Marker
+								position={{ lat: event.coordinates.x, lng: event.coordinates.y }}
+								icon={{
+									url: "/baloon.png"
+								}}
+								key={Math.random()}
+								onClick={() => selectEvent(event)}
+								id={event._id}
+								title={`
                           Название :${event.title}
  Время: ${event.eventTime}
  Создатель: ${event.author}`}
-							value={event.title}
-						/>
-					))}
-				<Circle center={centerCircle} options={optionsCircle} onClick={onMapClick} />
-			</GoogleMap>
+								value={event.title}
+							/>
+						))}
+					<Circle center={centerCircle} options={optionsCircle} onClick={onMapClick} />
+				</GoogleMap>
+			</div>
 		</>
 	) : null
 }

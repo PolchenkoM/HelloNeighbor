@@ -1,10 +1,10 @@
 import moment from "moment"
 import { Form, Input, Button, DatePicker, Select, Checkbox, Tag } from "antd"
+
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import useForm from "../../hooks/useForm"
 import { getCurrentUserGoogleThunk, updateUserThunk } from "../../../redux/Actions/usersAC"
-import UserMenuSider from "../../MainPage/UserMenuSider/UserMenuSider"
 
 const { Option } = Select
 const layout = {
@@ -104,8 +104,7 @@ export default function Profile() {
 
 	return (
 		<>
-			<div className='containerMain'>
-				<UserMenuSider />
+			<div className='container--profile'>
 				<Form
 					{...layout}
 					name='nest-messages'
@@ -158,15 +157,19 @@ export default function Profile() {
 							</>
 						</Checkbox.Group>
 					</Form.Item>
-					<div
-						className='droparea'
-						onDragStart={(e) => dragStartHandler(e)}
-						onDragLeave={(e) => dragLeaveHandler(e)}
-						onDragOver={(e) => dragStartHandler(e)}
-						onDrop={(e) => onDropHandler(e)}
-					>
-						{drag ? <div>если тянешь - отпусти</div> : <div>если хочешь - потяни</div>}
+					{/* <Form.Item> */}
+					<div className='droparea-wrapper'>
+						<div
+							className='droparea'
+							onDragStart={(e) => dragStartHandler(e)}
+							onDragLeave={(e) => dragLeaveHandler(e)}
+							onDragOver={(e) => dragStartHandler(e)}
+							onDrop={(e) => onDropHandler(e)}
+						>
+							{drag ? <span>если тянешь - отпусти</span> : <span>если хочешь - потяни</span>}
+						</div>
 					</div>
+					{/* </Form.Item> */}
 
 					<Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
 						<Button type='primary' htmlType='submit' onClick={profileSubmit}>

@@ -46,70 +46,60 @@ export default function HeaderUnlogged() {
     dispatch(addEventModal());
   };
 
-  return (
-    <>
-      <header className="header">
-        <nav className="navbar header__navbar">
-          <ul className="list navbar__list">
-            <li className="list__item">
-              <img
-                className="header__image"
-                src="/img/randomLogo.jpg"
-                alt="SITE LOGO"
-              />
-            </li>
-            <li className="list__item">
-              <Link to="/products" className="list__item-link">
-                (нот-мейн-хедер)Продукты
-              </Link>
-            </li>
-            <li className="list__item">
-              <Link to="/about" className="list__item-link">
-                О&nbsp;нас
-              </Link>
-            </li>
-            <li className="list__item">
-              <Link to="/support" className="list__item-link">
-                Поддержка
-              </Link>
-            </li>
-          </ul>
-        </nav>
-        <button className="button" onClick={showModal}>
-          Войти
-        </button>
-        <Modal
-          title="Войдите в аккаунт"
-          visible={isModalVisible}
-          onOk={handleOk}
-          onCancel={handleCancel}
-          footer={null}
-        >
-          <form method="POST" onSubmit={handleOk}>
-            <label htmlFor="">
-              Почта
-              <Input
-                name="email"
-                type="email"
-                value={values.email || ""}
-                onChange={changeHandler}
-                placeholder="Введите текст"
-              />
-            </label>
-            <label htmlFor="">
-              Пароль
-              <Input
-                name="password"
-                type="password"
-                value={values.password || ""}
-                onChange={changeHandler}
-                placeholder="Введите текст"
-              />
-            </label>
-            <button className="button">Войти</button>
-          </form>
-        </Modal>
-      </header>
-    </>
-  );
+	return (
+		<>
+			<header className='header'>
+				<nav className='navbar header__navbar'>
+					<ul className='list navbar__list'>
+						<li className='list__item'>
+							<img
+								className='header__image'
+								src='/img/randomLogo.jpg'
+								alt='SITE LOGO'
+							/>
+						</li>
+						<li className='list__item'>
+            <Link to='/products' className='list__item-link'>
+            (нот-мейн-хедер)Продукты
+							</Link>
+						</li>
+					</ul>
+				</nav>
+				<button className='button' onClick={showModal}>
+					Войти
+				</button>
+				<Modal
+					title='Войдите в аккаунт'
+					visible={isModalVisible}
+					onOk={handleOk}
+					onCancel={handleCancel}
+					footer={null}
+				>
+					<form method='POST' onSubmit={handleOk}>
+						<label htmlFor=''>
+							Почта
+							<Input
+								name='email'
+								type='email'
+								value={values.email || ''}
+								onChange={changeHandler}
+								placeholder='Введите текст'
+							/>
+						</label>
+						<label htmlFor=''>
+							Пароль
+							<Input
+								name='password'
+								type='password'
+								value={values.password || ''}
+								onChange={changeHandler}
+								placeholder='Введите текст'
+							/>
+						</label>
+						<button className='button'>Войти</button>
+					</form>
+				</Modal>
+			</header>
+		</>
+	)
 }

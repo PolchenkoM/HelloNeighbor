@@ -1,13 +1,53 @@
 *
   box-sizing: border-box
-body
+body, html
   font-family: Roboto, sans-serif
   font-weight: 400
   color: $text-color
+  height: 100%
 #body
   height: auto
 .container
-  // max-width: 1110px
+  &-fullscreen
+    height: 100vh
+    background-image: url('./components/imgInStyle/background.jpeg')
+  &--main
+    height: 100%
+    background-image: url('./components/imgInStyle/background.jpeg')
+    background: grey
+  &--content
+    height: 100%
+    width: 100%
+    padding-top: 50px
+    padding-left: 200px
+    display: flex
+    flex-direction: column
+  &--sidebar
+    height: 100%
+    width: 200px
+    position: absolute
+    top: 0
+    left: 0
+    padding-top: 50px
+    background: none
+  &--map
+    display: flex
+    flex-grow: 2
+    align-items: center
+    justify-content: center
+    height: 100%
+    max-width: 1200px
+    margin: 0 auto
+  &--profile
+    height: 100%
+    width: 1000px
+    margin: 0 auto
+    background: $bc-grey
+  &--currentEvents
+    height: 100%
+  &--friends
+  &--history
+    // height: 100%
   &-mt
     height: 95vh
     margin-top: 5vh
@@ -29,7 +69,7 @@ img
   height: 123px
   width: 100%
 .button
-  color: $light
+  color: $white
   background: none
   border: none
   outline: none

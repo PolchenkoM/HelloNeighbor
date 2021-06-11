@@ -2,11 +2,14 @@
   display: flex
   justify-content: center
   align-items: center
-  border: 2px solid red
+  border: 2px solid #ffa31a
+  border-radius: 50%
   height: 200px
-  width: 500px
+  width: 200px
+  color:   #ffa31a
+
 .profile
-  background-color: rgba(50, 250, 67, 0.3)
+  background-color: $bc-grey-dark
   height: 100%
   width: 100%
   padding: 50px 100px
@@ -14,3 +17,26 @@
   flex-direction: column
   align-items: center
   justify-content: space-between
+
+.ant-form
+  display: block
+  .ant-tag-checkable
+   color:   #ffa31a
+  .ant-form-item-label label
+    color:   #ffa31a
+
+
+.ant-form-item-control-input-content
+  margin: auto
+  display: flex
+  justify-content: flex-start
+  
+.ant-row.ant-form-item
+  display: flex
+  justify-content: flex-start
+
+.droparea-wrapper
+  display: flex
+  justify-content: center
+  align-items: center
+  
