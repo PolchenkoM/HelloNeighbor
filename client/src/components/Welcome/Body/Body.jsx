@@ -16,14 +16,14 @@ export default function Body() {
   const [values, changeHandler] = useRegForm();
   const [visible, setVisible] = React.useState(false);
   const [confirmLoading, setConfirmLoading] = React.useState(false);
-  const [modalText, setModalText] = React.useState("Content of the modal");
+  const [modalText, setModalText] = React.useState("");
 
   const showModal = () => {
     setVisible(true);
   };
 
   const handleOk = () => {
-    setModalText("The modal will be closed after two seconds");
+    setModalText("Окно будет закрыто через пару секунд");
     setConfirmLoading(true);
     fetch("http://localhost:3001/registration/", {
       method: "POST",
@@ -43,7 +43,7 @@ export default function Body() {
     setTimeout(() => {
       setVisible(false);
       setConfirmLoading(false);
-    }, 1000);
+    }, 50);
   };
 
   const handleCancel = () => {
@@ -59,15 +59,16 @@ export default function Body() {
             Создать аккаунт
           </button>
           <Modal
-            title="Title"
+            title="Создать аккаунт"
             visible={visible}
             onOk={handleOk}
-            confirmLoading={confirmLoading}
+            className="authModal"
             onCancel={handleCancel}
           >
             <Input
               name="email"
               type="email"
+              className="auth-input"
               value={values.email || ""}
               onChange={changeHandler}
               placeholder="Почта"
@@ -75,11 +76,11 @@ export default function Body() {
             <Input
               name="password"
               type="password"
+              className="auth-input"
               value={values.password || ""}
               onChange={changeHandler}
               placeholder="Пароль"
             />
-            <p>{modalText}</p>
             <Registration />
           </Modal>
           <h1 className="welcome__title">Найди соседа</h1>

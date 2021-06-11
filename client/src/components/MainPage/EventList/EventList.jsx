@@ -50,25 +50,21 @@ const EventList = () => {
             ? events.map((el, ind) => (
                 <>
                   {el.title && (
-                    <li className="eventList__item">
-                      <Button onClick={() => selectEvent(el)}>
+                    <li className="eventList__item" onClick={() => selectEvent(el)}>
                         {el.title}
-                      </Button>
                     </li>
                   )}
                 </>
               ))
             : "Эвентов вблизи нет"}
         </ul>
-        <hr />
         <ul>
           {newArr.length &&
             newArr.map((el, ind) => (
               <>
                 {el.title && (
                   <li>
-                    <Button>{el.title}</Button> <br />
-                    <br />
+                    <button className="button">{el.title}</button>
                   </li>
                 )}
               </>

@@ -91,7 +91,8 @@
   border-radius: 20px
   cursor: pointer
   &:hover
-    background: #f84020
+    background: $bc-grey-dark
+    color: $orange
 .ant-modal-wrap .ant-modal
   border-radius: 5px
   overflow: hidden
@@ -117,6 +118,7 @@
   align-items: center
   justify-content: left
   align-content: flex-start
+  &__title
   &.ant-tag
     cursor: pointer
     margin-right: 5px
@@ -128,7 +130,7 @@
     &:hover
       background: $white
 .ant-tag.ant-tag-has-color
-  background-color: $bc-grey-dark!important
+  background-color: $bc-grey!important
   border-radius: 4px
   cursor: pointer
   &:hover
@@ -154,3 +156,5 @@ span.ant-tag
 .createModal__label
   color: $bc-black
   font-weight: bold
+.dark-text
+  color: $bc-black

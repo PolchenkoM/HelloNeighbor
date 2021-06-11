@@ -5,22 +5,25 @@ import ShowAuthorModal from "./ShowAuthorModal";
 import { useDispatch, useSelector } from "react-redux";
 import { Tag } from "antd";
 
-import { modalMatchVisibility } from "../../../redux/Actions/eventAC";
+import { getEventSaga, modalMatchVisibility } from "../../../redux/Actions/eventAC";
+import { getCurrentUserGoogleThunk } from "../../../redux/Actions/usersAC";
 
 export default function ShowEventModal() {
   const dispatch = useDispatch();
 
+  
   const key = "updatable";
   const modalMatchVisibilit = useSelector(
     (state) => state.events.modalMatchVisibility
-  );
+    );
+    
+    const selectedEvent = useSelector((state) => state.events.selectedEvent);
+    
+    const author = selectedEvent?.authorId;
+    const [eventAuthor, setEventAuthor] = useState({});
 
-  const selectedEvent = useSelector((state) => state.events.selectedEvent);
 
-  const author = selectedEvent?.authorId;
-  const [eventAuthor, setEventAuthor] = useState({});
-
-  console.log("author==>>>", author);
+     
 
   const handleOk = () => {
     notification.open({
@@ -98,6 +101,7 @@ export default function ShowEventModal() {
         </div>
 
         <div className="tags-list">
+          <span className="tags-list__title">Теги: </span> &nbsp;
           {selectedEvent.tags
             ? selectedEvent.tags.map((tag, ind) => (
                 <Tag color="#55acee" className="tag-list__tag" key={ind}>
@@ -112,7 +116,7 @@ export default function ShowEventModal() {
             id={selectedEvent._id}
             className="goButton"
           >
-            Go!
+            Присоединиться
           </button>
         </div>
       </Modal>

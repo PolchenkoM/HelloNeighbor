@@ -57,12 +57,10 @@ function Registration() {
 
   return (
     <>
-      <Button onClick={googleSignIn} type="primary">
-        googleAuth
-      </Button>
-      <Button onClick={signOut} type="primary">
-        sign out
-      </Button>
+      <div className="google-auth" onClick={googleSignIn} type="primary">
+        <img className="google-auth__icon" src="./img/google-auth-icon.svg" alt="google-auth-icon" />
+        <span className="google-auth__text">google auth</span>
+      </div>
     </>
   );
 }

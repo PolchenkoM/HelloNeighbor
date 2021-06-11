@@ -8,6 +8,7 @@ import {
 } from "../../../redux/Actions/eventAC";
 import { Tag } from "antd";
 import useForm from "../../hooks/useForm";
+import { getCurrentUserGoogleThunk } from "../../../redux/Actions/usersAC";
 
 export default function CreateEventModal() {
   const { CheckableTag } = Tag;
@@ -72,6 +73,7 @@ export default function CreateEventModal() {
       .then((result) => dispatch(addEvent(result)));
 
     dispatch(changeVisibility());
+    dispatch(getCurrentUserGoogleThunk(author))
     setValues("");
   };
 
@@ -118,8 +120,8 @@ export default function CreateEventModal() {
               onChange={changeHandler}
             />
           </label>
-          <div style={{marginTop: '10px'}}>
-            <label htmlFor="">Выберите тэги:</label>
+          <div className="createModal__tags" style={{marginTop: '10px'}}>
+            <label htmlFor="" className="dark-text createModal__label">Выберите тэги:</label>
           </div>
           <>
             {tags.map((tag) => (

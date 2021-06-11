@@ -97,30 +97,30 @@ const UserMenuSider = () => {
 						<li key='1' className='profileMenu__item'>
 							<Link className='profileMenu__item-link' to={'/friends'}>
 								<TeamOutlined className='profileMenu__item-icon' />
-								<span className='profileMenu__item-text'>Friends</span>
+								<span className='profileMenu__item-text'>Друзья</span>
 							</Link>
-							<span className='tooltip'>Friends</span>
+							<span className='tooltip'>Друзья</span>
 						</li>
 						<li key='2' className='profileMenu__item'>
 							<Link className='profileMenu__item-link' to={'/history'}>
 								<InboxOutlined className='profileMenu__item-icon' />
-								<span className='profileMenu__item-text'>History</span>
+								<span className='profileMenu__item-text'>История</span>
 							</Link>
-							<span className='tooltip'>History</span>
+							<span className='tooltip'>История</span>
 						</li>
 						<li key='3' className='profileMenu__item'>
 							<Link className='profileMenu__item-link' to={'/profile'}>
 								<ProfileOutlined className='profileMenu__item-icon' />
-								<span className='profileMenu__item-text'>Profile</span>
+								<span className='profileMenu__item-text'>Профиль</span>
 							</Link>
-							<span className='tooltip'>Profile</span>
+							<span className='tooltip'>Профиль</span>
 						</li>
 						<li key='4' onClick={signOut} className='profileMenu__item'>
 							<Link className='profileMenu__item-link'>
 								<LogoutOutlined className='profileMenu__item-icon profileMenu__item-icon--logout' />
-								<span className='profileMenu__item-text'>Logout</span>
+								<span className='profileMenu__item-text'>Выйти</span>
 							</Link>
-							<span className='tooltip'>Logout</span>
+							<span className='tooltip'>Выйти</span>
 						</li>
 					</ul>
 				</div>

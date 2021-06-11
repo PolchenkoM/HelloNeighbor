@@ -3,9 +3,12 @@
   flex-direction: column
   background: #bfd1d3
   border-radius: 10px
+  overflow: hidden
   margin: 10px 0
+  color: $white
   &__title
-    color: #e25b4b
+    color: $orange
+    background-color: $bc-black
     font-weight: bold
     font-size: 24px
     align-self: center
@@ -17,19 +20,21 @@
     display: flex
     justify-content: space-between
     height: 300px
-    background-color: #ecfdff
+    background-color: $bc-grey-dark
   &__photos
-    width: 500px
+    width: 200px
   &__description
     height: 150px
     font-size: 16px
+    color: $white
+    font-size: 16px
+  &__comments
+    margin-top: 10px
   &__tags
     list-style: none
     padding: 0
     margin: 0
-    display: flex
-    align-items: center
-    justify-content: flex-start
+    margin-top: 40px
   &__tag
     cursor: pointer
     margin-right: 5px
@@ -44,6 +49,7 @@
     align-items: center
     justify-content: space-between
     padding: 5px 10px
+    background: $bc-black
   &-members
     list-style: none
     margin: 0
@@ -54,12 +60,24 @@
       margin: 0 10px
       width: 50px
       height: 50px
-      background-color:#e25b4b
       border-radius: 50%
+      object-fit: cover
       &:first-child
         margin-left: 0 
   &__date
     font-weight: bold
     font-size: 14px
+    color: $orange
 .content-main
   padding: 30px 60px
+  width: 100%
+  display: flex
+  flex-direction: column
+  justify-content: flex-start
+  border-left: 6px solid $bc-black
+.orange-text
+  color: $orange
+  font-weight: bold
+.history
+  margin: 0 100px
+  padding: 0

@@ -8,7 +8,7 @@ export default function Event({ name }) {
   console.log(currentUser);
 
   return (
-    <div>
+    <>
       {currentUser &&
         userHistory?.map((el) => (
           <div className="container-event">
@@ -44,7 +44,8 @@ export default function Event({ name }) {
                         src="./img/caruselPhotos/image5.jpeg"
                         alt="RANDOM PHOTO"
                       />
-                    </div><div class="carousel__item">
+                    </div>
+                    <div class="carousel__item">
                       <img
                         className="carousel__image"
                         src="./img/caruselPhotos/image6.jpeg"
@@ -54,28 +55,46 @@ export default function Event({ name }) {
                   </div>
                 </div>
                 <div className="content-main">
-                  <p className="event__description">{el.description}</p>
-                  <hr/>
-                  {el.comments} тут комментарии
-                  <hr />
-                  {el.tags.map((tag, ind) => (
-                    <Tag key={ind} color="#3b5999">
-                      {tag.title}
-                    </Tag>
-                  ))}
+                  <div className="event__description">
+                    <span className="orange-text">Описание:</span>
+                    <br />
+                    {el.description}
+                  </div>
+                  <div className="event__comments">
+                    <span className="orange-text">Комментарии:</span>
+                    {el.comments}
+                  </div>
+
+                  <div className="event__tags">
+                    <span className="orange-text">Теги:</span>
+                    <br />
+                    {el.tags.map((tag, ind) => (
+                      <Tag key={ind} color="#3b5999">
+                        {tag.title}
+                      </Tag>
+                    ))}
+                  </div>
                 </div>
               </div>
               <div className="event__content-bottom">
                 <ul className="event-members">
                   {el.members.map((member, ind) => (
-                    <li className="event-members__member"><img className="event-members__member" src={`http://localhost:3001/${member.avatar}`}></img></li>
+                    <li className="event-members__member">
+                      <img
+                        className="event-members__member"
+                        src={`http://localhost:3001/${member.avatar}`}
+                      ></img>
+                    </li>
                   ))}
                 </ul>
+                <span className="event__date">
+                  Дата:&nbsp;&nbsp;&nbsp;
+                  {el.regDate.substring(0, el.regDate.indexOf("T"))}
+                </span>
               </div>
-              <span className="event__date">&nbsp;&nbsp;Дата: &nbsp;&nbsp;&nbsp;&nbsp;{el.regDate}</span>
             </div>
           </div>
         ))}
-    </div>
+    </>
   );
 }
