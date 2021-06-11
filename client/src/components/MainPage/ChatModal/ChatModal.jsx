@@ -14,7 +14,7 @@ export default function ChatModal() {
   const [value, setValue] = useState("");
   const currentUser = useSelector((state) => state.users.currentUser);
   const sortMessagesRef = useRef(null);
-
+console.log(sortMessages);
   const dispatch = useDispatch();
 
   function closeChatModal() {
@@ -37,7 +37,7 @@ export default function ChatModal() {
           currentUser,
           id: Date.now(),
         };
-        socket.current.send(JSON.stringify(message));
+        socket.current.send(JSON.stringify(''));
       }
     };
 
@@ -66,6 +66,7 @@ export default function ChatModal() {
   };
   const sendMessage = async () => {
     const message = {
+      url:`http://localhost:3001/${currentUser.avatar}`,
       currentUser,
       message: value,
       id: Date.now(),
@@ -79,7 +80,7 @@ export default function ChatModal() {
     if (currentUser) {
       connect();
     }
-  }, [currentUser]);
+  }, []);
 
   function showSmiles() {
     const smiles = document.querySelector(".smiles-container");
@@ -103,11 +104,12 @@ export default function ChatModal() {
             <div className="chat__content">
               <div className="chat__message">
                 {sortMessages.map((mess) => (
-                  <div className="chat__message-person" key={mess.id}>
+                  <div className="chat__message-person"
+                   key={mess.id}>
                     <>
                       <img
                         className="chat__user-avatar"
-                        src={`http://localhost:3001/${currentUser.avatar}`}
+                        src={mess.url}
                         alt=""
                       />
                       <p className="chat__text">{mess.message}</p>
