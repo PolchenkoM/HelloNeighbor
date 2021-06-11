@@ -42,7 +42,7 @@ function App() {
 				<div className='container-fullscreen'>
 					<div className='container--main'>
 						{currentUser.email ? <HeaderLogged /> : <HeaderUnlogged />}
-            <UserMenuSider/>
+						{currentUser.email ? <UserMenuSider/>: ''}
 						<div className='container--content'>
 							<Routes />
               <ShowEventModal/>

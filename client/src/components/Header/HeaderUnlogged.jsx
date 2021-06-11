@@ -55,7 +55,7 @@ export default function HeaderUnlogged() {
 							<Link to='/'>
 								<img
 									className='header__image'
-									src='/img/randomLogo.jpg'
+									src='/img/logo.jpg'
 									alt='SITE LOGO'
 								/>
 							</Link>

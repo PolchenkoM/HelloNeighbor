@@ -36,8 +36,9 @@ const UserMenuSider = () => {
 
 	const hideSidebar = e => {
 		const elem = document.querySelector('.sidebar')
-		console.log(elem)
+    const container = document.querySelector('.container--sidebar')
 		elem.classList.toggle('sidebar--active')
+		container.classList.toggle('container--sidebar--active')
 		// if (test) {
 		// 	elem.classList.toggle('sidebar-animation-hide')
 		// 	setTest(prev => !prev)
@@ -63,7 +64,7 @@ const UserMenuSider = () => {
 		)
 	}
 	return (
-		<div className='container--sidebar'>
+		<div className='container--sidebar container--sidebar--active'>
 			<div className='sidebar sidebar--active'>
 				<div className='sidebar__top'>
 					<div span={24} className='sidebar__avatar-wrapper'>

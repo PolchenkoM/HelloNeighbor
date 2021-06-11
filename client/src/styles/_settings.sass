@@ -14,23 +14,25 @@ body, html
   &--welcome
     background-image: url('./components/imgInStyle/background.jpeg')
     height: 100%
+    width: 100%
   &--main
     height: 100%
     background-image: url('./components/imgInStyle/background.jpeg')
     background: grey
+    display: flex
   &--content
     height: 100%
     width: 100%
-    padding-top: 50px
-    padding-left: 200px
+    padding-top: 60px
     display: flex
   &--sidebar
     height: 100%
-    width: 200px
-    // position: relative
-    padding-top: 50px
+    width: 70px
+    padding-top: 60px
     background: none
-    transition: 1s
+    transition: 0.5s
+    &--active
+      width: 200px
   &--map
     display: flex
     flex-grow: 2
@@ -39,6 +41,11 @@ body, html
     height: 100%
     max-width: 1200px
     margin: 0 auto
+  &--eventList
+    background:   #292929
+    width: 250px
+    height: 100%
+    border-top-left-radius: 15px
   &--profile
     height: 100%
     width: 100%

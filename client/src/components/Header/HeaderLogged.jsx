@@ -18,12 +18,12 @@ export default function HeaderLogged() {
 		<>
 			<header className='header'>
 				<nav className='navbar header__navbar'>
-					<ul className='list navbar__list'>
+					<ul className='list navbar__list list-logged'>
 						<li className='list__item'>
 							<Link to='/'>
 								<img
 									className='header__image'
-									src='/img/randomLogo.jpg'
+									src='/img/logo.jpg'
 									alt='SITE LOGO'
 								/>
 							</Link>
