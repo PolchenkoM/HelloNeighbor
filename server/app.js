@@ -66,15 +66,20 @@ app.get("/tags", async (req, res) => {
 
 app.post("/matchEvent", async (req, res) => {
   const user = await User.findOne({ email: req.body.author });
-  const currentEvent = await Event.findByIdAndUpdate(req.body.id);
+  const currentEvent = await Event.findById(req.body.id);
+  const author = currentEvent.authorId;
+  console.log(author);
+  console.log(user._id);
   if (!currentEvent.members.includes(user._id)) {
     currentEvent.members.push(user._id);
+    currentEvent.members.push(author._id);
     currentEvent.save();
+    // currentEvent.save();
   }
-
-  //   {
-  //   $push: { members: user._id },
-  // });
+  if (!user.history.includes(currentEvent._id)) {
+    user.history.push(currentEvent._id);
+    user.save();
+  }
 });
 
 app.post("/eventAuthor", async (req, res) => {

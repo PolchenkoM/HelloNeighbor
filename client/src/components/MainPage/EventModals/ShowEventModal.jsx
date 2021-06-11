@@ -1,4 +1,4 @@
-import { notification } from 'antd';
+import { notification } from "antd";
 import React, { useState, useEffect } from "react";
 import { Modal } from "antd";
 import ShowAuthorModal from "./ShowAuthorModal";
@@ -9,33 +9,32 @@ import { modalMatchVisibility } from "../../../redux/Actions/eventAC";
 
 export default function ShowEventModal() {
   const dispatch = useDispatch();
-  
-  const key = 'updatable';
+
+  const key = "updatable";
   const modalMatchVisibilit = useSelector(
     (state) => state.events.modalMatchVisibility
   );
 
   const selectedEvent = useSelector((state) => state.events.selectedEvent);
 
-  const author = selectedEvent?.author;
+  const author = selectedEvent?.authorId;
   const [eventAuthor, setEventAuthor] = useState({});
 
-  
-
+  console.log("author==>>>", author);
 
   const handleOk = () => {
     notification.open({
       key,
-      message: 'Секундочку...',
-      description: 'Отправляем запрос',
+      message: "Секундочку...",
+      description: "Отправляем запрос",
     });
     setTimeout(() => {
       notification.open({
         key,
-        message: 'Успешно!',
-        description: 'Вы присоединились к встрече',
+        message: "Успешно!",
+        description: "Вы присоединились к встрече",
       });
-    }, 1500);
+    }, 2000);
 
     const author = localStorage.getItem("email");
     const id = selectedEvent._id;
@@ -57,7 +56,6 @@ export default function ShowEventModal() {
   };
 
   const [authorModal, setAuthorModal] = useState(false);
-  console.log("from event show==>", eventAuthor);
 
   function authorShow() {
     return authorModal ? setAuthorModal(false) : setAuthorModal(true);

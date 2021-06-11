@@ -3,8 +3,7 @@ import Event from '../History/Event'
 
 export default function CurrentEvents() {
 	const currentEvents = [
-		{ title: 'курнуть', description: 'описание1', regDate: 'random data' },
-		{ title: 'погулять', description: 'описание2', regDate: 'random data' },
+		{ title: 'тайтл', description: 'описание', regDate: 'дата' },
 	]
 
 	return (
