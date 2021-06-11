@@ -23,11 +23,11 @@ router.route("/").post(async (req, res) => {
         to: email,
         subject:
           "Congratulatiions! You are successfully registred on our site!",
-        text: `Поздравляем, Вы успешно зарегистрировались на нашем сайте Hello Neighbour!
-
-        Данное письмо не требует ответа.`,
+        text: `Поздравляем, Вы успешно зарегистрировались на нашем сайте Hello Neighbour!!!!!!!
+        <a href='http://localhost:3000/'>тут ссылка для окончания регистрации</a>
+Данное письмо не требует ответа.`,
       };
-      // mailer(message);
+      mailer(message);
     }
   } catch (error) {
     console.log(error);

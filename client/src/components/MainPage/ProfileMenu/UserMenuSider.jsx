@@ -59,7 +59,7 @@ const UserMenuSider = () => {
 				localStorage.clear()
 				dispatch(logoutUser())
 				history.push("/")
-				GoogleAuth.signOut()
+				GoogleAuth?.signOut()
 			},
 			() => console.log("signout Error")
 		)
