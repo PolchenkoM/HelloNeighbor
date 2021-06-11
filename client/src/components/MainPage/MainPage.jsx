@@ -31,20 +31,21 @@ const MainPage = () => {
   }, [currentUser]);
 
   return (
-		<>
-			{currentUser.name ? (
-				<>
-					<div className='container--map'>
-						<Map />
-					</div>
-					<CreateEventModal />
-					<EventList />
-				</>
-			) : (
-				<Profile />
-			)}
-		</>
-	)
+    <>
+      {currentUser.name ? (
+        <>
+          <div className="container--map">
+            <Map />
+          </div>
+          <CreateEventModal />
+          <EventList />
+        </>
+      ) : (
+        <Profile />
+      )
+      }
+    </>
+  );
 };
 
-export default MainPage
+export default MainPage;

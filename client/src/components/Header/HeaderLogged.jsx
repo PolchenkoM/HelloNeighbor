@@ -8,6 +8,8 @@ import {
 	NotificationOutlined,
 } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
+import { changeCircleColor } from "../../redux/Actions/eventAC";
+
 
 
 
@@ -22,7 +24,7 @@ export default function HeaderLogged() {
 	const dispatch = useDispatch()
 
 	const createEvent = () => {
-		console.log(123)
+		dispatch(changeCircleColor())
 		dispatch(addEventModal())
 	}
 

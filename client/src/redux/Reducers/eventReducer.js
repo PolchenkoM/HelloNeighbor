@@ -1,6 +1,7 @@
 import {
   ADD_EVENT,
   ADD_EVENT_MODAL,
+  CHANGE_CIRCLE_COLOR,
   CHANGE_MATCH_MODAL_VISIBILITY,
   CHANGE_MODAL_VISIBILITY,
   GET_CIRCLE_EVENTS,
@@ -27,6 +28,8 @@ export const eventReducer = (state = {}, action) => {
         ...state,
         circleEvents: action.payload,
       };
+    case CHANGE_CIRCLE_COLOR:
+      return { ...state, changeCircleColor: !state.changeCircleColor };
     default:
       return state;
   }

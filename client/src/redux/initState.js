@@ -9,11 +9,13 @@ const initState = {
     modalVisibility:false,
     addEventModal: false,
     modalMatchVisibility:false,
-    circleEvents: []
+    circleEvents: [],
+    changeCircleColor: false
     
   },
   modals: {
     chatModalVisible: false,
   },
+  
 }
 export default initState
