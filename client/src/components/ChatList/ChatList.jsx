@@ -6,6 +6,7 @@ const ChatList = () => {
 	const socket = useRef()
 	const [connected, setConnected] = useState(false)
 	const [username, setUsername] = useState("")
+  console.log('aaaaaaaaaaaaaaaaaaaaaaaaaa');
 
 	function connect() {
 		socket.current = new WebSocket("ws://localhost:5000")
@@ -33,6 +34,7 @@ const ChatList = () => {
 
 	const sendMessage = async () => {
 		const message = {
+      url:
 			username,
 			message: value,
 			id: Date.now(),
