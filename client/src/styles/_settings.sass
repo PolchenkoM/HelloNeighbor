@@ -11,6 +11,9 @@ body, html
   &-fullscreen
     height: 100vh
     background-image: url('./components/imgInStyle/background.jpeg')
+  &--welcome
+    background-image: url('./components/imgInStyle/background.jpeg')
+    height: 100%
   &--main
     height: 100%
     background-image: url('./components/imgInStyle/background.jpeg')
@@ -24,11 +27,10 @@ body, html
   &--sidebar
     height: 100%
     width: 200px
-    position: absolute
-    top: 0
-    left: 0
+    // position: relative
     padding-top: 50px
     background: none
+    transition: 1s
   &--map
     display: flex
     flex-grow: 2

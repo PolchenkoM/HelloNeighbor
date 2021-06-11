@@ -6,6 +6,8 @@ import {
 	LogoutOutlined,
 	FieldTimeOutlined,
 	LeftSquareOutlined,
+	MenuFoldOutlined,
+  MenuUnfoldOutlined ,
 } from '@ant-design/icons'
 import { Typography, Button, Menu } from 'antd'
 import Avatar from 'antd/lib/avatar/avatar'
@@ -33,8 +35,9 @@ const UserMenuSider = () => {
 	const [test, setTest] = useState(true)
 
 	const hideSidebar = e => {
-		const elem = document.querySelector('.container--sidebar')
-		elem.classList.toggle('sidebar-animation-hide')
+		const elem = document.querySelector('.sidebar')
+		console.log(elem)
+		elem.classList.toggle('sidebar--active')
 		// if (test) {
 		// 	elem.classList.toggle('sidebar-animation-hide')
 		// 	setTest(prev => !prev)
@@ -46,11 +49,7 @@ const UserMenuSider = () => {
 		//   setTest(prev => !prev)
 		// }
 	}
-	const showSidebar = e => {
-		const elem = document.querySelector('.container--sidebar')
-		elem.classList.toggle('sidebar-animation-hide')
-		elem.classList.toggle('sidebar-animation-show')
-	}
+
 	const signOut = () => {
 		console.log('ya tut')
 		const GoogleAuth = window.gapi?.auth2?.getAuthInstance().then(
@@ -65,11 +64,11 @@ const UserMenuSider = () => {
 	}
 	return (
 		<div className='container--sidebar'>
-			<div className='sidebar'>
+			<div className='sidebar sidebar--active'>
 				<div className='sidebar__top'>
-					<div span={24} className='avatar'>
+					<div span={24} className='sidebar__avatar-wrapper'>
 						<Avatar
-							size={180}
+            className="sidebar__avatar"
 							src={`http://localhost:3001/${currentUser.avatar}`}
 							draggable={false}
 						/>
@@ -126,43 +125,46 @@ const UserMenuSider = () => {
 					</div>
 					<ul className='profileMenu'>
 						<li key='1' className='profileMenu__item'>
-							<Link className='profileMenu__item-link' to={'/profile'}>
-								<ProfileOutlined className='profileMenu__item-icon' />
-								<span className='profileMenu__item-text'>Profile</span>
-							</Link>
-						</li>
-						<li key='2' className='profileMenu__item'>
 							<Link className='profileMenu__item-link' to={'/currentEvents'}>
 								<FieldTimeOutlined className='profileMenu__item-icon' />
-								<span className='profileMenu__item-text'>currentEvents</span>
+								<span className='profileMenu__item-text'>Current&nbsp;Events</span>
 							</Link>
+              <span className="tooltip">Current Events</span>
 						</li>
-						<li key='3' className='profileMenu__item'>
+						<li key='2' className='profileMenu__item'>
 							<Link className='profileMenu__item-link' to={'/friends'}>
 								<TeamOutlined className='profileMenu__item-icon' />
 								<span className='profileMenu__item-text'>Friends</span>
 							</Link>
+              <span className="tooltip">Friends</span>
 						</li>
-						<li key='4' className='profileMenu__item'>
+						<li key='3' className='profileMenu__item'>
 							<Link className='profileMenu__item-link' to={'/history'}>
 								<InboxOutlined className='profileMenu__item-icon' />
 								<span className='profileMenu__item-text'>History</span>
 							</Link>
+              <span className="tooltip">History</span>
+						</li>
+						<li key='4' className='profileMenu__item'>
+							<Link className='profileMenu__item-link' to={'/profile'}>
+								<ProfileOutlined className='profileMenu__item-icon' />
+								<span className='profileMenu__item-text'>Profile</span>
+							</Link>
+              <span className="tooltip">Profile</span>
 						</li>
 						<li key='5' onClick={signOut} className='profileMenu__item'>
 							<Link className='profileMenu__item-link'>
 								<LogoutOutlined className='profileMenu__item-icon profileMenu__item-icon--logout' />
 								<span className='profileMenu__item-text'>Logout</span>
 							</Link>
+              <span className="tooltip">Logout</span>
 						</li>
 					</ul>
 				</div>
-				<div className='sidebar__bottom'>
 					<button className='button sidebar__closeButton' onClick={hideSidebar}>
-						<LeftSquareOutlined className='sidebar__closeButton-icon' />
+						<MenuFoldOutlined className='sidebar__closeButton-icon' />
 						<span className='sidebar__closeButton-text'></span>
 					</button>
-				</div>
 			</div>
 		</div>
 	)

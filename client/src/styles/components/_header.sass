@@ -27,32 +27,29 @@
     font-weight: bold
     font-size: 18px
     line-height: 25px
-    color:   #ffa31a
-  &__item
+    letter-spacing: 0.1em
+    color: $orange
     &-createEvent
       background-color: $orange
       padding: 4px 8px
-      border-radius: 2px
+      border-radius: 5px
       color: $black
       transition: 0.1s linear
       &:hover
-        color: #ffffff
+        color: $white
     &-link
       color: inherit
-      font-family: Roboto
-      font-style: normal
-      letter-spacing: 0.1em
-      text-transform: uppercase
       transition: color 0.1s ease-in
       &:hover
-        color: #ffffff
-.log-link
-  color: #ffffff
-  cursor: pointer
-  border: none
-  outline: none
-  background: none
-  padding: 5px 10px
-  font-size: 24px
+        color: $white
+.logButton
   font-weight: bold
-  font-family: Roboto
+  font-size: 18px
+  line-height: 25px
+  letter-spacing: 0.1em
+  padding: 5px 10px
+  border-radius: 5px
+  color: $white
+  background: $bc-grey-dark
+  &:hover
+    color: $orange
