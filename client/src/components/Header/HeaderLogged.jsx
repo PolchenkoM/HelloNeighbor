@@ -5,10 +5,7 @@ import { Link } from 'react-router-dom'
 import { changeCircleColor } from "../../redux/Actions/eventAC";
 
 
-
-
 export default function HeaderLogged() {
-
 	const dispatch = useDispatch()
 
 	const createEvent = () => {
@@ -31,12 +28,21 @@ export default function HeaderLogged() {
 							</Link>
 						</li>
 						<li className='list__item'>
-							<button className="button list__item-createEvent" onClick={createEvent}>Создать ивент</button>
+							<button
+								className='button list__item-createEvent'
+								onClick={createEvent}
+							>
+								Создать ивент
+							</button>
 						</li>
 						<li className='list__item'>
-							<Link to='/products' className='list__item-link'>
+							<a
+								href='https://dixy.ru/'
+								target='_blank'
+								className='list__item-link'
+							>
 								Продукты
-							</Link>
+							</a>
 						</li>
 					</ul>
 				</nav>

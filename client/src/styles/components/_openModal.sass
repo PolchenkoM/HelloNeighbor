@@ -10,6 +10,7 @@
   margin-bottom: 5px
   &__left
   &__right
+    margin-top: 10px
   &__mainInfo
     display: flex
     flex-direction: column
@@ -17,19 +18,18 @@
     justify-content: center
     margin-top: 10px
     margin-bottom: 10px
-    background: rgba(243, 243, 243, 0.2)
-    padding: 10px 15px
     border-radius: 10px
+    color: $orange
   &__avatar
     height: 100px
     width: 100px
     object-fit: cover
     border-radius: 50%
-    box-shadow: 0px 0px 10px 2px #494949
+    box-shadow: 0px 0px 10px 2px $white
     cursor: pointer
     transition: box-shadow .2s linear
     &:hover
-      box-shadow: 0px 0px 20px 0px white
+      box-shadow: 0px 0px 20px 0px $orange
   &__name
     font-weight: bold
     font-size: 18px
@@ -58,21 +58,30 @@
   color: #616161
   cursor: pointer
 .eventInfo
-  color: $text-color
+  width: 100%
   &__title
+    color: $orange
     font-size: 20px
     font-weight: bold
     margin-bottom: 10px
+    display: flex
+    justify-content: center
+  &__description
+    display: flex
+    justify-content: center
+    color: $bc-grey-dark
 
 .button-wrapper
   display: flex
   align-items: center
   justify-content: center
+  width: 400px
 
 .goButton
   border: none
   outline: none
-  background: #f88820
+  background: $orange
+  color: $bc-black
   transition: background 0.1s ease-in
   font-weight: bold
   font-size: 24px
@@ -84,9 +93,13 @@
   &:hover
     background: #f84020
 .ant-modal-wrap .ant-modal
+  border-radius: 5px
+  overflow: hidden
   &-content
     background: none
-    background: linear-gradient(to bottom, powderblue, pink)
+    background: rgba(128,128,128, 1)
+    border-radius: 5px
+    overflow: hidden
   &-header
     background: none
   &-body
@@ -104,12 +117,40 @@
   align-items: center
   justify-content: left
   align-content: flex-start
-  &__tag
+  &.ant-tag
     cursor: pointer
     margin-right: 5px
     padding: 4px 8px
     border-radius: 12px
-    background: rgba(101, 186, 235, 0.4)
+    background: $orange!important
+    color: $bc-black
     transition: background 0.1s ease-in
     &:hover
-      background: #e6d36d
+      background: $white
+.ant-tag.ant-tag-has-color
+  background-color: $bc-grey-dark!important
+  border-radius: 4px
+  cursor: pointer
+  &:hover
+    background-color: $orange!important
+.createEventButton
+  color: $bc-grey-dark
+  transition: 0.1s ease
+  font-weight: bold
+  font-size: 16px
+  background-color: $orange
+  border-radius: 2px
+  padding: 5px 10px
+  margin-top: 10px
+span.ant-tag
+  color: $bc-grey-dark!important
+  font-family: Roboto, sans-serif
+  font-weight: bold
+  &.ant-tag-checkable
+    &:hover
+      background-color: $orange
+    &.ant-tag-checkable-checked
+      background-color: $orange
+.createModal__label
+  color: $bc-black
+  font-weight: bold

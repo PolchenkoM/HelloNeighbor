@@ -13,11 +13,14 @@
   &--active
     width: 200px
     & .social, .rater
+      position: relative
       opacity: 1
       left: 0
     & .tooltip
       display: none
     & .sidebar
+      &__username
+        font-size: 20px
       &__closeButton
         &-icon
           transform: rotateY(180deg)
@@ -33,6 +36,7 @@
         &-text
           opacity: 1
           pointer-events: auto
+          font-size: 16px
   &__avatar
     transition: 0.5s ease
     height: 60px
@@ -40,7 +44,7 @@
     &-wrapper
       margin: 10px 0px
   &__username
-    font-size: 20px
+    font-size: 12px
     color: $light
   &__top
     display: flex
@@ -138,6 +142,7 @@
       opacity: 0
       pointer-events: none
       transition: 0.5s ease
+      font-size: 10px
 .social
   display: flex
   align-items: center

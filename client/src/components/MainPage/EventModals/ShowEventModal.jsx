@@ -94,13 +94,13 @@ export default function ShowEventModal() {
         <div className="eventInfo">
           <hr />
           <h3 className="eventInfo__title">{selectedEvent.title}</h3>
-          <p>{selectedEvent.description}</p>
+          <p className="eventInfo__description">{selectedEvent.description}</p>
         </div>
 
         <div className="tags-list">
           {selectedEvent.tags
             ? selectedEvent.tags.map((tag, ind) => (
-                <Tag color="#55acee" key={ind}>
+                <Tag color="#55acee" className="tag-list__tag" key={ind}>
                   {tag.title}
                 </Tag>
               ))

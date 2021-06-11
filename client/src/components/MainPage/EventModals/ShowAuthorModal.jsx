@@ -104,7 +104,7 @@ export default function ShowAuthorModal({ setAuthorModal }) {
         <div className="eventInfo">
           <hr />
           <h3 className="eventInfo__title">О себе: </h3>
-          <p>{eventAuthor.aboutSelf}</p>
+          <p className="eventInfo__description">{eventAuthor.aboutSelf}</p>
         </div>
         <div className="button-wrapper">
           <button onClick={addFriend} className="goButton">
