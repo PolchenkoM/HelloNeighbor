@@ -1,10 +1,10 @@
 import moment from "moment"
 import { Form, Input, Button, DatePicker, Select, Checkbox, Tag } from "antd"
 
-import { useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import useForm from "../../hooks/useForm"
-import { getCurrentUserGoogleThunk, updateUserThunk } from "../../../redux/Actions/usersAC"
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import useForm from '../../../hooks/useForm'
+import { updateUserThunk, getCurrentUserGoogleThunk } from '../../../../redux/Actions/usersAC'
 
 const { Option } = Select;
 const layout = {

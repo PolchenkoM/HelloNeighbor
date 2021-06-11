@@ -2,7 +2,7 @@ $animation-timing: 27s
 $carousel-items: 9
 $animation-delay-fraction: $animation-timing / $carousel-items
 $animation-steps-fraction: 100 / $carousel-items
-$slide-change-timing: 3 // percentage of total animation cycle
+$slide-change-timing: 3
 
 .carousel
   position: relative
@@ -57,16 +57,6 @@ $slide-change-timing: 3 // percentage of total animation cycle
 @for $i from 1 through ($carousel-items - 1)
   .carousel__item:nth-child(#{$i})
     animation-delay: calc(#{$animation-delay-fraction} * #{$i - 2})
-
-/** .carousel__item:last-child
- animation-delay: calc(-#{$animation-delay-fraction} * 2) **/
-
-// example without negative delays
-// @for $i from 1 through ($carousel-items) { 
-//   .carousel__item:nth-child(#{$i}) {
-//     animation-delay: calc(#{$animation-delay-fraction} * #{$i})
-//   }
-// }
 
 @keyframes carousel-animate-vertical
   0%

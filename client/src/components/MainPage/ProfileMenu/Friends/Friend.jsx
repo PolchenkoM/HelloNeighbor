@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { changeChatModalVisibility } from '../../../redux/Actions/modalAC'
-import ChatModal from '../../MainPage/ChatModal/ChatModal'
+import { changeChatModalVisibility } from '../../../../redux/Actions/modalAC'
+import ChatModal from '../../../MainPage/ChatModal/ChatModal'
 export default function Friend({ name, onlineStatus, avatar }) {
+  const [flag, setFlag] = useState(false);
 
   const chatVisibility = useSelector(state => state.modals.chatModalVisible)
   const dispatch = useDispatch()

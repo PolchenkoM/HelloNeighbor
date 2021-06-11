@@ -8,11 +8,11 @@ import {
 import { getSelectedEvent } from "../../../redux/Actions/eventAC";
 
 const EventList = () => {
-  const dispatch = useDispatch();
+	const dispatch = useDispatch()
 
-  useEffect(() => {
-    dispatch(getEventSaga());
-  }, []);
+	useEffect(() => {
+		dispatch(getEventSaga())
+	}, [])
 
   const [tags, setTags] = useState([]);
 
@@ -36,40 +36,42 @@ const EventList = () => {
     dispatch(getSelectedEvent(el));
   };
 
-  return (
-    <div className="container--eventList">
-      <p className="eventList__item">EVENT LIST </p>
-      <ul>
-        {events.length
-          ? events.map((el, ind) => (
-              <>
-                {el.title && (
-                  <li>
-                    <Button onClick={() => selectEvent(el)}>{el.title}</Button>{" "}
-                    <br />
-                    <br />
-                  </li>
-                )}
-              </>
-            ))
-          : "Эвентов вблизи нет"}
-      </ul>
-      <hr />
-      <ul>
-        {newArr.length &&
-          newArr.map((el, ind) => (
-            <>
-              {el.title && (
-                <li>
-                  <Button>{el.title}</Button> <br />
-                  <br />
-                </li>
-              )}
-            </>
-          ))}
-      </ul>
-    </div>
-  );
-};
+	return (
+		<div className='container--eventList'>
+			<div className='eventList'>
+				<h2 className="eventList__title"></h2>
+				<ul className="eventList__list">
+					{events.length
+						? events.map((el, ind) => (
+								<>
+									{el.title && (
+										<li className="eventList__item">
+											<Button onClick={() => selectEvent(el)}>
+												{el.title}
+											</Button>{' '}
+										</li>
+									)}
+								</>
+						  ))
+						: 'Эвентов вблизи нет'}
+				</ul>
+				<hr />
+				<ul>
+					{newArr.length &&
+						newArr.map((el, ind) => (
+							<>
+								{el.title && (
+									<li>
+										<Button>{el.title}</Button> <br />
+										<br />
+									</li>
+								)}
+							</>
+						))}
+				</ul>
+			</div>
+		</div>
+	)
+}
 
-export default EventList;
+export default EventList

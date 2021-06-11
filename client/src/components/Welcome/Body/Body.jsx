@@ -53,8 +53,8 @@ export default function Body() {
 
   return (
     <>
-      <div className="body">
-        <div className="welcome body__welcome">
+      <div className="welcome container--welcome">
+        <div className="body__welcome">
           <button className="welcome__button" onClick={showModal}>
             Создать аккаунт
           </button>

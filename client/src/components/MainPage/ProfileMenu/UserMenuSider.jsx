@@ -1,21 +1,21 @@
 import "antd/dist/antd.css"
 import {
-	FacebookOutlined,
-	InstagramOutlined,
 	ProfileOutlined,
 	TeamOutlined,
 	InboxOutlined,
 	LogoutOutlined,
 	FieldTimeOutlined,
-	LeftSquareOutlined
-} from "@ant-design/icons"
-import { Typography, Button, Menu } from "antd"
-import Avatar from "antd/lib/avatar/avatar"
-import Rater from "./Rater/Rater"
-import { useDispatch, useSelector } from "react-redux"
-import { useEffect } from "react"
-import { logoutUser } from "../../../redux/Actions/usersAC"
-import { Link, useHistory } from "react-router-dom"
+	LeftSquareOutlined,
+	MenuFoldOutlined,
+  MenuUnfoldOutlined ,
+} from '@ant-design/icons'
+import { Typography, Button, Menu } from 'antd'
+import Avatar from 'antd/lib/avatar/avatar'
+import Rater from './Rater'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect, useState } from 'react'
+import { logoutUser } from '../../../redux/Actions/usersAC'
+import { Link , useHistory} from 'react-router-dom'
 const UserMenuSider = () => {
 	useEffect(() => {
 		window.gapi?.load("auth2", function () {
@@ -30,17 +30,27 @@ const UserMenuSider = () => {
 		})
 	}, [])
 	const dispatch = useDispatch()
+	const currentUser = useSelector(state => state.users.currentUser)
+	const [test, setTest] = useState(true)
 	const history = useHistory()
-	const currentUser = useSelector((state) => state.users.currentUser)
-	const id = localStorage?.id
-	const { Title } = Typography
-	const size = "large"
-	const hideSidebar = (e) => {
-		const elem = e.target.parentElement.parentElement
-		elem.classList.toggle("sidebar-hidden")
-		const labelSpans = document.querySelectorAll(".ant-menu-title-content")
-		labelSpans.forEach((el) => el.classList.toggle("hidden"))
+
+	const hideSidebar = e => {
+		const elem = document.querySelector('.sidebar')
+    const container = document.querySelector('.container--sidebar')
+		elem.classList.toggle('sidebar--active')
+		container.classList.toggle('container--sidebar--active')
+		// if (test) {
+		// 	elem.classList.toggle('sidebar-animation-hide')
+		// 	setTest(prev => !prev)
+		// 	const labelSpans = document.querySelectorAll('.ant-menu-title-content')
+		// 	labelSpans.forEach(el => el.classList.toggle('hidden'))
+		// } else {
+		//   elem.classList.toggle('sidebar-animation-hide')
+		//   elem.classList.toggle('sidebar-animation-show')
+		//   setTest(prev => !prev)
+		// }
 	}
+
 	const signOut = () => {
 		console.log("ya tut")
 		const GoogleAuth = window.gapi?.auth2?.getAuthInstance().then(
@@ -55,11 +65,15 @@ const UserMenuSider = () => {
 		)
 	}
 	return (
-		<div className='container--sidebar'>
-			<div className='sidebar'>
+		<div className='container--sidebar container--sidebar--active'>
+			<div className='sidebar sidebar--active'>
 				<div className='sidebar__top'>
-					<div span={24} className='avatar'>
-						<Avatar size={180} src={`http://localhost:3001/${currentUser.avatar}`} draggable={false} />
+					<div span={24} className='sidebar__avatar-wrapper'>
+						<Avatar
+            className="sidebar__avatar"
+							src={`http://localhost:3001/${currentUser.avatar}`}
+							draggable={false}
+						/>
 					</div>
 					<h4 className='sidebar__username'>{currentUser.name}</h4>
 					<div className='rater'>
@@ -81,43 +95,46 @@ const UserMenuSider = () => {
 					</div>
 					<ul className='profileMenu'>
 						<li key='1' className='profileMenu__item'>
-							<Link className='profileMenu__item-link' to={"/profile"}>
-								<ProfileOutlined className='profileMenu__item-icon' />
-								<span className='profileMenu__item-text'>Profile</span>
+							<Link className='profileMenu__item-link' to={'/currentEvents'}>
+								<FieldTimeOutlined className='profileMenu__item-icon' />
+								<span className='profileMenu__item-text'>Current&nbsp;Events</span>
 							</Link>
+              <span className="tooltip">Current Events</span>
 						</li>
 						<li key='2' className='profileMenu__item'>
-							<Link className='profileMenu__item-link' to={"/currentEvents"}>
-								<FieldTimeOutlined className='profileMenu__item-icon' />
-								<span className='profileMenu__item-text'>currentEvents</span>
-							</Link>
-						</li>
-						<li key='3' className='profileMenu__item'>
-							<Link className='profileMenu__item-link' to={"/friends"}>
+							<Link className='profileMenu__item-link' to={'/friends'}>
 								<TeamOutlined className='profileMenu__item-icon' />
 								<span className='profileMenu__item-text'>Friends</span>
 							</Link>
+              <span className="tooltip">Friends</span>
 						</li>
-						<li key='4' className='profileMenu__item'>
-							<Link className='profileMenu__item-link' to={"/history"}>
+						<li key='3' className='profileMenu__item'>
+							<Link className='profileMenu__item-link' to={'/history'}>
 								<InboxOutlined className='profileMenu__item-icon' />
 								<span className='profileMenu__item-text'>History</span>
 							</Link>
+              <span className="tooltip">History</span>
+						</li>
+						<li key='4' className='profileMenu__item'>
+							<Link className='profileMenu__item-link' to={'/profile'}>
+								<ProfileOutlined className='profileMenu__item-icon' />
+								<span className='profileMenu__item-text'>Profile</span>
+							</Link>
+              <span className="tooltip">Profile</span>
 						</li>
 						<li key='5' onClick={signOut} className='profileMenu__item'>
 							<Link className='profileMenu__item-link'>
 								<LogoutOutlined className='profileMenu__item-icon profileMenu__item-icon--logout' />
 								<span className='profileMenu__item-text'>Logout</span>
 							</Link>
+              <span className="tooltip">Logout</span>
 						</li>
 					</ul>
 				</div>
-				<div className='sidebar__bottom'>
 					<button className='button sidebar__closeButton' onClick={hideSidebar}>
-						<LeftSquareOutlined className='sidebar__closeButton-icon' />
-						<span className='sidebar__closeButton-text'>Далее</span>
+						<MenuFoldOutlined className='sidebar__closeButton-icon' />
+						<span className='sidebar__closeButton-text'></span>
 					</button>
-				</div>
 			</div>
 		</div>
 	)

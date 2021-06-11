@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
+
+import UserMenuSider from "../../../MainPage/ProfileMenu/UserMenuSider";
 import Friend from "./Friend";
 
 export default function Friends() {
@@ -63,17 +65,20 @@ export default function Friends() {
   const [showOnline, setShowOnline] = useState(false);
 
   function showFriendsOnline() {
-  //   return friendsArray
-  //     .filter((friend) => friend.onlineStatus === true)
-  //     .map((friend) => (
-  //       <Friend name={friend.name} onlineStatus={friend.onlineStatus} />
-  //     ));
+    //   return friendsArray
+    //     .filter((friend) => friend.onlineStatus === true)
+    //     .map((friend) => (
+    //       <Friend name={friend.name} onlineStatus={friend.onlineStatus} />
+    //     ));
   }
   function showFriendsAll() {
-    return friendsArray
-      ?.map((friend) => (
-        <Friend name={friend.name} avatar={friend.avatar} onlineStatus={friend.onlineStatus} />
-      ));
+    return friendsArray?.map((friend) => (
+      <Friend
+        name={friend.name}
+        avatar={friend.avatar}
+        onlineStatus={friend.onlineStatus}
+      />
+    ));
   }
 
   return (

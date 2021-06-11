@@ -8,7 +8,7 @@ import { getCurrentUserGoogleThunk } from './redux/Actions/usersAC'
 import HeaderLogged from './components/Header/HeaderLogged'
 import HeaderUnlogged from './components/Header/HeaderUnlogged'
 import ShowEventModal from './components/MainPage/EventModals/ShowEventModal'
-import UserMenuSider from './components/MainPage/UserMenuSider/UserMenuSider'
+import UserMenuSider from './components/MainPage/ProfileMenu/UserMenuSider'
 
 function App() {
 	const currentUser = useSelector(state => state.users.currentUser)
@@ -42,7 +42,7 @@ function App() {
 				<div className='container-fullscreen'>
 					<div className='container--main'>
 						{currentUser.email ? <HeaderLogged /> : <HeaderUnlogged />}
-            <UserMenuSider/>
+						{currentUser.email ? <UserMenuSider/>: ''}
 						<div className='container--content'>
 							<Routes />
               <ShowEventModal/>

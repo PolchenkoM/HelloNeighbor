@@ -6,7 +6,6 @@ export default function Welcome() {
 	return (
 		<>
 			<Body />
-			<Footer />
 		</>
 	)
 }

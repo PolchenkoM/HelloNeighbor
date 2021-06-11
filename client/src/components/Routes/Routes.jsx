@@ -1,10 +1,10 @@
 import {Route,Switch} from 'react-router-dom'
 import MainPage from '../MainPage/MainPage'
 import Welcome from '../Welcome/Welcome'
-import CurrentEvents from '../ProfileMenu/CurrentEvents/CurrentEvents'
-import Profile from '../ProfileMenu/Profile/Profile'
-import Friends from '../ProfileMenu/Friends/Friends'
-import History from '../ProfileMenu/History/History'
+import CurrentEvents from '../MainPage/ProfileMenu/CurrentEvents/CurrentEvents'
+import Profile from '../MainPage/ProfileMenu/Profile/Profile'
+import Friends from '../MainPage/ProfileMenu/Friends/Friends'
+import History from '../MainPage/ProfileMenu/History/History'
 
 import { useSelector } from 'react-redux'
 
