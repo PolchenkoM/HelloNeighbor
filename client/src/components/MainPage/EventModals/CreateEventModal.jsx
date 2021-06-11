@@ -87,17 +87,18 @@ export default function CreateEventModal() {
         footer={null}
       >
         <form action="">
-          <label htmlFor="">
+          <label htmlFor="" className="createModal__label">
             Что будем делать?
             <Input
               placeholder="Введите текст"
               name="title"
               type="text"
+              className="createModal__input"
               value={values.title || ""}
               onChange={changeHandler}
             />
           </label>
-          <label htmlFor="">
+          <label htmlFor="" className="createModal__label">
             Описание
             <Input
               placeholder="Введите текст"
@@ -107,7 +108,7 @@ export default function CreateEventModal() {
               onChange={changeHandler}
             />
           </label>
-          <label htmlFor="">
+          <label htmlFor="" className="createModal__label">
             Время
             <Input
               placeholder=""
@@ -117,8 +118,8 @@ export default function CreateEventModal() {
               onChange={changeHandler}
             />
           </label>
-          <div>
-            <label htmlFor="">Выбери тэги</label>
+          <div style={{marginTop: '10px'}}>
+            <label htmlFor="">Выберите тэги:</label>
           </div>
           <>
             {tags.map((tag) => (
@@ -131,7 +132,7 @@ export default function CreateEventModal() {
               </CheckableTag>
             ))}
           </>
-          <button className="button" onClick={createEvent}>
+          <button className="button createEventButton" onClick={createEvent}>
             Создать ивент
           </button>
         </form>

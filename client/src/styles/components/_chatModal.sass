@@ -41,7 +41,7 @@
     flex-direction: column
     align-items: flex-start
     overflow-y: auto
-    
+
     &-person
       display: flex
       justify-content: flex-start
@@ -64,7 +64,7 @@
     border: none
     min-height: 60px
     max-height: 180px
-    padding: 10px 30px 5px 30px
+    padding: 10px 10px 5px 10px
     background: #fff
     display: flex
     bottom: 0
@@ -92,9 +92,29 @@
   &__smileOutlined
     display: inline-block
     position: absolute
-    bottom: 0
-    right: 15px
-    padding: 5px
+    top: 50%
+    transform: translateY(-50%)
+    right: 0
+    padding-right: 10px
+    height: 100%
+    display: flex
+    align-items: center
+    background: none
+    color: black
+    transition: color 0.1s linear
+    font-size: 18px
+    &:hover
+      color: #7ce0ff
+  &__SendOutlined
+    display: inline-block
+    position: absolute
+    top: 50%
+    transform: translateY(-50%)
+    right: 0
+    padding-right: 10px
+    height: 100%
+    display: flex
+    align-items: center
     background: none
     color: black
     transition: color 0.1s linear

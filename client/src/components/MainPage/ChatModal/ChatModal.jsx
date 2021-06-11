@@ -1,5 +1,5 @@
 import { Input } from "antd";
-import { SmileOutlined, PaperClipOutlined } from "@ant-design/icons";
+import { SmileOutlined, PaperClipOutlined, SendOutlined } from "@ant-design/icons";
 import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -119,10 +119,10 @@ export default function ChatModal() {
           </div>
           <div className="chat__footer">
             <div className="chat__chatInput-container">
-              <PaperClipOutlined
+              {/* <PaperClipOutlined
                 className="button chat__addFileIcon"
                 onClick={addFile}
-              />
+              /> */}
               <textarea
                 onKeyPress={handleUserKeyPress}
                 value={value}
@@ -130,9 +130,9 @@ export default function ChatModal() {
                 className="chat__chatInput"
                 placeholder="Напишите сообщение..."
               />
-              <SmileOutlined
-                className="button chat__smileOutlined"
-                onClick={showSmiles}
+              <SendOutlined
+                className="button chat__SendOutlined"
+                onClick={sendMessage}
               />
             </div>
           </div>
