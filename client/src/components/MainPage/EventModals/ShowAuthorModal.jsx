@@ -84,9 +84,8 @@ export default function ShowAuthorModal({ setAuthorModal }) {
           </div>
           <div className="authorInfo__right">
             <div className="authorInfo__mainInfo">
-              <span className="authorInfo__name">{eventAuthor.name}</span>
+              <div className="authorInfo__name">{eventAuthor.name}</div>
               <div className="rating authorInfo__rating">
-                <div className="rating__value">5</div>
                 <div className="rating__body">★★★★★</div>
               </div>
             </div>

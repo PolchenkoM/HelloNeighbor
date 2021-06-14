@@ -19,8 +19,9 @@ export default function ShowEventModal() {
     
     const selectedEvent = useSelector((state) => state.events.selectedEvent);
     
+    
     const author = selectedEvent?.authorId;
-    const [eventAuthor, setEventAuthor] = useState({});
+    // const [eventAuthor, setEventAuthor] = useState({});
 
 
      

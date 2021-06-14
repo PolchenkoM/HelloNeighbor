@@ -16,7 +16,8 @@ export default function Event({ name }) {
               <h1 className="event__title">{el.title} </h1>
               <div className="event__content-main">
                 <div className="event__photos">
-                  <div className="carousel">
+                  <span className="temp-photos">Фото со встречи</span>
+                  {/* <div className="carousel">
                     <div class="carousel__item">
                       <img
                         className="carousel__image"
@@ -52,7 +53,7 @@ export default function Event({ name }) {
                         alt="RANDOM PHOTO"
                       />
                     </div>
-                  </div>
+                  </div> */}
                 </div>
                 <div className="content-main">
                   <div className="event__description">

@@ -56,7 +56,7 @@ const EventList = () => {
                   )}
                 </>
               ))
-            : "Эвентов вблизи нет"}
+            : <li className="eventList__title-empty">Эвентов вблизи нет</li>}
         </ul>
         <ul>
           {newArr.length &&

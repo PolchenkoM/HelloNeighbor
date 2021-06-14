@@ -98,7 +98,7 @@ console.log(sortMessages);
             onKeyPress={(e) => handleKeyPressEsc(e)}
           ></button>
           <div className="chat__header">
-            <h4 className="chat__title">chat title</h4>
+            <h4 className="chat__title">Чат</h4>
           </div>
           <div ref={sortMessagesRef} className="chat__body">
             <div className="chat__content">
