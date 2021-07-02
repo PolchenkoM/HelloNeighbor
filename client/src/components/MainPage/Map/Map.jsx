@@ -7,7 +7,7 @@ import {
   Circle,
 } from "@react-google-maps/api";
 
-import { getGeocode, getLatLng } from "use-places-autocomplete";
+import { getGeocode, getLatLng } from "use-places-autocomplete"
 import mapStyles from "./mapStyle";
 
 import {
