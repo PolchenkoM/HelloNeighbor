@@ -23,7 +23,6 @@ const logoutUser = () => {
 }
 
 const updateUser = (user) => {
-	console.log(user)
 	return {
 		type: UPDATE_USER,
 		payload: user
@@ -32,6 +31,7 @@ const updateUser = (user) => {
 const updateUserThunk = (formData) => (dispatch) => {
 	fetch("http://localhost:3001/user/addAvatar", {
 		method: "POST",
+    // headers: {'Content-type': 'application/json'},
 		body: formData
 	})
 		.then((res) => res.json())

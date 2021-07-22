@@ -2,7 +2,7 @@ import style from "./styles/style.sass"
 import { useEffect } from "react"
 
 import { BrowserRouter as Router } from 'react-router-dom'
-import Routes from './components/Routes/Routes'
+import Routes from './components/Routes'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCurrentUserGoogleThunk } from './redux/Actions/usersAC'
 import HeaderLogged from './components/Header/HeaderLogged'

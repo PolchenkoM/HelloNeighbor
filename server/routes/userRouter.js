@@ -20,10 +20,8 @@ const upload = multer({ storage })
 
 router.route("/addAvatar").post(upload.single("avatar"), async (req, res) => {
 	try {
-		const { name, address, age, gender, id, aboutSelf } = JSON.parse(req.body.profile)
-		const tags = JSON.parse(req.body.profile).tags
-		const userAvatarPath = req.file.path
-		console.log(aboutSelf)
+		const { name, address, age, gender, tags, id, aboutSelf } = JSON.parse(req.body.profile)
+		const userAvatarPath = req.file?.path || 'public/default/avatars/anonymPhoto.jpg'
 		const updateProfileUser = await User.findByIdAndUpdate(
 			{ _id: id },
 			{

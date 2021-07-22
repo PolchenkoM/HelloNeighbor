@@ -1,11 +1,10 @@
 import { Input } from "antd";
-import { SmileOutlined, PaperClipOutlined, SendOutlined } from "@ant-design/icons";
+import {  SendOutlined } from "@ant-design/icons";
 import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { changeChatModalVisibility } from "../../../redux/Actions/modalAC";
 
-const { TextArea } = Input;
 
 export default function ChatModal() {
   const socket = useRef();
@@ -14,11 +13,10 @@ export default function ChatModal() {
   const [value, setValue] = useState("");
   const currentUser = useSelector((state) => state.users.currentUser);
   const sortMessagesRef = useRef(null);
-console.log(sortMessages);
   const dispatch = useDispatch();
 
   function closeChatModal() {
-    console.log("check--------------");
+
     dispatch(changeChatModalVisibility());
   }
   function handleKeyPressEsc(e) {

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Button } from "antd";
 import {
   getEventSaga,
   modalMatchVisibility,
@@ -36,7 +35,6 @@ const EventList = () => {
   const newArr = allEvents.filter((el) => arr.includes(el._id));
 
   const selectEvent = (el) => {
-    console.log("events from eventList=++", events?.authorId);
     dispatch(modalMatchVisibility());
     dispatch(getSelectedEvent(el));
   };
@@ -56,7 +54,7 @@ const EventList = () => {
                   )}
                 </>
               ))
-            : <li className="eventList__title-empty">Эвентов вблизи нет</li>}
+            : <li className="eventList__title-empty">Ивентов вблизи нет</li>}
         </ul>
         <ul>
           {newArr.length &&

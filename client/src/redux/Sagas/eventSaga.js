@@ -1,6 +1,6 @@
-import { call, put, takeEvery, takeLatest, throttle } from "redux-saga/effects";
-import { ADD_EVENT_SAGA, GET_EVENT_SAGA } from "../Types/eventTypes";
-import { addEvent, getEvent } from "../Actions/eventAC";
+import { call, put, takeLatest } from "redux-saga/effects";
+import { ADD_EVENT_SAGA } from "../Types/eventTypes";
+import { addEvent } from "../Actions/eventAC";
 
 
 const fetchEvent = ({payload}) => {

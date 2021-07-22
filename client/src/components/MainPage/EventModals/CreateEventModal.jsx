@@ -29,7 +29,6 @@ export default function CreateEventModal() {
     const nextSelectedTags = checked
       ? [...selectedTags, tag]
       : selectedTags.filter((t) => t !== tag);
-    console.log("You are interested in: ", nextSelectedTags);
     setSelectedTags(nextSelectedTags);
   }
 
@@ -125,6 +124,7 @@ export default function CreateEventModal() {
           <>
             {tags.map((tag) => (
               <CheckableTag
+              className="tags_event-tag"
                 key={tag._id}
                 checked={selectedTags.indexOf(tag) > -1}
                 onChange={(checked) => handleChange(tag, checked)}

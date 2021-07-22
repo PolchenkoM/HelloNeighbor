@@ -1,7 +1,6 @@
 import { ADD_ADDRES_USER, GET_CURRENT_USER, LOGOUT_USER, UPDATE_USER } from "../Types/userTypes"
 
 const usersReducer = (state = {}, action) => {
-	console.log()
 	switch (action.type) {
 		case GET_CURRENT_USER:
 			return {

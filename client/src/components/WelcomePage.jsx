@@ -1,17 +1,13 @@
 import React from "react";
 import { Modal, Input } from "antd";
-import Registration from "../../Registration/googleOauth";
-import useRegForm from "../../hooks/useForm";
+import Registration from "./Registration/googleOauth";
+import useRegForm from "./hooks/useForm";
 import { useDispatch } from "react-redux";
-import { getCurrentUserGoogleThunk } from "../../../redux/Actions/usersAC";
-import { useHistory } from "react-router";
+import { getCurrentUserGoogleThunk } from "../redux/Actions/usersAC";
 
 export default function Body() {
-  function openModalSignUp() {
-    console.log("test");
-  }
+
   const dispatch = useDispatch();
-  const history = useHistory()
 
   const [values, changeHandler] = useRegForm();
   const [visible, setVisible] = React.useState(false);
@@ -47,7 +43,6 @@ export default function Body() {
   };
 
   const handleCancel = () => {
-    console.log("Clicked cancel button");
     setVisible(false);
   };
 

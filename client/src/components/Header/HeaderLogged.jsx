@@ -37,7 +37,7 @@ export default function HeaderLogged() {
 						</li>
 						<li className='list__item'>
 							<a
-								href='https://dixy.ru/'
+								href='/'
 								target='_blank'
 								className='list__item-link'
 							>

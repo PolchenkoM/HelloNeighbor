@@ -4,12 +4,8 @@ import {
 	TeamOutlined,
 	InboxOutlined,
 	LogoutOutlined,
-	FieldTimeOutlined,
-	LeftSquareOutlined,
 	MenuFoldOutlined,
-	MenuUnfoldOutlined,
 } from '@ant-design/icons'
-import { Typography, Button, Menu } from 'antd'
 import Avatar from 'antd/lib/avatar/avatar'
 import Rater from './Rater'
 import { useDispatch, useSelector } from 'react-redux'
@@ -52,10 +48,8 @@ const UserMenuSider = () => {
 	}
 
 	const signOut = () => {
-		console.log("ya tut")
 		const GoogleAuth = window.gapi?.auth2?.getAuthInstance().then(
 			() => {
-				console.log("ya sdelal")
 				localStorage.clear()
 				dispatch(logoutUser())
 				history.push("/")
@@ -69,11 +63,11 @@ const UserMenuSider = () => {
 			<div className='sidebar sidebar--active'>
 				<div className='sidebar__top'>
 					<div span={24} className='sidebar__avatar-wrapper'>
-						<Avatar
+						{currentUser?.avatar ? <Avatar
 							className='sidebar__avatar'
 							src={`http://localhost:3001/${currentUser.avatar}`}
 							draggable={false}
-						/>
+						/> : ''}
 					</div>
 					<h4 className='sidebar__username'>{currentUser.name}</h4>
 					<div className='rater'>

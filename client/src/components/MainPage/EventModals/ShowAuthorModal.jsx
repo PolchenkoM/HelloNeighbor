@@ -14,19 +14,6 @@ export default function ShowAuthorModal({ setAuthorModal }) {
 
   const author = selectedEvent.author;
 
-  useEffect(async () => {
-    fetch("http://localhost:3001/eventAuthor", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        author,
-      }),
-    })
-      .then((res) => res.json())
-      .then((result) => setEventAuthor(result));
-  }, []);
 
   const addFriend = () => {
     const me = localStorage.getItem("email");

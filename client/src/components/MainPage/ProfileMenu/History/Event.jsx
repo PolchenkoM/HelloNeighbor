@@ -4,13 +4,11 @@ import { Tag } from "antd";
 export default function Event({ name }) {
   const currentUser = useSelector((state) => state.users.currentUser);
   const userHistory = currentUser?.history;
-  console.log(userHistory);
-  console.log(currentUser);
 
   return (
     <>
       {currentUser &&
-        userHistory?.map((el) => (
+        userHistory?.[0] ? userHistory.map((el) => (
           <div className="container-event">
             <div className="event">
               <h1 className="event__title">{el.title} </h1>
@@ -95,7 +93,9 @@ export default function Event({ name }) {
               </div>
             </div>
           </div>
-        ))}
+        )) :
+        <h1 style={{textAlign: 'center'}}>У вас пока не было ни одного ивента</h1>
+        }
     </>
   );
 }

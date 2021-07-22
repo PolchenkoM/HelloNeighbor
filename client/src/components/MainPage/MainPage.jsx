@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Profile from "./ProfileMenu/Profile/Profile";
+import Profile from "./ProfileMenu/Profile/ProfileForm";
 import Map from "./Map/Map";
 import { getCircleEventThunk } from "../../redux/Actions/eventAC";
 import CreateEventModal from "./EventModals/CreateEventModal";

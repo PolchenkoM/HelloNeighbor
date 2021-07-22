@@ -18,9 +18,6 @@ const AddAvatarZone = () => {
 		let formData = new FormData()
 		formData.append("avatar", file[0])
 		formData.append("id", "ID1459876321")
-		for (let pair of formData.entries()) {
-			console.log(pair[0] + "," + pair[1])
-		}
 		const response = fetch("http://localhost:3001/user/addAvatar", {
 			method: "POST",
 			body: formData

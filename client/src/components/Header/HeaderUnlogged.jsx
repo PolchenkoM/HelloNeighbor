@@ -61,11 +61,7 @@ export default function HeaderUnlogged() {
 							</Link>
 						</li>
 						<li className='list__item'>
-							<a
-								href='https://dixy.ru/'
-								target='_blank'
-								className='list__item-link'
-							>
+							<a href='/' target='_blank' className='list__item-link'>
 								Продукты
 							</a>
 						</li>
