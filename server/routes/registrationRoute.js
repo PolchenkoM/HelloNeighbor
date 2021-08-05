@@ -8,8 +8,8 @@ const { v4: uuidv4 } = require("uuid");
 router.route("/").post(async (req, res) => {
   try {
     const { email, password } = req.body.values;
-    const hashPassword = await bcrypt.hash(password, salt);
     if (email && password) {
+      const hashPassword = await bcrypt.hash(password, salt);
       const user = await User.create({
         email,
         password: hashPassword,

@@ -16,8 +16,8 @@ export default function HeaderLogged() {
 	return (
 		<>
 			<header className='header'>
-				<nav className='navbar header__navbar'>
-					<ul className='list navbar__list list-logged'>
+				<nav className='navbar'>
+					<ul className='list list--logged'>
 						<li className='list__item'>
 							<Link to='/'>
 								<img

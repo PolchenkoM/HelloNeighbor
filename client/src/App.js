@@ -1,14 +1,13 @@
-import style from "./styles/style.sass"
 import { useEffect } from "react"
-
-import { BrowserRouter as Router } from 'react-router-dom'
-import Routes from './components/Routes'
+import { BrowserRouter } from 'react-router-dom'
+import AppRouter from './AppRouter'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCurrentUserGoogleThunk } from './redux/Actions/usersAC'
 import HeaderLogged from './components/Header/HeaderLogged'
 import HeaderUnlogged from './components/Header/HeaderUnlogged'
-import ShowEventModal from './components/MainPage/EventModals/ShowEventModal'
-import UserMenuSider from './components/MainPage/ProfileMenu/UserMenuSider'
+import ShowEventModal from './components/EventModals/ShowEventModal'
+import SideBar from './components/SideBar'
+import style from "./styles/style.sass"
 
 function App() {
 	const currentUser = useSelector(state => state.users.currentUser)
@@ -37,20 +36,20 @@ function App() {
 	}, [])
 
 	return (
-		<Router>
+		<BrowserRouter>
 			<div className='App'>
 				<div className='container-fullscreen'>
 					<div className='container--main'>
 						{currentUser.email ? <HeaderLogged /> : <HeaderUnlogged />}
-						{currentUser.email ? <UserMenuSider/>: ''}
+						{currentUser.email ? <SideBar/>: ''}
 						<div className='container--content'>
-							<Routes />
+							<AppRouter />
               <ShowEventModal/>
 						</div>
 					</div>
 				</div>
 			</div>
-		</Router>
+		</BrowserRouter>
 	)
 }
 

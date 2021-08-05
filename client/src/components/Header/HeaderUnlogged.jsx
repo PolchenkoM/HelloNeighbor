@@ -1,16 +1,15 @@
-import { useDispatch, useSelector } from 'react-redux'
-import { addEventModal } from '../../redux/Actions/eventAC'
-import React, { useState } from 'react'
-import { Modal, Input, Button } from 'antd'
-import useRegForm from '../hooks/useForm'
+import { useDispatch } from 'react-redux'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { Modal, Input } from 'antd'
+import useForm from '../../hooks/useForm'
 import { getCurrentUserGoogleThunk } from '../../redux/Actions/usersAC'
 
 export default function HeaderUnlogged() {
 	// logBar
 	const dispatch = useDispatch()
 	const [isModalVisible, setIsModalVisible] = useState(false)
-	const [values, changeHandler] = useRegForm()
+	const [values, changeHandler] = useForm()
 
 	const showModal = () => {
 		setIsModalVisible(true)
@@ -25,7 +24,7 @@ export default function HeaderUnlogged() {
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify({
-				values,
+				...values,
 			}),
 		})
 			.then(res => res.json())
@@ -39,18 +38,11 @@ export default function HeaderUnlogged() {
 		setIsModalVisible(false)
 	}
 
-	// header and navbar
-	const isUser = useSelector(state => state.users.currentUser)
-
-	const createEvent = () => {
-		dispatch(addEventModal())
-	}
-
 	return (
 		<>
 			<header className='header'>
-				<nav className='navbar header__navbar'>
-					<ul className='list navbar__list'>
+				<nav className='navbar'>
+					<ul className='list'>
 						<li className='list__item'>
 							<Link to='/'>
 								<img
@@ -72,15 +64,18 @@ export default function HeaderUnlogged() {
 				</button>
 				<Modal
 					title='Войдите в аккаунт'
+					className='authModal'
 					visible={isModalVisible}
 					onOk={handleOk}
 					onCancel={handleCancel}
-					footer={null}
+					cancelText='Отмена'
+					okText='Oк'
 				>
 					<form method='POST' onSubmit={handleOk}>
 						<label htmlFor=''>
 							Почта
 							<Input
+								className='auth-input'
 								name='email'
 								type='email'
 								value={values.email || ''}
@@ -91,6 +86,7 @@ export default function HeaderUnlogged() {
 						<label htmlFor=''>
 							Пароль
 							<Input
+								className='auth-input'
 								name='password'
 								type='password'
 								value={values.password || ''}
@@ -98,7 +94,6 @@ export default function HeaderUnlogged() {
 								placeholder='Введите текст'
 							/>
 						</label>
-						<button className='button'>Войти</button>
 					</form>
 				</Modal>
 			</header>

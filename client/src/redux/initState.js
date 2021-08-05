@@ -16,6 +16,9 @@ const initState = {
   modals: {
     chatModalVisible: false,
   },
-  
+  error: {
+    status: false,
+    message: '',
+  }
 }
 export default initState
