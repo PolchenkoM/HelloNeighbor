@@ -1,0 +1,49 @@
+.google-auth
+  display: flex
+  align-items: center
+  padding: 5px 10px
+  background: $white
+  border-radius: 5px
+  cursor: pointer
+  margin-top: 10px
+  transition: 0.2s ease
+  &:hover
+    background: #d8d8d8
+  &__icon
+    height: 20px
+    margin-right: 5px
+  &__text
+    
+.authModal
+  & .ant-modal-header
+    background-color: $bc-grey-dark
+  & .ant-modal-title
+    color: $orange
+  & .ant-modal-body
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    height: 168px
+    background-color: $bc-grey
+  & .ant-modal-footer
+    background-color: $bc-grey-dark
+    & .ant-btn
+      background-color: $white
+      border: none
+      width: 80px
+      &:hover
+        background-color: $orange
+        color: $bc-black
+      & span
+        color: $bc-black
+    & .ant-btn-primary
+      background-color: $white
+      border: none
+       width: 80px
+      &:hover
+        background-color: $orange
+        color: $bc-black
+      & span
+        color: $bc-black
+  & .anticon .anticon-close .ant-modal-close-icon svg
+    background: $white

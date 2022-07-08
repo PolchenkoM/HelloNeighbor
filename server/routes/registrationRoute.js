@@ -8,8 +8,8 @@ const { v4: uuidv4 } = require("uuid");
 router.route("/").post(async (req, res) => {
   try {
     const { email, password } = req.body.values;
-    const hashPassword = await bcrypt.hash(password, salt);
     if (email && password) {
+      const hashPassword = await bcrypt.hash(password, salt);
       const user = await User.create({
         email,
         password: hashPassword,
@@ -23,11 +23,11 @@ router.route("/").post(async (req, res) => {
         to: email,
         subject:
           "Congratulatiions! You are successfully registred on our site!",
-        text: `Поздравляем, Вы успешно зарегистрировались на нашем сайте Hello Neighbour!
-
-        Данное письмо не требует ответа.`,
+        text: `Поздравляем, Вы успешно зарегистрировались на нашем сайте Hello Neighbour!!!!!!!
+        <a href='http://localhost:3000/'>тут ссылка для окончания регистрации</a>
+Данное письмо не требует ответа.`,
       };
-      // mailer(message);
+      mailer(message);
     }
   } catch (error) {
     console.log(error);
@@ -36,7 +36,13 @@ router.route("/").post(async (req, res) => {
 
 router.route("/google").post(async (req, res) => {
   const { email } = req.body;
-  const googleUser = await User.findOne({ email });
+  const googleUser = await User.findOne({ email })
+    .populate({
+      path: "history",
+      populate: ["tags", "members"],
+    })
+    .populate("tags")
+    .populate("friends");
   if (googleUser == null) {
     const user = await User.create({
       email,

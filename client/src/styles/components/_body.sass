@@ -1,8 +1,13 @@
 .body
-  background-image: url('./imgInStyle/background.jpeg')
+  background-image: url('./imgInStyle/backgroundMain.jpeg')
   height: 100vh
   background-color: red
-  &__welcome
+.welcome
+  &__title
+    font: bold 90px/44px Roboto
+    color: #ffffff
+    transition: text-shadow 0.3s ease-in
+  &__body
     position: relative
     left: 50%
     top: 50%
@@ -11,20 +16,13 @@
     flex-direction: column-reverse
     justify-content: space-between
     align-items: center
-.welcome
-  &__title
-    font: bold 90px/44px Roboto
-    color: #ffffff
-    transition: text-shadow 0.3s ease-in
-    &:hover
-      cursor: pointer
   &__button
-    color: #5d86f7
     cursor: pointer
     border: none
     outline: none
     padding: 30px 60px
-    background: linear-gradient(to top left, powderblue, pink)
+    background: $bc-black
+    color: $orange
     border-radius: 30px
     font-size: 24px
     font-weight: bold

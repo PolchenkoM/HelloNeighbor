@@ -1,13 +1,72 @@
 *
   box-sizing: border-box
-body
+body, html
   font-family: Roboto, sans-serif
   font-weight: 400
   color: $text-color
+  height: 100%
 #body
   height: auto
 .container
-  // max-width: 1110px
+  &-fullscreen
+    height: 100vh
+    background-image: url('./components/imgInStyle/backgroundMain.jpeg')
+  &--welcome
+    background-image: url('./components/imgInStyle/backgroundMain.jpeg')
+    background-repeat: no-repeat
+    background-size: 100%
+
+    height: 100%
+    width: 100%
+  &--main
+    height: 100%
+    background-image: url('./components/imgInStyle/backgroundMain.jpeg')
+    background: grey
+    display: flex
+  &--content
+    height: 100%
+    width: 100%
+    padding-top: 60px
+    display: flex
+  &--sidebar
+    height: 100%
+    width: 70px
+    padding-top: 60px
+    background: none
+    transition: 0.5s
+    &--active
+      width: 200px
+  &--map
+    display: flex
+    flex-grow: 2
+    align-items: center
+    justify-content: center
+    height: 100%
+    width: 100%
+    margin: 0 auto
+  &--eventList
+    background: #292929
+    width: 250px
+    height: 100%
+    border-top-left-radius: 15px
+  &--profile
+    height: 100%
+    width: 1000px
+    margin: 0 auto
+    background: $bc-grey
+  &--currentEvents
+    height: 100%
+    max-width: 1000px
+    margin: auto
+  &--friends
+    max-width: 1000px
+    margin: auto
+  &--history
+    height: 100%
+    width: 100%
+    margin: auto
+    margin: 0
+    overflow: scroll
   &-mt
     height: 95vh
     margin-top: 5vh
@@ -29,7 +88,7 @@ img
   height: 123px
   width: 100%
 .button
-  color: $light
+  color: $white
   background: none
   border: none
   outline: none
@@ -37,3 +96,8 @@ img
 .invalid
   color: $primary
   border-bottom: 1px solid $primary
+.error
+  color: red
+  margin: 5px
+  &--form
+    textAlign: center

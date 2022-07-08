@@ -1,15 +1,15 @@
-import { useDispatch, useSelector } from 'react-redux'
-import { addEventModal } from '../../redux/Actions/eventAC'
-import React, { useState } from 'react'
-import { Modal, Input, Button } from 'antd'
-import useRegForm from '../hooks/useForm'
+import { useDispatch } from 'react-redux'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
-
+import { Modal, Input } from 'antd'
+import useForm from '../../hooks/useForm'
+import { getCurrentUserGoogleThunk } from '../../redux/Actions/usersAC'
 
 export default function HeaderUnlogged() {
 	// logBar
+	const dispatch = useDispatch()
 	const [isModalVisible, setIsModalVisible] = useState(false)
-	const [values, changeHandler] = useRegForm()
+	const [values, changeHandler] = useForm()
 
 	const showModal = () => {
 		setIsModalVisible(true)
@@ -24,12 +24,13 @@ export default function HeaderUnlogged() {
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify({
-				values,
+				...values,
 			}),
 		})
 			.then(res => res.json())
 			.then(result => {
 				localStorage.setItem('email', result.email)
+				dispatch(getCurrentUserGoogleThunk(result.email))
 			})
 	}
 
@@ -37,51 +38,44 @@ export default function HeaderUnlogged() {
 		setIsModalVisible(false)
 	}
 
-	// header and navbar
-	const dispatch = useDispatch()
-	const isUser = useSelector(state => state.users.currentUser)
-  console.log(isUser, 'from unlogged')
-	const createEvent = () => {
-		dispatch(addEventModal())
-	}
-
 	return (
 		<>
 			<header className='header'>
-				<img height='50px' src='/img/randomLogo.jpg' alt='SITE LOGO' />
-				<nav className='navbar header__navbar'>
-					<ul className='list navbar__list'>
+				<nav className='navbar'>
+					<ul className='list'>
 						<li className='list__item'>
-            <Link to='/products' className='list__item-link'>
-            (нот-мейн-хедер)Продукты
+							<Link to='/'>
+								<img
+									className='header__image'
+									src='/img/logo.jpg'
+									alt='SITE LOGO'
+								/>
 							</Link>
 						</li>
 						<li className='list__item'>
-							<Link to='/about' className='list__item-link'>
-								О&nbsp;нас
-							</Link>
-						</li>
-						<li className='list__item'>
-							<Link to='/support' className='list__item-link'>
-								Поддержка
-							</Link>
+							<a href='/' target='_blank' className='list__item-link'>
+								Продукты
+							</a>
 						</li>
 					</ul>
 				</nav>
-				<button className='button' onClick={showModal}>
+				<button className='button logButton' onClick={showModal}>
 					Войти
 				</button>
 				<Modal
 					title='Войдите в аккаунт'
+					className='authModal'
 					visible={isModalVisible}
 					onOk={handleOk}
 					onCancel={handleCancel}
-					footer={null}
+					cancelText='Отмена'
+					okText='Oк'
 				>
 					<form method='POST' onSubmit={handleOk}>
 						<label htmlFor=''>
 							Почта
 							<Input
+								className='auth-input'
 								name='email'
 								type='email'
 								value={values.email || ''}
@@ -92,6 +86,7 @@ export default function HeaderUnlogged() {
 						<label htmlFor=''>
 							Пароль
 							<Input
+								className='auth-input'
 								name='password'
 								type='password'
 								value={values.password || ''}
@@ -99,7 +94,6 @@ export default function HeaderUnlogged() {
 								placeholder='Введите текст'
 							/>
 						</label>
-						<button className='button'>Войти</button>
 					</form>
 				</Modal>
 			</header>

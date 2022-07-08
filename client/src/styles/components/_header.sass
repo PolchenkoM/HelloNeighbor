@@ -3,46 +3,60 @@
   align-items: center
   justify-content: space-between
   position: fixed
-  z-index: 9
+  z-index: 99
   top: 0
   left: 0
   width: 100%
-  height: 5vh
-  padding: 10px 20px
-  color: #ffffff
-  background-color: rgba(4, 28, 107, 0.5)
+  height: 60px
+  background-color: $bc-black
+  padding: 0 20px
   &__image
-    height: 5vh
-  &__navbar
-  
-.navbar
-  &__list
+    max-width: 180px
+    border-radius: 4px
+    margin-left: -10px
+    &:hover
+      transition: 0.2s ease
+      box-shadow: 1px 1px 6px 6px $orange
+  &--logged
+    background-color: yellow
+
 .list
+  padding: 0
+  margin: 0
   list-style: none
   display: flex
   align-items: center
-  margin: 0
   &__item
-    padding: 20px 40px
-  &__item-link
-    color: #ffffff
-    font-family: Roboto
-    font-style: normal
+    margin-right: 30px 
     font-weight: bold
     font-size: 18px
     line-height: 25px
     letter-spacing: 0.1em
-    text-transform: uppercase
-    transition: color 0.1s ease-in
-    &:hover
-      color: #dadada
-.log-link
-  color: #ffffff
-  cursor: pointer
-  border: none
-  outline: none
-  background: none
-  padding: 5px 10px
-  font-size: 24px
+    color: $orange
+    &:last-child
+      margin-right: 0
+    &-createEvent
+      background-color: $orange
+      padding: 4px 8px
+      border-radius: 5px
+      color: $black
+      transition: 0.1s linear
+      &:hover
+        color: $white
+    &-link
+      height: 100%
+      color: inherit
+      transition: color 0.1s ease-in
+      &:hover
+        color: $white
+.logButton
   font-weight: bold
-  font-family: Roboto
+  font-size: 18px
+  line-height: 25px
+  letter-spacing: 0.1em
+  padding: 5px 10px
+  border-radius: 5px
+  color: $white
+  background: $bc-grey-dark
+  &:hover
+    color: $orange
